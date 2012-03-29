@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Project xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+         xmlns:foaf="http://xmlns.com/foaf/0.1/"
+         xmlns:gnome="http://api.gnome.org/doap-extensions#"
+         xmlns="http://usefulinc.com/ns/doap#">
+
+  <name>GNOME modulesets</name>
+  <shortname>gnome-modulesets</shortname>
+  <shortdesc xml:lang="en">JHBuild modulesets to build GNOME</shortdesc>
+
+  <homepage rdf:resource="http://www.gnome.org" />
+  <bug-database rdf:resource="http://bugzilla.gnome.org/enter_bug.cgi?product=jhbuild&amp;component=modulesets" />
+  <mailing-list rdf:resource="http://mail.gnome.org/mailman/listinfo/desktop-devel-list" />
+  <category rdf:resource="http://api.gnome.org/doap-extensions#development" />
+
+  <repository>
+    <GitRepository>
+        <browse rdf:resource="http://git.gnome.org/browse/gnome-modulesets/"/>
+      <location rdf:resource="git://git.gnome.org/gnome-modulesets"/>
+    </GitRepository>
+  </repository>
+
+  <maintainer>
+    <foaf:Person>
+      <foaf:name>Alejandro Piñeiro</foaf:name>
+      <foaf:mbox rdf:resource="mailto:apinheiro@igalia.com "/>
+      <gnome:userid>apinheiro</gnome:userid>
+    </foaf:Person>
+  </maintainer>
+
+  <maintainer>
+    <foaf:Person>
+      <foaf:name>Andre Klapper</foaf:name>
+      <foaf:mbox rdf:resource="mailto:ak-47@gmx.net"/>
+      <gnome:userid>aklapper</gnome:userid>
+    </foaf:Person>
+  </maintainer>
+
+  <maintainer>
+    <foaf:Person>
+      <foaf:name>Colin Walter</foaf:name>
+      <foaf:mbox rdf:resource="mailto:walters@verbum.org"/>
+      <gnome:userid>walters</gnome:userid>
+    </foaf:Person>
+  </maintainer>
+
+  <maintainer>
+    <foaf:Person>
+      <foaf:name>Frederic Peters</foaf:name>
+      <foaf:mbox rdf:resource="mailto:fpeters@gnome.org"/>
+      <gnome:userid>fpeters</gnome:userid>
+    </foaf:Person>
+  </maintainer>
+
+  <maintainer>
+    <foaf:Person>
+      <foaf:name>Javier Jardón</foaf:name>
+      <foaf:mbox rdf:resource="mailto:jjardon@gnome.org"/>
+      <gnome:userid>jjardon</gnome:userid>
+    </foaf:Person>
+  </maintainer>
+
+  <maintainer>
+    <foaf:Person>
+      <foaf:name>Kjartan Maraas</foaf:name>
+      <foaf:mbox rdf:resource="mailto:kmaraas@gnome.org"/>
+      <gnome:userid>kmaraas</gnome:userid>
+    </foaf:Person>
+  </maintainer>
+
+  <maintainer>
+    <foaf:Person>
+      <foaf:name>Luca Ferretti</foaf:name>
+      <foaf:mbox rdf:resource="mailto:lferrett@gnome.org"/>
+      <gnome:userid>lferrett</gnome:userid>
+    </foaf:Person>
+  </maintainer>
+
+  <maintainer>
+    <foaf:Person>
+      <foaf:name>Matthias Clasen</foaf:name>
+      <foaf:mbox rdf:resource="mailto:mclasen@redhat.com"/>
+      <gnome:userid>matthiasc</gnome:userid>
+    </foaf:Person>
+  </maintainer>
+
+</Project>
