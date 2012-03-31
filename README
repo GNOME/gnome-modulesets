@@ -1,0 +1,61 @@
+This module contains the modulesets used to build releases of GNOME 3.
+
+The modulesets are organized in a number of metamodules. The most
+important metamodules (which are directly used when building GNOME 3
+releases) are:
+
+meta-gnome-core - The entirety of the Core GNOME UX, including fallback
+  and utilities.
+
+meta-gnome-apps-tested - Tested GNOME applications. These are built
+  continuously by build.gnome.org build slaves, and by default for
+  anyone using jhbuild.
+
+The meta-gnome-core metamodule is broken down in a number of auxiliary
+metamodules of lesser importance:
+
+meta-gnome-core-utilities -  The Core GNOME Utilities. Only unbranded,
+  integrated, basic functionality utilities allowed.
+
+meta-gnome-core-shell - The Core GNOME UX Shell. Only integrated session
+  services, data and core UI are allowed.
+
+meta-gnome-core-extras - Ancillary session services and data.
+
+meta-gnome-core-shell-fallback - The Core GNOME Fallback UX. Provides a
+  non-composited fallback experience for incapable hardware.
+
+meta-gnome-core-os-services - The Core GNOME OS Services. Only OS System
+  services required to provide the Core GNOME UX.
+
+meta-gnome-devel-platform - Platform libraries providing stable APIs,
+  essentially the GTK+ stack.
+
+meta-gnome-extended-devel-platform - Libraries and bindings that don't
+  necessarily guarantee a stable API.
+
+
+The metamodules are contained in the following files:
+
+gnome-suites-core.modules - Contains all the meta-gnome-core-* and
+  meta-gnome-*-platform metamodules and the modules they contain.
+
+gnome-suites-core-deps-base.modules - External dependencies of
+  modules in gnome-suites-core.modules. The modules in this file
+  are expected to be established, stable, system modules, that have
+  been in place for a long time, with stable API and ABI, and exist
+  in sufficient versions in the distributions commonly used by GNOME
+  hackers, even in older but still used versions.
+
+gnome-suites-core-deps.modules - External dependencies of modules
+  in gnome-suites-core.modules. The modules in this file may be
+  developed outside GNOME, with or without to our schedule, but with
+  an active development, and where we want to track recent code.
+
+gnome-apps.modules - Contains the meta-gnome-apps-tested metamodule
+  and its modules, as well as their dependencies, unless they are
+  provided in gnome-suites-core-deps-*.modules.
+
+gnome-world.modules - Any other GNOME-related modules that should be
+  buildable via jhbuild. Modules in this file don't necessarily have
+  to follow the GNOME release cycle.
