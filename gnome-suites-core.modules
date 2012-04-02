@@ -26,7 +26,7 @@
   <repository type="tarball" name="gnome.org"
       href="http://download.gnome.org/sources/"/>
 
-<include href="gnome-suites-core-deps-3.6.modules"/>
+<include href="gnome-suites-core-deps-3.4.modules"/>
 
 <!-- Please try to keep organized alphabetically by section -->
 
@@ -63,8 +63,8 @@
     </dependencies>
   </autotools>
 
-  <autotools id="evolution-data-server" supports-non-srcdir-builds="no" autogenargs="--enable-vala-bindings --disable-weather">
-    <branch/>
+  <autotools id="evolution-data-server" supports-non-srcdir-builds="no" autogenargs="--enable-vala-bindings">
+    <branch revision="gnome-3-4"/>
     <dependencies>
       <dep package="intltool"/>
       <dep package="libsoup"/>
@@ -103,7 +103,7 @@
   </autotools>
 
   <autotools id="gnome-online-accounts">
-    <branch/>
+    <branch revision="gnome-3-4"/>
     <dependencies>
       <dep package="gtk+"/>
       <dep package="WebKit"/>
@@ -115,7 +115,7 @@
   </autotools>
 
   <autotools id="gnome-control-center" supports-non-srcdir-builds="no">
-    <branch/>
+    <branch revision="gnome-3-4"/>
     <dependencies>
       <dep package="colord"/>
       <dep package="fontconfig"/>
@@ -152,7 +152,7 @@
   </autotools>
 
   <autotools id="gnome-desktop" autogenargs="--with-gnome-distributor=JHBuild">
-    <branch/>
+    <branch revision="gnome-3-4"/>
     <dependencies>
       <dep package="intltool"/>
       <dep package="glib"/>
@@ -215,7 +215,7 @@
   </autotools>
 
   <autotools id="gnome-packagekit" autogenargs="--enable-strict=no">
-    <branch/>
+    <branch revision="gnome-3-4"/>
     <dependencies>
       <dep package="PackageKit"/>
       <dep package="gtk+"/>
@@ -279,7 +279,7 @@
   </autotools>
 
   <autotools id="gnome-settings-daemon">
-    <branch/>
+    <branch revision="gnome-3-4"/>
     <dependencies>
       <dep package="colord"/>
       <dep package="glib"/>
@@ -344,7 +344,7 @@
   </autotools>
 
   <autotools id="gnome-themes-standard">
-    <branch/>
+    <branch revision="gnome-3-4"/>
     <dependencies>
       <dep package="intltool"/>
       <dep package="cantarell-fonts"/>
@@ -376,7 +376,7 @@
   </autotools>
 
   <autotools id="mousetweaks">
-    <branch/>
+    <branch revision="gnome-3-4"/>
     <dependencies>
       <dep package="gtk+"/>
       <dep package="gsettings-desktop-schemas"/>
@@ -446,8 +446,8 @@
     <dependencies>
       <dep package="dbus"/>
       <dep package="dbus-glib"/>
-      <dep package="telepathy-glib"/>
       <dep package="libgnome-keyring"/>
+      <dep package="telepathy-glib"/>
     </dependencies>
   </autotools>
 
@@ -524,7 +524,7 @@
   </autotools>
 
   <autotools id="brasero">
-    <branch/>
+    <branch revision="gnome-3-4"/>
     <dependencies>
       <dep package="glib"/>
       <dep package="gtk+"/>
@@ -541,7 +541,7 @@
   </autotools>
 
   <autotools id="empathy" autogenargs="--disable-Werror">
-    <branch/>
+    <branch revision="gnome-3-4"/>
     <dependencies>
       <dep package="clutter"/>
       <dep package="clutter-gst"/>
@@ -553,13 +553,13 @@
       <dep package="folks"/>
       <dep package="gcr"/>
       <dep package="glib"/>
-      <dep package="libgnome-keyring"/>
       <dep package="gnome-online-accounts"/>
       <dep package="gnutls"/>
       <dep package="gsettings-desktop-schemas"/>
       <dep package="gstreamer"/>
       <dep package="gtk+"/>
       <dep package="libcanberra"/>
+      <dep package="libgnome-keyring"/>
       <dep package="libsoup"/>
       <dep package="libxml2"/>
       <dep package="pulseaudio"/>
@@ -604,7 +604,7 @@
   </autotools>
 
   <autotools id="epiphany">
-    <branch/>
+    <branch revision="gnome-3-4"/>
     <dependencies>
       <dep package="intltool"/>
       <dep package="iso-codes"/>
@@ -642,7 +642,7 @@
   </autotools>
 
   <autotools id="gcalctool" supports-non-srcdir-builds="no">
-    <branch/>
+    <branch revision="gnome-3-4"/>
     <dependencies>
       <dep package="intltool"/>
       <dep package="gtk+"/>
@@ -651,7 +651,7 @@
   </autotools>
 
   <autotools id="gnome-contacts">
-    <branch/>
+    <branch revision="gnome-3-4"/>
     <dependencies>
       <dep package="folks"/>
       <dep package="glib"/>
@@ -672,7 +672,7 @@
   </autotools>
 
   <autotools id="gnome-disk-utility">
-    <branch/>
+    <branch revision="gnome-3-2"/>
     <dependencies>
       <dep package="glib"/>
       <dep package="gtk+"/>
@@ -720,7 +720,7 @@
   </autotools>
 
   <autotools id="gnome-system-monitor">
-    <branch/>
+    <branch revision="gnome-3-4"/>
     <dependencies>
       <dep package="intltool"/>
       <dep package="glib"/>
@@ -735,7 +735,7 @@
   </autotools>
 
   <autotools id="gnome-terminal" autogenargs="--with-gtk=3.0">
-    <branch/>
+    <branch revision="gnome-3-4"/>
     <dependencies>
       <dep package="intltool"/>
       <dep package="glib"/>
@@ -763,6 +763,9 @@
       <dep package="gtk+"/>
       <dep package="gnome-doc-utils"/>
     </dependencies>
+    <suggests>
+      <dep package="gconf"/>
+    </suggests>
   </autotools>
 
   <autotools id="nautilus">
@@ -801,7 +804,7 @@
   </autotools>
 
   <autotools id="totem">
-    <branch />
+    <branch revision="gnome-3-4"/>
     <dependencies>
       <dep package="intltool"/>
       <dep package="gtk+"/>
@@ -858,7 +861,7 @@
   </autotools>
 
   <autotools id="vino">
-    <branch/>
+    <branch revision="gnome-3-4"/>
     <dependencies>
       <dep package="intltool"/>
       <dep package="glib"/>

@@ -47,9 +47,9 @@
   <repository type="tarball" name="xiph.org"
         href="http://downloads.xiph.org/releases/"/>
 
-  <include href="gnome-suites-core-3.6.modules"/>
+  <include href="gnome-suites-core-3.4.modules"/>
 
-  <!-- NOTE: gnome-suites-core-3.6 and gnome-suites-core-deps-3.6
+  <!-- NOTE: gnome-suites-core-3.4 and gnome-suites-core-deps-3.4
        are supposed to remain self-contained. If apps have dependencies
        that are not covered there, add them in here
     -->
@@ -66,6 +66,17 @@
             size="440772"/>
     <dependencies>
     </dependencies>
+  </autotools>
+
+  <autotools id="libgsf">
+    <branch/>
+    <dependencies>
+      <dep package="intltool"/>
+      <dep package="glib"/>
+    </dependencies>
+    <suggests>
+      <dep package="gdk-pixbuf"/>
+    </suggests>
   </autotools>
 
   <autotools id="libvirt">
@@ -114,14 +125,14 @@
       <dep package="babl"/>
       <dep package="glib"/>
       <dep package="cairo"/>
-      <dep package="gdk-pixbuf"/>
       <dep package="pango"/>
+      <dep package="gdk-pixbuf"/>
       <dep package="librsvg"/>
     </dependencies>
   </autotools>
 
   <autotools id="ghex">
-    <branch/>
+    <branch revision="gnome-3-4"/>
     <dependencies>
       <dep package="glib"/>
       <dep package="gtk+"/>
@@ -173,7 +184,7 @@
   </autotools>
 
   <autotools id="gtkhtml">
-    <branch/>
+    <branch revision="gnome-3-4"/>
     <dependencies>
       <dep package="intltool"/>
       <dep package="gtk+"/>
@@ -278,7 +289,7 @@
  </autotools>
 
   <autotools id="libgda" autogenargs="--with-java=no">
-    <branch/>
+    <branch revision="LIBGDA_5.0"/>
     <dependencies>
       <dep package="glib"/>
       <dep package="libxml2"/>
@@ -502,7 +513,7 @@
   </autotools>
 
   <autotools id="gdl">
-    <branch/>
+    <branch revision="gnome-3-4"/>
     <dependencies>
       <dep package="intltool"/>
       <dep package="librsvg"/>
@@ -533,13 +544,13 @@
     </dependencies>
     <suggests>
       <dep package="enchant"/>
-      <dep package="goffice"/>
+      <dep package="libgoffice"/>
       <dep package="gucharmap"/>
     </suggests>
   </autotools>
 
   <autotools id="accerciser">
-    <branch/>
+    <branch revision="gnome-3-4"/>
     <dependencies>
       <dep package="at-spi2-atk"/> <!-- to make accerciser's gui accessible -->
       <dep package="intltool"/>
@@ -570,7 +581,7 @@
 
   <autotools id="deja-dup">
     <branch repo="launchpad.net"
-            module="deja-dup/24"
+            module="deja-dup/22"
             checkoutdir="deja-dup/"/>
     <dependencies>
       <dep package="duplicity"/>
@@ -739,7 +750,7 @@
   </autotools>
 
   <autotools id="glade">
-    <branch/>
+    <branch revision="glade-3-12"/>
     <dependencies>
       <dep package="intltool"/>
       <dep package="gnome-common"/>
@@ -751,7 +762,7 @@
   </autotools>
 
   <autotools id="gnome-color-manager">
-    <branch/>
+    <branch revision="gnome-3-4"/>
     <dependencies>
       <dep package="glib"/>
       <dep package="gnome-desktop"/>
@@ -777,7 +788,7 @@
   </autotools>
 
   <autotools id="rygel">
-    <branch/>
+    <branch revision="rygel-0-14" />
     <dependencies>
       <dep package="vala"/>
       <dep package="gupnp-vala"/>
@@ -809,7 +820,7 @@
 <!-- Featured Apps -->
 
   <autotools id="anjuta">
-    <branch/>
+    <branch revision="gnome-3-4"/>
     <dependencies>
       <dep package="intltool"/>
       <dep package="glib"/>
@@ -829,9 +840,8 @@
   </autotools>
 
  <autotools id="mx">
-    <branch repo="clutter-project.org"
-            module="mx/1.4/mx-1.4.3.tar.xz"
-            version="1.4.3"
+    <branch module="mx/1.4/mx-1.4.3.tar.xz" version="1.4.3"
+            repo="clutter-project.org"
             hash="sha256:d0c259a7bcaf130a17cef00ed4c7118287f05790a6b50bcffa02668130336eb5"
             size="951232"/>
     <dependencies>
@@ -846,7 +856,7 @@
 
 
   <autotools id="cheese">
-    <branch/>
+    <branch revision="gnome-3-4"/>
     <dependencies>
       <dep package="intltool"/>
       <dep package="glib"/>
@@ -893,8 +903,8 @@
     </suggests>
   </autotools>
 
-  <autotools id="evolution" autogenargs="--disable-pst-import --disable-weather">
-    <branch/>
+  <autotools id="evolution" autogenargs="--disable-pst-import">
+    <branch revision="gnome-3-4"/>
     <dependencies>
       <dep package="evolution-data-server"/>
       <dep package="gconf"/>
@@ -913,8 +923,8 @@
       <dep package="libsoup"/>
       <dep package="libxml2"/>
       <dep package="libnotify"/>
+      <dep package="NetworkManager"/>
       <dep package="shared-mime-info"/>
-      <dep package="WebKit"/>
     </dependencies>
     <suggests>
       <dep package="geoclue"/>
@@ -951,7 +961,7 @@
   </autotools>
 
   <autotools id="gnome-boxes" autogenargs="--enable-vala">
-    <branch/>
+    <branch revision="gnome-3-4"/>
     <dependencies>
       <dep package="glib"/>
       <dep package="libxml2"/>
@@ -968,7 +978,7 @@
   </autotools>
 
   <autotools id="gnome-games">
-    <branch/>
+    <branch revision="gnome-3-4"/>
     <dependencies>
       <dep package="intltool"/>
       <dep package="librsvg"/>
@@ -983,7 +993,7 @@
   </autotools>
 
   <autotools id="aisleriot">
-    <branch/>
+    <branch revision="gnome-3-4"/>
     <dependencies>
       <dep package="intltool"/>
       <dep package="gtk+"/>
@@ -1003,7 +1013,7 @@
   </autotools>
 
   <autotools id="nautilus-sendto">
-    <branch/>
+    <branch revision="gnome-3-0"/>
     <dependencies>
       <dep package="glib"/>
       <dep package="gtk+"/>
@@ -1031,7 +1041,7 @@
   </autotools>
 
   <autotools id="orca">
-    <branch/>
+    <branch revision="gnome-3-4"/>
     <dependencies>
       <dep package="gtk+"/>
       <dep package="at-spi2-atk"/> <!-- to make Orca's gui accessible -->
@@ -1072,7 +1082,7 @@
   </autotools>
 
   <autotools id="seahorse">
-    <branch/>
+    <branch revision="gnome-3-4"/>
     <dependencies>
       <dep package="intltool"/>
       <dep package="gtk+"/>
@@ -1138,7 +1148,7 @@
   </autotools>
 
   <autotools id="vinagre">
-    <branch/>
+    <branch revision="gnome-3-4"/>
     <dependencies>
       <dep package="intltool"/>
       <dep package="libxml2"/>

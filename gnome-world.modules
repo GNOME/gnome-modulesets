@@ -104,7 +104,7 @@
   <repository type="tarball" name="gnome.org"
       href="http://download.gnome.org/sources/"/>
 
-  <include href="gnome-apps-3.6.modules"/>
+  <include href="gnome-apps-3.4.modules"/>
 
   <autotools id="alacarte">
     <branch/>
@@ -2057,19 +2057,6 @@
       <dep package="tevent"/>
       <dep package="ldb"/>
       <dep package="samba4"/>
-    </dependencies>
-  </autotools>
-
-  <autotools id="evolution-kolab">
-    <branch/>
-    <dependencies>
-      <dep package="glib"/>
-      <dep package="gconf"/>
-      <dep package="gtk+"/>
-      <dep package="intltool"/>
-      <dep package="gmime"/>
-      <dep package="evolution-data-server"/>
-      <dep package="evolution"/>
     </dependencies>
   </autotools>
 
