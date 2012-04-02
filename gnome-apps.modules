@@ -913,8 +913,8 @@
       <dep package="libsoup"/>
       <dep package="libxml2"/>
       <dep package="libnotify"/>
-      <dep package="NetworkManager"/>
       <dep package="shared-mime-info"/>
+      <dep package="WebKit"/>
     </dependencies>
     <suggests>
       <dep package="geoclue"/>
