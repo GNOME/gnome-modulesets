@@ -42,11 +42,11 @@
 <repository type="tarball" name="itstool.org"
     href="http://files.itstool.org/itstool/"/>
 
-<include href="gnome-suites-core-deps-base-3.6.modules"/>
+<include href="gnome-suites-core-deps-base.modules"/>
 
 <!-- Please try to keep organized alphabetically by section -->
 
-<!-- Build dependencies of gnome-suites-core-3.4 -->
+<!-- Build dependencies of gnome-suites-core -->
 
   <autotools id="gypsy">
     <branch repo="git.freedesktop.org"/>

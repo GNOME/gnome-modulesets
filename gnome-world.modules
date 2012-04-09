@@ -104,7 +104,7 @@
   <repository type="tarball" name="gnome.org"
       href="http://download.gnome.org/sources/"/>
 
-  <include href="gnome-apps-3.6.modules"/>
+  <include href="gnome-apps.modules"/>
 
   <autotools id="alacarte">
     <branch/>
