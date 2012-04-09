@@ -49,7 +49,7 @@
 
   <include href="gnome-suites-core.modules"/>
 
-  <!-- NOTE: gnome-suites-core-3.4 and gnome-suites-core-deps-3.4
+  <!-- NOTE: gnome-suites-core and gnome-suites-core-deps
        are supposed to remain self-contained. If apps have dependencies
        that are not covered there, add them in here
     -->
