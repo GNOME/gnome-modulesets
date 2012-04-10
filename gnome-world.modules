@@ -151,7 +151,7 @@
   </autotools>
 
   <waf id="geary">
-    <branch repo="yorba"/>
+    <branch repo="yorba.org"/>
     <dependencies>
       <dep package="glib"/>
       <dep package="gmime"/>
