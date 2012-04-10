@@ -150,6 +150,16 @@
     </dependencies>
   </autotools>
 
+  <autotools id="sqlheavy">
+    <branch repo="gitorious.org" module="sqlheavy/sqlheavy"/>
+    <dependencies>
+      <dep package="glib"/>
+      <dep package="gobject-introspection"/>
+      <dep package="gtk+-2"/>
+      <dep package="sqlite3"/>
+    </dependencies>
+  </autotools>
+
   <waf id="geary">
     <branch repo="yorba.org"/>
     <dependencies>
@@ -160,6 +170,7 @@
       <dep package="libgee"/>
       <dep package="libgnome-keyring"/>
       <dep package="libunique"/>
+      <dep package="sqlheavy"/>
       <dep package="sqlite3"/>
       <dep package="vala"/>
       <dep package="WebKit"/>
