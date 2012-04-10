@@ -103,6 +103,8 @@
       href="http://tracker.openchange.org/attachments/download/"/>
   <repository type="tarball" name="gnome.org"
       href="http://download.gnome.org/sources/"/>
+  <repository type="git" name="yorba.org"
+      href="git://yorba.org/"/>
 
   <include href="gnome-apps.modules"/>
 
@@ -147,6 +149,22 @@
       <dep package="mx"/>
     </dependencies>
   </autotools>
+
+  <waf id="geary">
+    <branch repo="yorba"/>
+    <dependencies>
+      <dep package="glib"/>
+      <dep package="gmime"/>
+      <dep package="gtk+"/>
+      <dep package="gtksourceview"/>
+      <dep pacakge="libgee"/>
+      <dep package="libgnome-keyring"/>
+      <dep package="libunique"/>
+      <dep package="sqlite3"/>
+      <dep package="vala"/>
+      <dep package="WebKit"/>
+    </dependencies>
+  </waf>
 
   <waf id="hamster-applet" check-target="false">
     <branch/>
