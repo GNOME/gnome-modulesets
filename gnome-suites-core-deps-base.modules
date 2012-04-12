@@ -83,8 +83,8 @@
 	    size="705558">
     </branch>
     <dependencies>
-      <dep package="libxml2"/>
       <dep package="dbus"/>
+      <dep package="expat"/>
       <dep package="glib"/>
     </dependencies>
   </autotools>
