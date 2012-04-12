@@ -1537,7 +1537,7 @@
      <dep package="vala-trunk"/>
      <dep package="gst-plugins-good"/>
      <dep package="gst-plugins-bad"/>
-     <dep package="libgee"/>
+     <dep package="libgee-0.6"/>
      <dep package="sqlite3"/>
      <dep package="pygobject2"/>
      <dep package="gst-python"/>
@@ -1980,7 +1980,7 @@
     <branch/>
     <dependencies>
       <dep package="vala"/>
-      <dep package="libgee"/>
+      <dep package="libgee-0.6"/>
       <dep package="clutter-gtk"/>
       <dep package="clutter-gst"/>
       <dep package="json-glib"/>
