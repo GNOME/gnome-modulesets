@@ -11,6 +11,8 @@
       href="http://svn.abisource.com/"/>
   <repository type="git" name="git.freedesktop.org"
       href="git://anongit.freedesktop.org/git/"/>
+  <repository type="git" name="gstreamer.freedesktop.org"
+      href="git://anongit.freedesktop.org/gstreamer/"/>
   <repository type="bzr" name="launchpad.net"
       href="lp:"/>
   <repository type="git" name="github.com"
@@ -693,6 +695,18 @@
       <dep package="libxml2"/>
       <dep package="pygobject"/>
       <dep package="pango"/>
+    </dependencies>
+  </autotools>
+
+  <autotools id="gst-plugins-bad-0.10"
+             autogenargs="--disable-tests"
+             supports-non-srcdir-builds="no">
+    <branch repo="gstreamer.freedesktop.org"
+            module="gst-plugins-bad"
+            checkoutdir="gst-plugins-bad-0.10"/>
+    <dependencies>
+      <dep package="gstreamer"/>
+      <dep package="gst-plugins-base"/>
     </dependencies>
   </autotools>
 

@@ -805,6 +805,7 @@
       <dep package="gstreamer-0.10"/>
       <dep package="gst-plugins-base-0.10"/>
       <dep package="gst-plugins-good-0.10"/>
+      <dep package="gst-plugins-bad-0.10"/>
       <dep package="iso-codes"/>
       <dep package="totem-pl-parser"/>
       <dep package="libpeas"/>
