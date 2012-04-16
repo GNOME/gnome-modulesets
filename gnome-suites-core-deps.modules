@@ -201,7 +201,7 @@
   </autotools>
 
   <autotools id="glib-networking">
-    <branch/>
+    <branch revision="glib-3-32"/>
     <dependencies>
       <dep package="glib"/>
       <dep package="intltool"/>
@@ -636,7 +636,7 @@
   </autotools>
 
   <autotools id="libsoup" autogenargs="--disable-tls-check">
-    <branch/>
+    <branch revision="gnome-3-4"/>
     <dependencies>
       <dep package="glib"/>
       <dep package="libxml2"/>
