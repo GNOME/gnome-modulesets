@@ -26,7 +26,7 @@
   <repository type="tarball" name="gnome.org"
       href="http://download.gnome.org/sources/"/>
 
-<include href="gnome-suites-core-deps.modules"/>
+<include href="gnome-core-deps.modules"/>
 
 <!-- Please try to keep organized alphabetically by section -->
 
