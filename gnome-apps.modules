@@ -47,9 +47,9 @@
   <repository type="tarball" name="xiph.org"
         href="http://downloads.xiph.org/releases/"/>
 
-  <include href="gnome-suites-core.modules"/>
+  <include href="gnome-core.modules"/>
 
-  <!-- NOTE: gnome-suites-core and gnome-suites-core-deps
+  <!-- NOTE: gnome-core and gnome-core-deps
        are supposed to remain self-contained. If apps have dependencies
        that are not covered there, add them in here
     -->

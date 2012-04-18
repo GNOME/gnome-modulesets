@@ -37,24 +37,24 @@ meta-gnome-extended-devel-platform - Libraries and bindings that don't
 
 The metamodules are contained in the following files:
 
-gnome-suites-core.modules - Contains all the meta-gnome-core-* and
+gnome-core.modules - Contains all the meta-gnome-core-* and
   meta-gnome-*-platform metamodules and the modules they contain.
 
-gnome-suites-core-deps-base.modules - External dependencies of
-  modules in gnome-suites-core.modules. The modules in this file
+gnome-core-deps-base.modules - External dependencies of
+  modules in gnome-core.modules. The modules in this file
   are expected to be established, stable, system modules, that have
   been in place for a long time, with stable API and ABI, and exist
   in sufficient versions in the distributions commonly used by GNOME
   hackers, even in older but still used versions.
 
-gnome-suites-core-deps.modules - External dependencies of modules
-  in gnome-suites-core.modules. The modules in this file may be
+gnome-core-deps.modules - External dependencies of modules
+  in gnome-core.modules. The modules in this file may be
   developed outside GNOME, with or without to our schedule, but with
   an active development, and where we want to track recent code.
 
 gnome-apps.modules - Contains the meta-gnome-apps-tested metamodule
   and its modules, as well as their dependencies, unless they are
-  provided in gnome-suites-core-deps-*.modules.
+  provided in gnome-core-deps-*.modules.
 
 gnome-world.modules - Any other GNOME-related modules that should be
   buildable via jhbuild. Modules in this file don't necessarily have
