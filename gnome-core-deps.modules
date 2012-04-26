@@ -201,7 +201,7 @@
     <branch/>
     <dependencies>
       <dep package="gtk-doc"/>
-      <dep package="libffi">
+      <dep package="libffi"/>
     </dependencies>
     <after>
       <dep package="shared-mime-info"/>
