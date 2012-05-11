@@ -699,7 +699,7 @@
   </autotools>
 
   <autotools id="gst-plugins-bad-0.10"
-             autogenargs="--disable-tests"
+             autogenargs="--disable-tests --disable-fatal-warnings"
              supports-non-srcdir-builds="no">
     <branch repo="gstreamer.freedesktop.org"
             module="gst-plugins-bad"
