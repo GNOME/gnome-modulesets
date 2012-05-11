@@ -373,7 +373,7 @@
     <dependencies>
       <dep package="gstreamer"/>
       <dep package="gst-plugins-base"/>
-      <dep package="libva">
+      <dep package="libva"/>
     </dependencies>
   </autotools>
 
