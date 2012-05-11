@@ -327,7 +327,7 @@
   <autotools id="libnice"
              autogenargs="--enable-gupnp">
     <pkg-config>nice.pc</pkg-config>
-    <source repo="nice"
+    <branch repo="nice"
             module="libnice-0.1.2.tar.gz"
             version="0.1.2"
             hash="sha256:f2472b6392a27287ded21a6ba535b19c6204614fb191e1c4ff98295202c247f6"/>
@@ -336,7 +336,7 @@
       <dep package="gst-plugins-base-0.10"/>
       <dep package="gupnp-igd"/>
     </dependencies>
-  </tarball>
+  </autotools>
 
   <autotools id="gupnp-igd"
              autogenargs="--disable-python">
