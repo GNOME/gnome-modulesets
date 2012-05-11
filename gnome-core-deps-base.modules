@@ -329,7 +329,7 @@
             hash="sha256:f2472b6392a27287ded21a6ba535b19c6204614fb191e1c4ff98295202c247f6"/>
     <dependencies>
       <dep package="glib"/>
-      <dep package="gst-plugins-base"/>
+      <dep package="gst-plugins-base-0.10"/>
     </dependencies>
   </tarball>
 
