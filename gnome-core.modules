@@ -439,7 +439,7 @@
   </autotools>
 
   <autotools id="telepathy-mission-control">
-    <branch repo="telepathy"
+    <branch repo="telepathy.freedesktop.org"
             revision="telepathy-mission-control-5.12"/>
     <dependencies>
       <dep package="dbus"/>
