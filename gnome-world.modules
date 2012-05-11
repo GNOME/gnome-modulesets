@@ -215,18 +215,17 @@
     </dependencies>
   </autotools>
 
-  <autotools id="phonemgr">
-    <branch/>
+  <autotools id="gnome-phone-manager">
+    <branch module="phonemgr"/>
     <dependencies>
-      <dep package="gtk+-2"/>
-      <dep package="glib"/>
-      <dep package="libbtctl"/>
-      <dep package="gnome-bluetooth"/>
-      <dep package="libglade"/>
-      <dep package="gconf"/>
-      <dep package="gnokii"/>
-      <dep package="gtkspell"/>
+      <dep package="dbus-glib"/>
       <dep package="evolution-data-server"/>
+      <dep package="gconf"/>
+      <dep package="glib"/>
+      <dep package="gnokii"/>
+      <dep package="gnome-bluetooth"/>
+      <dep package="gtk+"/>
+      <dep package="gtkspell"/>
     </dependencies>
   </autotools>
 
