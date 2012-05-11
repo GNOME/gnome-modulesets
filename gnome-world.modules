@@ -386,7 +386,8 @@
 
   <autotools id="libva-intel-driver" supports-non-srcdir-builds="no">
     <branch repo="git.freedesktop.org"
-            module="vaapi/intel-driver"/>
+            module="vaapi/intel-driver"
+            revision="v1.0-branch"/>
   </autotools>
 
   <autotools id="gst-plugins-ugly" autogenargs="-- --disable-tests" supports-non-srcdir-builds="no">
