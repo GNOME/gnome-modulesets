@@ -297,7 +297,8 @@
     </suggests>
   </autotools>
 
-  <autotools id="farstream" autogenargs="--disable-python">
+  <autotools id="farstream"
+             autogenargs="--disable-python --disable-Werror">
     <branch repo="freedesktop.org"
             module="farstream/releases/farstream/farstream-0.1.1.tar.gz"
             version="0.1.1"
