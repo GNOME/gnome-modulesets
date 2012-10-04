@@ -27,16 +27,14 @@
     href="http://libproxy.googlecode.com/files/"/>
 <repository type="tarball" name="0pointer.de"
     href="http://0pointer.de/lennart/projects/"/>
-<repository type="tarball" name="ftp.musicbrainz.org"
-    href="http://ftp.musicbrainz.org/pub/musicbrainz/"/>
+<repository type="tarball" name="github.com/metabrainz"
+    href="https://github.com/downloads/metabrainz/"/>
 <repository type="tarball" name="libnl"
     href="http://www.infradead.org/~tgr/libnl/files/"/>
 <repository type="tarball" name="kernel.org"
     href="http://www.kernel.org/pub/linux/"/>
 <repository type="tarball" name="dbus"
     href="http://dbus.freedesktop.org/releases/"/>
-<repository type="tarball" name="nice"
-    href="http://nice.freedesktop.org/releases/"/>
 <repository type="tarball" name="cairo.org"
     href="http://cairographics.org/"/>
 <repository type="tarball" name="people.freedesktop.org"
@@ -45,8 +43,10 @@
     href="http://files.itstool.org/itstool/"/>
 <repository type="tarball" name="json"
     href="http://oss.metaparadigm.com/json-c/"/>
-<repository type="tarball" name="libffi"
-    href="ftp://sourceware.org/pub/libffi"/>
+<repository type="tarball" name="complang.org"
+    href="http://www.complang.org/"/>
+
+  <include href="gnome-sysdeps.modules"/>
 
 <!-- Please try to keep organized alphabetically -->
 
@@ -62,9 +62,6 @@
       <dep package="gtk-doc"/>
       <dep package="pixman"/>
     </dependencies>
-    <after>
-      <dep package="glitz"/>
-    </after>
   </autotools>
 
   <autotools id="cairomm" autogen-sh="configure">
@@ -88,8 +85,8 @@
     </branch>
     <dependencies>
       <dep package="dbus"/>
-      <dep package="expat"/>
       <dep package="glib"/>
+      <dep package="expat"/>
     </dependencies>
   </autotools>
 
@@ -146,6 +143,7 @@
   </tarball>
 
   <autotools id="gnutls" version="2.12.8" autogenargs="--enable-guile=no --with-libgcrypt">
+    <pkg-config>gnutls.pc</pkg-config>
     <branch module="gnutls/gnutls-2.12.8.tar.bz2" version="2.12.8"
             repo="ftp.gnu.org"
             hash="sha256:c1bcb3c90a76e0c4c5c953ec1fb4e5e318e59afefc24fbec21c1741bf652b262"
@@ -167,7 +165,7 @@
   <repository type="tarball" name="fedoraproject.org"
     href="pkgs.fedoraproject.org/repo/pkgs/"/>
   <autotools id="gudev" check-target="false" supports-non-srcdir-builds="no"
-             autogen-sh="autogen.sh">
+             autogen-sh="autogen.sh" autogenargs="--with-rootlibdir=${libdir}">
     <pkg-config>gudev-1.0.pc</pkg-config>
     <branch repo="fedoraproject.org"
             module="udev/udev-173.tar.bz2/91a88a359b60bbd074b024883cc0dbde/udev-173.tar.bz2"
@@ -177,7 +175,9 @@
       <patch file="gudev-173.patch" strip="1"/>
     </branch>
     <dependencies>
+      <dep package="gperf"/>
       <dep package="gobject-introspection"/>
+      <dep package="libacl"/>
     </dependencies>
   </autotools>
 
@@ -250,19 +250,20 @@
   <autotools id="libcanberra" autogen-sh="configure" autogenargs="--with-systemdsystemunitdir=no">
     <pkg-config>libcanberra-gtk.pc</pkg-config>
     <branch repo="0pointer.de"
-            module="libcanberra/libcanberra-0.28.tar.gz"
-            version="0.28"
-            hash="sha256:eb1f8b2cabad7f07b6e44d606a91d73e1efca4b46daf92bd553e7222bc68868c"
-            size="487276">
+            module="libcanberra/libcanberra-0.29.tar.xz"
+            version="0.29"
+            hash="sha256:127a5ef07805856d63758e5180ebfb241d1f80094fd301c287591a15b8cfcd72"
+            size="315728">
     </branch>
     <dependencies>
       <dep package="gtk-doc"/>
+      <dep package="libvorbis"/>
     </dependencies>
     <after>
       <dep package="gtk+"/>
       <dep package="gtk+-2"/>
       <dep package="pulseaudio"/>
-      <dep package="gstreamer"/>
+      <dep package="gstreamer-0.10"/>
     </after>
   </autotools>
 
@@ -274,13 +275,15 @@
             size="340474"/>
   </autotools>
 
-  <autotools id="libffi">
-    <pkg-config>libffi.pc</pkg-config>
-    <branch repo="libffi"
-            module="libffi-3.0.9.tar.gz"
-            version="3.0.9"
-            hash="sha256:589d25152318bc780cd8919b14670793f4971d9838dab46ed38c32b3ee92c452"
-            size="731719"/>
+  <autotools id="libexif">
+    <pkg-config>libexif.pc</pkg-config>
+    <branch repo="sourceforge.net"
+            module="libexif/libexif/0.6.21/libexif-0.6.21.tar.bz2"
+            version="0.6.21"
+            hash="sha256:16cdaeb62eb3e6dfab2435f7d7bccd2f37438d21c5218ec4e58efa9157d4d41a">
+    </branch>
+    <dependencies>
+    </dependencies>
   </autotools>
 
   <autotools id="libgpg-error" autogen-sh="configure" check-target="false">
@@ -291,13 +294,25 @@
   </autotools>
 
   <autotools id="libgcrypt" autogen-sh="configure" check-target="false">
-    <branch module="libgcrypt/libgcrypt-1.5.0.tar.bz2"
-            repo="gnupg.org"
+    <branch repo="gnupg.org"
+            module="libgcrypt/libgcrypt-1.5.0.tar.bz2"
             version="1.5.0"
             hash="sha256:4b62fc516004940a0571025401a0581d49199f1a76dfb5ce6fd63f50db8173fa"
-            size="1433506"/>
+            size="1433506">
+    </branch>
     <dependencies>
       <dep package="libgpg-error" />
+    </dependencies>
+  </autotools>
+
+  <autotools id="libgphoto2"
+             autogen-sh="configure">
+    <pkg-config>libgphoto2.pc</pkg-config>
+    <branch repo="sourceforge.net"
+            module="gphoto/libgphoto/2.5.0/libgphoto2-2.5.0.tar.bz2"
+            version="2.5.0"
+            hash="sha256:e7df389f1b034be021066227c0908b8f21d3be0cd0c6ed56979c04c3a9f75b31"/>
+    <dependencies>
     </dependencies>
   </autotools>
 
@@ -312,47 +327,22 @@
     </dependencies>
   </autotools>
 
-  <cmake id="libmusicbrainz">
-    <pkg-config>libmusicbrainz4.pc</pkg-config>
-    <branch repo="ftp.musicbrainz.org"
-            module="libmusicbrainz-4.0.0.tar.gz"
-            version="4.0.0"
-            hash="sha256:30b139f51ee8c5bbe8803bdd6b24747276825f3cff7648ac72fba3c9d8f2e94a"
-            size="126597">
+  <cmake id="libmusicbrainz"
+         cmakeargs="-DLIB_SUFFIX=${libsuffix}">
+    <pkg-config>libmusicbrainz5.pc</pkg-config>
+    <branch repo="github.com/metabrainz"
+            module="libmusicbrainz/libmusicbrainz-5.0.1.tar.gz"
+            version="5.0.1"
+            hash="sha256:1ca75e1c5059a3620b0d82633b1f468acc2a65fcc4305f844ec44f6fb5db82d5"
+            size="109119">
     </branch>
     <dependencies>
+      <dep package="neon"/>
     </dependencies>
   </cmake>
 
-  <autotools id="libnice"
-             autogenargs="--enable-gupnp">
-    <pkg-config>nice.pc</pkg-config>
-    <branch repo="nice"
-            module="libnice-0.1.2.tar.gz"
-            version="0.1.2"
-            hash="sha256:f2472b6392a27287ded21a6ba535b19c6204614fb191e1c4ff98295202c247f6"/>
-    <dependencies>
-      <dep package="glib"/>
-      <dep package="gst-plugins-base-0.10"/>
-      <dep package="gupnp-igd"/>
-    </dependencies>
-  </autotools>
-
-  <autotools id="gupnp-igd"
-             autogenargs="--disable-python">
-     <pkg-config>gupnp-igd-1.0.pc</pkg-config>
-     <branch repo="gnome.org"
-             module="gupnp-igd/0.2/gupnp-igd-0.2.0.tar.xz"
-             version="0.2.0"
-             hash="sha256:924c17c511f18d021329f0d9515235069f4aa1632a487edebb21443002409952"/>
-     <dependencies>
-       <dep package="glib"/>
-       <dep package="gupnp"/>
-     </dependencies>
-  </autotools>
-
   <autotools id="libnl" skip-autogen="never" autogen-sh="configure" check-target="false">
-    <pkg-config>libnl-3.pc</pkg-config>
+    <pkg-config>libnl-3.0.pc</pkg-config>
     <branch repo="libnl"
             module="libnl-3.2.7.tar.gz"
             version="3.2.7"
@@ -382,12 +372,16 @@
   </autotools>
 
   <cmake id="libproxy"
-         cmakeargs="-DCMAKE_BUILD_TYPE=None -DWITH_GNOME=OFF -DWITH_GNOME3=ON -DWITH_KDE4=OFF -DWITH_PYTHON=OFF -DWITH_PERL=OFF -DWITH_VALA=ON -DWITH_DOTNET=OFF -DWITH_MOZJS=OFF -DWITH_WEBKIT=ON -DGAC_DIR=${prefix}/lib/mono">
+         cmakeargs="-DCMAKE_BUILD_TYPE=None -DWITH_GNOME=OFF -DWITH_GNOME3=ON -DWITH_KDE4=OFF -DWITH_PYTHON=OFF -DWITH_PERL=OFF -DWITH_VALA=ON -DWITH_DOTNET=OFF -DWITH_MOZJS=OFF -DWITH_WEBKIT3=ON -DGAC_DIR=${prefix}/lib/mono">
     <pkg-config>libproxy-1.0.pc</pkg-config>
     <branch repo="libproxy.googlecode.com"
             module="libproxy-0.4.7.tar.gz" version="0.4.7"
             hash="sha256:8fe0a58810139ba3c2e186deccf3e68adcd127aa0e972b0862b30b3dde493797"
-            size="91092"/>
+            size="91092">
+      <!-- fix gcc4.7 problems. Remove when new release. Patch rev 833:
+           http://code.google.com/p/libproxy/source/detail?r=833       -->
+      <patch file="libproxy-0.4.7-gcc47.patch"/>
+    </branch>
     <dependencies>
       <dep package="glib"/>
     </dependencies>
@@ -418,12 +412,13 @@
 
   <autotools id="libxml2">
     <pkg-config>libxml-2.0.pc</pkg-config>
-    <branch module="libxml2/libxml2-2.7.8.tar.gz"
-            repo="xmlsoft.org" version="2.7.8"
-            hash="sha256:cda23bc9ebd26474ca8f3d67e7d1c4a1f1e7106364b690d822e009fdc3c417ec"
-            size="4881808">
-      <patch file="libxml2-2.7.8-versioning.patch" strip="1"/>
-    </branch>
+    <branch module="libxml2/libxml2-2.8.0.tar.gz"
+            repo="xmlsoft.org" version="2.8.0"
+            hash="sha256:f2e2d0e322685193d1affec83b21dc05d599e17a7306d7b90de95bb5b9ac622a"
+            size="4915203"/>
+    <dependencies>
+      <dep package="zlib"/>
+    </dependencies>
   </autotools>
 
   <autotools id="libxslt" check-target="false">
@@ -458,20 +453,14 @@
     </dependencies>
   </autotools>
 
-  <autotools id="rarian" supports-non-srcdir-builds="no">
-    <!-- Always build rarian due to some distributions providing rarian-compat
-         package. (see https://bugzilla.gnome.org/show_bug.cgi?id=670917)
-         rarian can be sysdeps again when GNOME bug 671042 is fixed. -->
-    <!-- <pkg-config>rarian.pc</pkg-config> -->
-    <branch repo="gnome.org"
-            module="rarian/0.8/rarian-0.8.1.tar.bz2"
-            version="0.8.1"
-            hash="sha256:aafe886d46e467eb3414e91fa9e42955bd4b618c3e19c42c773026b205a84577"
-            size="324441"/>
-    <dependencies>
-      <dep package="libxslt"/>
-      <dep package="intltool"/>
-    </dependencies>
+  <autotools id="ragel">
+    <branch repo="complang.org"
+            module="ragel/ragel-6.7.tar.gz"
+            version="6.7"
+            hash="sha256:46df8e3f117a730f8896061c95ea8e8f53e9789cb053c2eea047833724fd7a30"
+            size="1182734">
+      <patch file="ragel-6.6-gcc47-lookup.patch" strip="1" />
+    </branch>
   </autotools>
 
   <!-- parallel builds broken due to: https://bugs.freedesktop.org/show_bug.cgi?id=46093 -->
@@ -489,12 +478,12 @@
     </dependencies>
   </autotools>
 
-  <autotools id="sound-theme-freedesktop" version="0.7">
+  <autotools id="sound-theme-freedesktop" version="0.8">
     <branch repo="people.freedesktop.org"
-            module="~mccann/dist/sound-theme-freedesktop-0.7.tar.bz2"
-            version="0.7"
-            hash="sha256:e6595afb02b76099ef6df42c2ac7c4f9680c21c3f26b2a7ca0943d1fdbbd9aef"
-            size="483786"/>
+            module="~mccann/dist/sound-theme-freedesktop-0.8.tar.bz2"
+            version="0.8"
+            hash="sha256:cb518b20eef05ec2e82dda1fa89a292c1760dc023aba91b8aa69bafac85e8a14"
+            size="478237"/>
   </autotools>
 
   <tarball id="speex" version="1.2rc1">

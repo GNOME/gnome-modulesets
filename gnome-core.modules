@@ -10,7 +10,7 @@
   <repository type="git" name="git.freedesktop.org"
       href="git://anongit.freedesktop.org/"/>
   <repository type="git" name="telepathy.freedesktop.org"
-      href="git://anongit.freedesktop.org/telepathy/"/>
+    href="git://anongit.freedesktop.org/telepathy/"/>
   <repository type="git" name="packagekit.gitorious.org"
       href="git://gitorious.org/packagekit"/>
 
@@ -63,21 +63,24 @@
     </dependencies>
   </autotools>
 
-  <autotools id="evolution-data-server" supports-non-srcdir-builds="no" autogenargs="--enable-vala-bindings --disable-weather">
+  <autotools id="evolution-data-server"
+             supports-non-srcdir-builds="no"
+             autogenargs="--enable-vala-bindings">
     <branch/>
     <dependencies>
       <dep package="intltool"/>
       <dep package="libsoup"/>
       <dep package="libxml2"/>
       <dep package="gtk+"/>
-      <dep package="gconf"/>
       <dep package="sqlite3"/>
+      <dep package="gcr"/>
       <dep package="libgweather"/>
       <dep package="libical"/>
       <dep package="libgdata"/>
       <dep package="gnome-online-accounts"/>
       <dep package="liboauth"/>
       <dep package="vala"/>
+      <dep package="libdb"/>
     </dependencies>
     <suggests>
       <dep package="nspr"/>
@@ -96,6 +99,7 @@
       <dep package="glib"/>
       <dep package="dbus-glib"/>
       <dep package="libnotify"/>
+      <dep package="nautilus-sendto"/>
     </dependencies>
     <suggests>
       <dep package="geoclue"/>
@@ -107,16 +111,17 @@
     <dependencies>
       <dep package="gtk+"/>
       <dep package="WebKit"/>
-      <dep package="libgnome-keyring"/>
       <dep package="libnotify"/>
       <dep package="librest"/>
       <dep package="json-glib"/>
+      <dep package="libsecret"/>
     </dependencies>
   </autotools>
 
   <autotools id="gnome-control-center" supports-non-srcdir-builds="no">
     <branch/>
     <dependencies>
+      <dep package="clutter-gtk"/>
       <dep package="colord"/>
       <dep package="fontconfig"/>
       <dep package="gdk-pixbuf"/>
@@ -124,7 +129,6 @@
       <dep package="gtk+"/>
       <dep package="gnome-bluetooth"/>
       <dep package="gnome-desktop"/>
-      <dep package="gnome-doc-utils"/>
       <dep package="gnome-menus"/>
       <dep package="gnome-online-accounts"/>
       <dep package="gnome-settings-daemon"/>
@@ -133,21 +137,27 @@
       <dep package="iso-codes"/>
       <dep package="libcanberra"/>
       <dep package="libgtop"/>
-      <dep package="libgnomekbd"/>
       <dep package="libnotify"/>
+      <dep package="libpwquality"/>
       <dep package="libwacom"/>
-      <dep package="libxklavier"/>
       <dep package="libxml2"/>
       <dep package="polkit"/>
       <dep package="pulseaudio"/>
       <dep package="sound-theme-freedesktop"/>
       <dep package="upower"/>
+      <dep package="ibus"/>
     </dependencies>
     <suggests>
       <!-- <dep package="cups"/> -->
       <dep package="accountsservice"/>
-      <dep package="gstreamer-0.10"/>
+      <dep package="cheese"/>
+      <dep package="gstreamer"/>
       <dep package="NetworkManager"/>
+      <dep package="network-manager-applet"/>
+      <dep package="realmd"/>
+      <dep package="ibus-pinyin"/>
+      <dep package="ibus-anthy"/>
+      <dep package="ibus-hangul"/>
     </suggests>
   </autotools>
 
@@ -155,11 +165,14 @@
     <branch/>
     <dependencies>
       <dep package="intltool"/>
+      <dep package="libxkbfile"/>
+      <dep package="libXrandr"/>
       <dep package="glib"/>
       <dep package="gtk+"/>
-      <dep package="gnome-doc-utils"/>
       <dep package="gsettings-desktop-schemas"/>
       <dep package="gvfs"/> <!-- gvfs-copy used in autogen.sh -->
+      <dep package="yelp-tools"/> <!-- for the docs -->
+      <dep package="xkeyboard-config"/>
     </dependencies>
   </autotools>
 
@@ -249,13 +262,14 @@
     <branch/>
     <dependencies>
       <dep package="intltool"/>
+      <dep package="gl"/>
       <dep package="gtk+"/>
-      <dep package="gconf"/>
       <dep package="json-glib"/>
       <dep package="dbus-glib"/>
       <dep package="startup-notification"/>
       <dep package="upower"/>
       <dep package="librsvg"/>
+      <dep package="libXcomposite"/>
     </dependencies>
     <suggests>
       <dep package="polkit"/>
@@ -268,22 +282,22 @@
       <dep package="colord"/>
       <dep package="glib"/>
       <dep package="gnome-desktop"/>
-      <dep package="gnome-doc-utils"/>
       <dep package="gsettings-desktop-schemas"/>
       <dep package="gtk+"/>
       <dep package="gudev"/>
       <dep package="intltool"/>
-      <dep package="libgnomekbd"/>
       <dep package="libcanberra"/>
       <dep package="libnotify"/>
       <dep package="libwacom"/>
       <dep package="polkit"/>
       <dep package="pulseaudio"/>
       <dep package="upower"/>
+      <dep package="ibus"/>
+      <dep package="xorg-wacom"/>
     </dependencies>
     <suggests>
       <!-- <dep package="cups"/> -->
-      <dep package="gstreamer-0.10"/>
+      <!-- <dep package="xkbfile"/> -->
     </suggests>
   </autotools>
 
@@ -294,7 +308,7 @@
       <dep package="caribou"/>
       <dep package="dconf"/>
       <dep package="evolution-data-server"/>
-      <dep package="folks"/>
+      <dep package="gdm"/> <!-- runtime dependency on Gdm-1.0.typelib-->
       <dep package="gjs"/>
       <dep package="glib"/>
       <dep package="gnome-bluetooth"/>
@@ -319,8 +333,8 @@
       <dep package="gcr"/>
     </dependencies>
     <suggests>
-      <dep package="gstreamer-0.10"/>
-      <dep package="gst-plugins-base-0.10"/>
+      <dep package="gstreamer"/>
+      <dep package="gst-plugins-base"/>
     </suggests>
     <after>
       <dep package="librsvg"/>
@@ -356,6 +370,7 @@
     <suggests>
       <dep package="gnome-disk-utility"/>
       <dep package="gudev"/>
+      <dep package="libgphoto2"/>
     </suggests>
   </autotools>
 
@@ -365,6 +380,9 @@
       <dep package="gtk+"/>
       <dep package="gsettings-desktop-schemas"/>
       <dep package="intltool"/>
+      <dep package="libXcursor"/>
+      <dep package="libXfixes"/>
+      <dep package="libXtst"/>
     </dependencies>
   </autotools>
 
@@ -375,20 +393,21 @@
       <dep package="gdk-pixbuf"/>
       <dep package="gtk+"/>
       <dep package="gsettings-desktop-schemas"/>
+      <dep package="startup-notification"/>
       <dep package="zenity"/>
       <dep package="clutter"/>
       <dep package="gobject-introspection"/>
       <dep package="libcanberra"/>
+      <dep package="libXinerama"/>
     </dependencies>
   </autotools>
 
   <autotools id="network-manager-applet" autogenargs="--enable-more-warnings=no">
-    <branch/>
+    <branch revision="nma-0-9-6"/>
     <dependencies>
       <dep package="glib"/>
       <dep package="dbus-glib"/>
       <dep package="gtk+"/>
-      <dep package="gconf"/>
       <dep package="libgnome-keyring"/>
       <dep package="NetworkManager"/>
       <dep package="libnotify"/>
@@ -401,19 +420,19 @@
 
   <autotools id="pulseaudio" autogenargs="--disable-udev --disable-hal --disable-oss">
     <pkg-config>libpulse.pc</pkg-config>
-    <branch repo="freedesktop.org" module="software/pulseaudio/releases/pulseaudio-1.0.tar.xz"
-            version="1.0"
-            hash="sha256:e63464f8a0975446e2b4cfe768b615a66735c8d092b2366d2bdc7a2a04a249be"
-            size="1305008"/>
+    <branch repo="freedesktop.org" module="software/pulseaudio/releases/pulseaudio-2.0.tar.xz"
+            version="2.0"
+            hash="sha256:28b42edd42f4879a6884af5f0ec11801ac001eb7582881215b36649aa37e2061"
+            size="1353708"/>
     <dependencies>
       <dep package="json"/>
       <dep package="libsndfile"/>
       <dep package="liboil"/>
+      <dep package="libtool-ltdl"/>
       <dep package="glib"/>
       <dep package="speex"/>
     </dependencies>
     <after>
-      <dep package="libsamplerate"/>
       <dep package="gconf"/>
       <dep package="avahi"/>
       <dep package="bluez"/>
@@ -422,8 +441,7 @@
     </after>
   </autotools>
 
-  <autotools id="telepathy-mission-control"
-             autogenargs="--disable-Werror">
+  <autotools id="telepathy-mission-control" autogenargs="--disable-Werror">
     <branch repo="telepathy.freedesktop.org"/>
     <dependencies>
       <dep package="dbus"/>
@@ -457,11 +475,11 @@
       <dep package="libwnck"/>
       <dep package="evolution-data-server"/>
       <dep package="gnome-menus"/>
-      <dep package="gnome-doc-utils"/>
       <dep package="dbus-glib"/>
       <dep package="librsvg"/>
       <dep package="libgweather"/>
       <dep package="libcanberra"/>
+      <dep package="yelp-tools"/>
     </dependencies>
     <suggests>
       <dep package="polkit"/>
@@ -500,8 +518,8 @@
       <dep package="intltool"/>
       <dep package="glib"/>
       <dep package="gtk+"/>
-      <dep package="gnome-doc-utils"/>
       <dep package="vala"/>
+      <dep package="yelp-tools"/>
     </dependencies>
   </autotools>
 
@@ -510,10 +528,12 @@
     <dependencies>
       <dep package="glib"/>
       <dep package="gtk+"/>
-      <dep package="gst-plugins-base-0.10"/>
+      <dep package="gstreamer"/>
+      <dep package="gst-plugins-base"/>
       <dep package="libcanberra"/>
       <dep package="libnotify"/>
       <dep package="libxml2"/>
+      <dep package="yelp-tools"/>
     </dependencies>
     <suggests>
       <dep package="nautilus"/>
@@ -529,17 +549,17 @@
       <dep package="clutter-gst"/>
       <dep package="clutter-gtk"/>
       <dep package="dbus-glib"/>
-      <dep package="evolution-data-server"/>
       <dep package="intltool"/>
       <dep package="farstream"/>
       <dep package="folks"/>
       <dep package="gcr"/>
       <dep package="glib"/>
-      <dep package="libgnome-keyring"/>
+      <dep package="libgee-0.6"/>
+      <dep package="libsecret"/>
       <dep package="gnome-online-accounts"/>
       <dep package="gnutls"/>
       <dep package="gsettings-desktop-schemas"/>
-      <dep package="gstreamer-0.10"/>
+      <dep package="gstreamer"/>
       <dep package="gtk+"/>
       <dep package="libcanberra"/>
       <dep package="libsoup"/>
@@ -591,12 +611,13 @@
       <dep package="intltool"/>
       <dep package="iso-codes"/>
       <dep package="gtk+"/>
-      <dep package="gnome-doc-utils"/>
       <dep package="startup-notification"/>
       <dep package="WebKit"/>
+      <dep package="gcr"/>
+      <dep package="avahi"/>
+      <dep package="gnome-desktop"/>
     </dependencies>
     <suggests>
-      <dep package="avahi"/>
       <dep package="enchant"/>
       <dep package="libnotify"/>
       <dep package="libcanberra"/>
@@ -614,9 +635,9 @@
       <dep package="libxml2"/>
       <dep package="gnome-icon-theme"/>
       <dep package="poppler"/>
-      <dep package="gnome-doc-utils"/>
       <dep package="nautilus"/>
       <dep package="libgxps"/>
+      <dep package="yelp-tools"/>
     </dependencies>
     <suggests>
       <dep package="libgnome-keyring"/>
@@ -628,7 +649,7 @@
     <dependencies>
       <dep package="intltool"/>
       <dep package="gtk+"/>
-      <dep package="gnome-doc-utils"/>
+      <dep package="yelp-tools"/>
     </dependencies>
   </autotools>
 
@@ -637,10 +658,18 @@
     <dependencies>
       <dep package="folks"/>
       <dep package="glib"/>
+      <dep package="gnome-desktop"/>
+      <dep package="gnome-online-accounts"/>
       <dep package="gtk+"/>
+      <dep package="libgee-0.6"/>
       <dep package="libnotify"/>
+      <dep package="telepathy-glib"/>
       <dep package="vala"/>
     </dependencies>
+    <suggests>
+      <dep package="cheese"/>
+      <dep package="gstreamer"/>
+    </suggests>
   </autotools>
 
   <autotools id="gnome-dictionary">
@@ -649,7 +678,7 @@
       <dep package="intltool"/>
       <dep package="glib"/>
       <dep package="gtk+"/>
-      <dep package="gnome-doc-utils"/>
+      <dep package="yelp-tools"/>
     </dependencies>
   </autotools>
 
@@ -658,6 +687,9 @@
     <dependencies>
       <dep package="glib"/>
       <dep package="gtk+"/>
+      <dep package="libpwquality"/>
+      <dep package="libsecret"/>
+      <dep package="udisks"/>
     </dependencies>
   </autotools>
 
@@ -667,7 +699,6 @@
       <dep package="intltool"/>
       <dep package="glib"/>
       <dep package="gtk+"/>
-      <dep package="gnome-doc-utils"/>
     </dependencies>
   </autotools>
 
@@ -677,17 +708,6 @@
       <dep package="intltool"/>
       <dep package="glib"/>
       <dep package="gtk+"/>
-      <dep package="gnome-doc-utils"/>
-    </dependencies>
-  </autotools>
-
-  <autotools id="gnome-search-tool">
-    <branch/>
-    <dependencies>
-      <dep package="intltool"/>
-      <dep package="glib"/>
-      <dep package="gtk+"/>
-      <dep package="gnome-doc-utils"/>
     </dependencies>
   </autotools>
 
@@ -697,7 +717,7 @@
       <dep package="intltool"/>
       <dep package="glib"/>
       <dep package="gtk+"/>
-      <dep package="gnome-doc-utils"/>
+      <dep package="yelp-tools"/>
     </dependencies>
   </autotools>
 
@@ -717,7 +737,7 @@
   </autotools>
 
   <autotools id="gnome-terminal" autogenargs="--with-gtk=3.0">
-    <branch revision="gnome-3-4"/>
+    <branch/>
     <dependencies>
       <dep package="intltool"/>
       <dep package="glib"/>
@@ -725,14 +745,13 @@
       <dep package="gconf"/>
       <dep package="vte"/>
       <dep package="startup-notification"/>
-      <dep package="gnome-doc-utils"/>
+      <dep package="yelp-tools"/>
     </dependencies>
   </autotools>
 
   <autotools id="gnome-user-docs">
     <branch/>
     <dependencies>
-      <dep package="gnome-doc-utils"/>
       <dep package="yelp-tools"/>
     </dependencies>
   </autotools>
@@ -743,7 +762,7 @@
       <dep package="intltool"/>
       <dep package="glib"/>
       <dep package="gtk+"/>
-      <dep package="gnome-doc-utils"/>
+      <dep package="yelp-tools"/>
     </dependencies>
   </autotools>
 
@@ -757,10 +776,10 @@
       <dep package="libxml2"/>
       <dep package="gnome-desktop"/>
       <dep package="gsettings-desktop-schemas"/>
-    </dependencies>
-    <after>
       <dep package="tracker"/>
-    </after>
+      <dep package="exempi"/>
+      <dep package="libexif"/>
+    </dependencies>
   </autotools>
 
   <autotools id="sushi">
@@ -776,32 +795,31 @@
       <dep package="clutter-gst"/>
       <dep package="gtksourceview"/>
       <dep package="WebKit"/>
-      <dep package="gstreamer-0.10"/>
-      <dep package="gst-plugins-base-0.10"/>
+      <dep package="gstreamer"/>
+      <dep package="gst-plugins-base"/>
       <dep package="gtk+"/>
     </dependencies>
   </autotools>
 
   <autotools id="totem">
-    <branch />
+    <branch/>
     <dependencies>
       <dep package="intltool"/>
       <dep package="gtk+"/>
-      <dep package="gstreamer-0.10"/>
-      <dep package="gst-plugins-base-0.10"/>
-      <dep package="gst-plugins-good-0.10"/>
-      <dep package="gst-plugins-bad-0.10"/>
+      <dep package="gstreamer"/>
+      <dep package="gst-plugins-base"/>
+      <dep package="gst-plugins-good"/>
+      <dep package="gst-plugins-bad"/>
       <dep package="iso-codes"/>
       <dep package="totem-pl-parser"/>
       <dep package="libpeas"/>
       <dep package="clutter-gst"/>
       <dep package="clutter-gtk"/>
-      <dep package="mx"/>
       <dep package="grilo-plugins"/>
+      <dep package="yelp-tools"/>
     </dependencies>
     <suggests>
       <dep package="brasero"/>
-      <dep package="libgdata"/>
     </suggests>
   </autotools>
 
@@ -833,8 +851,9 @@
     <dependencies>
       <dep package="avahi"/>
       <dep package="gtk+"/>
+      <dep package="dbus-glib"/>
+      <dep package="libcanberra"/>
       <dep package="libnotify"/>
-      <dep package="gconf"/>
       <dep package="gnome-bluetooth"/>
       <dep package="nautilus"/>
     </dependencies>
@@ -872,12 +891,14 @@
 
   <!-- explicit disabling of qt3 and qt4 can be removed once avahi
        correctly detects what is available. -->
-  <autotools id="avahi" version="0.6.31" autogenargs="--disable-gtk --enable-gtk3 --enable-introspection=no --disable-qt3 --disable-qt4 --disable-mono --disable-monodoc --disable-manpages --disable-python --enable-compat-howl --enable-compat-libdns_sd --with-systemdsystemunitdir=no">
+  <autotools id="avahi" version="0.6.31" autogen-sh="configure"
+             autogenargs="--disable-gtk --disable-gtk3 --enable-introspection=no --disable-qt3 --disable-qt4 --disable-mono --disable-monodoc --disable-manpages --disable-python --enable-compat-howl --enable-compat-libdns_sd --with-systemdsystemunitdir=no">
     <pkg-config>avahi-ui-gtk3.pc</pkg-config>
     <branch repo="avahi.org" module="avahi-0.6.31.tar.gz" version="0.6.31"
             hash="sha256:8372719b24e2dd75de6f59bb1315e600db4fd092805bd1201ed0cb651a2dab48"
             size="1268686"/>
     <dependencies>
+      <dep package="gdbm"/>
       <dep package="gtk+"/>
       <dep package="libdaemon"/>
     </dependencies>
@@ -921,7 +942,6 @@
       <dep package="accountsservice"/>
       <dep package="dbus-glib"/>
       <dep package="fontconfig"/>
-      <dep package="gconf"/>
       <dep package="glib"/>
       <dep package="gtk+"/>
       <dep package="intltool"/>
@@ -931,6 +951,7 @@
     <suggest>
       <dep package="libxklavier"/>
       <dep package="upower"/>
+      <dep package="yelp-tools"/>
     </suggest>
   </autotools>
 
@@ -943,10 +964,14 @@
       <dep package="glib"/>
       <dep package="dbus-glib"/>
       <dep package="libgcrypt"/>
+      <dep package="libuuid"/>
       <dep package="gtk-doc"/>
       <dep package="polkit"/>
       <dep package="gudev"/>
       <dep package="gnutls"/>
+      <dep package="ppp"/>
+      <dep package="vala"/>
+      <dep package="wireless-tools"/>
     </dependencies>
   </autotools>
 
@@ -972,6 +997,16 @@
       <dep package="gobject-introspection"/>
       <dep package="expat"/>
       <dep package="intltool"/>
+      <dep package="js185"/>
+      <dep package="pam"/>
+    </dependencies>
+  </autotools>
+
+  <autotools id="realmd" autogenargs="">
+    <branch repo="git.freedesktop.org" module="realmd/realmd"/>
+    <dependencies>
+      <dep package="dbus"/>
+      <dep package="PackageKit"/>
     </dependencies>
   </autotools>
 
@@ -1007,13 +1042,13 @@
       <dep package="gnome-disk-utility"/>
       <dep package="gnome-font-viewer"/>
       <dep package="gnome-screenshot"/>
-      <dep package="gnome-search-tool"/>
       <dep package="gnome-system-log"/>
       <dep package="gnome-system-monitor"/>
       <dep package="gnome-terminal"/>
       <dep package="gucharmap"/>
       <dep package="nautilus"/>
       <dep package="sushi"/>
+      <dep package="totem"/>
       <dep package="yelp"/>
     </dependencies>
   </metamodule>
@@ -1034,7 +1069,6 @@
       <dep package="gnome-menus"/>
       <dep package="gnome-online-accounts"/>
       <dep package="gnome-packagekit"/>
-      <dep package="gnome-screensaver"/>
       <dep package="gnome-session"/>
       <dep package="gnome-settings-daemon"/>
       <dep package="gnome-shell"/>
@@ -1065,6 +1099,7 @@
   <metamodule id="meta-gnome-core-shell-fallback">
     <dependencies>
       <dep package="gnome-panel"/>
+      <dep package="gnome-screensaver"/>
       <dep package="metacity"/>
       <dep package="notification-daemon"/>
       <!-- workaround to ensure that dbus-python is around for
