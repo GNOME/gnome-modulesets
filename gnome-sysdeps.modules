@@ -42,12 +42,6 @@
     </systemdependencies>
   </systemmodule>
 
-  <systemmodule id="cairo">
-    <pkg-config>cairo.pc</pkg-config>
-    <branch repo="system"
-            version="1.12.2"/>
-  </systemmodule>
-
   <systemmodule id="cairomm">
     <pkg-config>cairomm-1.0.pc</pkg-config>
     <branch repo="system"
@@ -302,7 +296,7 @@
   <systemmodule id="lcms2">
     <pkg-config>lcms2.pc</pkg-config>
     <branch repo="system"
-            version="2.2"/>
+            version="2.4"/>
   </systemmodule>
 
   <systemmodule id="lcov">
