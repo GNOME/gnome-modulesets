@@ -34,9 +34,9 @@
   <repository type="tarball" name="speech-dispatcher"
       href="http://devel.freebsoft.org/pub/projects/speechd/"/>
 
-  <include href="gnome-suites-core-3.10.modules"/>
+  <include href="gnome-suites-core.modules"/>
 
-  <!-- NOTE: gnome-suites-core-3.10 and gnome-suites-core-deps-3.10
+  <!-- NOTE: gnome-suites-core and gnome-suites-core-deps
        are supposed to remain self-contained. If apps have dependencies
        that are not covered there, add them in here
     -->

@@ -75,7 +75,7 @@
 <repository type="tarball" name="ftp.gnu.org"
     href="http://ftp.gnu.org/gnu/"/>
 
-<include href="gnome-sysdeps-3.10.modules"/>
+<include href="gnome-sysdeps.modules"/>
 
 <!-- Please try to keep organized alphabetically by section -->
 
