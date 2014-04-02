@@ -41,6 +41,14 @@
        that are not covered there, add them in here
     -->
 
+  <autotools id="appstream-glib">
+    <branch repo="github.com" module="hughsie/appstream-glib.git" checkoutdir="appstream-glib"/>
+    <dependencies>
+      <dep package="glib"/>
+      <dep package="gobject-introspection"/>
+    </dependencies>
+  </autotools>
+
   <autotools id="babl">
     <branch/>
   </autotools>
@@ -926,10 +934,10 @@
   <autotools id="gnome-software">
     <branch/>
     <dependencies>
+      <dep package="appstream-glib"/>
       <dep package="glib"/>
       <dep package="gsettings-desktop-schemas"/>
       <dep package="gtk+"/>
-      <dep package="libnotify"/>
       <dep package="libsoup"/>
       <dep package="PackageKit"/>
       <dep package="sqlite3"/>
