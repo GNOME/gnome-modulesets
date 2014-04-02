@@ -27,16 +27,16 @@
       href="http://www.spice-space.org/download/"/>
   <repository type="tarball" name="libvirt.org"
       href="http://libvirt.org/sources/"/>
-  <repository type="tarball" name="xiph.org"
-        href="http://downloads.xiph.org/releases/"/>
   <repository type="tarball" name="ftp.gnu.org"
       href="http://ftp.gnu.org/gnu/"/>
   <repository type="tarball" name="speech-dispatcher"
       href="http://devel.freebsoft.org/pub/projects/speechd/"/>
+  <repository type="tarball" name="tarball.github.com"
+    href="https://github.com/"/>
 
-  <include href="gnome-suites-core-3.10.modules"/>
+  <include href="gnome-suites-core-3.12.modules"/>
 
-  <!-- NOTE: gnome-suites-core-3.10 and gnome-suites-core-deps-3.10
+  <!-- NOTE: gnome-suites-core-* and gnome-suites-core-deps-*
        are supposed to remain self-contained. If apps have dependencies
        that are not covered there, add them in here
     -->
@@ -45,7 +45,7 @@
     <branch/>
   </autotools>
 
-  <autotools id="gegl" autogenargs="--disable-docs">
+  <autotools id="gegl">
     <branch revision="gegl-0-2"/>
     <dependencies>
       <dep package="babl"/>
@@ -66,18 +66,10 @@
       <dep package="libxml2"/>
       <dep package="glib"/>
       <dep package="WebKit"/>
+    </dependencies>
+    <suggests>
       <dep package="zeitgeist"/>
-    </dependencies>
-  </autotools>
-
-  <autotools id="celt">
-    <branch repo="xiph.org"
-            module="celt/celt-0.5.1.3.tar.gz"
-            version="0.5.1.3"
-            hash="sha256:fc2e5b68382eb436a38c3104684a6c494df9bde133c139fbba3ddb5d7eaa6a2e"
-            size="440772"/>
-    <dependencies>
-    </dependencies>
+    </suggests>
   </autotools>
 
   <autotools id="libvirt" autogenargs="--with-yajl">
@@ -100,6 +92,7 @@
       <dep package="gnome-online-accounts"/>
       <dep package="grilo"/>
       <dep package="libgdata"/>
+      <dep package="libgfbgraph"/>
       <dep package="libzapojit"/>
       <dep package="tracker"/>
     </dependencies>
@@ -116,6 +109,9 @@
       <dep package="libgweather"/>
       <dep package="gjs"/>
     </dependencies>
+    <suggests>
+      <dep package="dogtail"/>
+    </suggests>
   </autotools>
 
   <autotools id="ghex">
@@ -211,6 +207,7 @@
              autogenargs="--enable-tests=no --enable-werror=no">
     <branch repo="fedorahosted.org" module="libosinfo.git"/>
     <dependencies>
+      <dep package="libsoup"/>
       <dep package="glib"/>
       <dep package="gobject-introspection"/>
       <dep package="vala"/>
@@ -228,15 +225,8 @@
     </dependencies>
   </autotools>
 
-  <autotools id="mash">
-    <branch repo="github.com" module="clutter-project/mash.git"/>
-    <dependencies>
-      <dep package="clutter"/>
-    </dependencies>
-  </autotools>
-
   <autotools id="pyatspi2" autogenargs="--with-python=python3" >
-    <branch revision="gnome-3-10"/>
+    <branch/>
     <dependencies>
       <dep package="pygobject"/>
     </dependencies>
@@ -246,49 +236,37 @@
   </autotools>
 
   <autotools id="speech-dispatcher" autogenargs="--with-espeak">
-    <branch repo="speech-dispatcher" module="speech-dispatcher-0.8-beta1.tar.gz" version="0.8-beta1"
-            hash="sha256:eb60069f291008717c429aff210afe6075c24b68b8de75fe16d9298e85cbac5c"
-            size="1229374"/>
+    <branch repo="speech-dispatcher"
+            module="speech-dispatcher-${version}.tar.gz"
+            version="0.8"
+            hash="sha256:0a6ce544cfbac8592a8ea08e3ab24c389153904ea51c6fd68756cea52de9efa2"/>
     <dependencies>
       <dep package="dotconf"/>
       <dep package="espeak"/>
     </dependencies>
   </autotools>
 
-  <autotools id="spice-protocol">
+  <autotools id="spice-gtk" autogenargs="--disable-smartcard --enable-vala --enable-static">
     <branch repo="spice"
-            module="releases/spice-protocol-0.12.5.tar.bz2"
-            version="0.12.5"
-            hash="sha256:feacb14940cdcc10214ec8cdc2198d880e54eb206e6d65a9bddf8360b27f7bf9"/>
-    <dependencies>
-    </dependencies>
-  </autotools>
-
-  <autotools id="spice-server" autogenargs="--disable-smartcard --without-sasl --disable-client">
-    <branch repo="spice"
-            module="releases/spice-0.12.2.tar.bz2"
-            version="0.12.2"
-            hash="sha256:5654fac02f5568088ea01979088d539f4e95551568dd709ec197e965cf8612d5"
-            size="1685684"/>
-    <dependencies>
-      <dep package="spice-protocol"/>
-      <dep package="celt"/>
-    </dependencies>
-  </autotools>
-
-  <autotools id="spice-gtk" autogenargs="--disable-smartcard --enable-vala">
-    <branch repo="spice"
-            module="gtk/spice-gtk-0.20.tar.bz2"
-            version="0.20"
-            hash="sha256:b1355823b0ceb2e118c1f9a9a602ccab78e1e2edf2d93f71fa42d3bc85ca75df"
-            size="1210694">
+            module="gtk/spice-gtk-0.23.tar.bz2"
+            version="0.23"
+            hash="sha256:bfdfa6cb12c40327b63167fe7191ce94e7f2a272473c87df31790c25d60cc81d"
+            size="1224546">
+       <patch file="spice-gtk-0.23-fix-disable-static-builds.patch" strip="1"/>
     </branch>
     <dependencies>
-      <dep package="celt"/>
+      <dep package="cairo"/>
       <dep package="cyrus-sasl"/>
-      <dep package="spice-protocol"/>
+      <dep package="glib"/>
+      <dep package="gtk-doc"/>
       <dep package="gtk+"/>
+      <dep package="libjpeg"/>
+      <dep package="openssl"/>
+      <dep package="opus"/>
+      <dep package="pixman"/>
+      <dep package="pulseaudio"/>
       <dep package="vala"/>
+      <dep package="zlib"/>
     </dependencies>
   </autotools>
 
@@ -321,9 +299,25 @@
     </dependencies>
   </autotools>
 
+  <autotools id="libgfbgraph">
+    <branch/>
+    <dependencies>
+      <dep package="glib"/>
+      <dep package="json-glib"/>
+      <dep package="librest"/>
+      <dep package="libsoup"/>
+      <dep package="gnome-online-accounts"/>
+    </dependencies>
+  </autotools>
+
   <cmake id="libgit2"
          cmakeargs="-DTHREADSAFE:BOOL=1">
-    <branch repo="github.com" module="libgit2/libgit2.git" checkoutdir="libgit2" revision="master"/>
+    <branch repo="tarball.github.com"
+            module="libgit2/libgit2/archive/v${version}.tar.gz"
+            version="0.20.0"
+            hash="509ab8091623df5b745cd13682539ca2dc2372051d3418355a7acc5b4a20c2f1"
+            checkoutdir="libgit2">
+    </branch>
   </cmake>
 
   <autotools id="libgit2-glib">
@@ -370,6 +364,7 @@
   <autotools id="gnome-maps">
     <branch/>
     <dependencies>
+      <dep package="clutter-gtk"/>
       <dep package="gjs"/>
       <dep package="glib"/>
       <dep package="gobject-introspection"/>
@@ -405,7 +400,7 @@
   </autotools>
 
   <autotools id="gnome-color-manager">
-    <branch revision="gnome-3-10"/>
+    <branch/>
     <dependencies>
       <dep package="exiv2"/>
       <dep package="glib"/>
@@ -420,9 +415,6 @@
       <dep package="yelp-tools"/>
       <!-- and libtiff -->
     </dependencies>
-    <suggests>
-      <dep package="mash"/>
-    </suggests>
   </autotools>
 
   <autotools id="gnome-devel-docs">
@@ -433,7 +425,7 @@
   </autotools>
 
   <autotools id="rygel">
-    <branch revision="rygel-0-20"/>
+    <branch/>
     <dependencies>
       <dep package="vala"/>
       <dep package="gupnp"/>
@@ -445,10 +437,20 @@
     </dependencies>
   </autotools>
 
+  <autotools id="gnome-sound-recorder">
+    <branch/>
+    <dependencies>
+      <dep package="gjs"/>
+      <dep package="glib"/>
+      <dep package="gdk-pixbuf"/>
+      <dep package="gtk+"/>
+    </dependencies>
+  </autotools>
+
 <!-- Featured Apps -->
 
   <autotools id="anjuta">
-    <branch revision="gnome-3-10"/>
+    <branch/>
     <dependencies>
       <dep package="intltool"/>
       <dep package="glib"/>
@@ -470,6 +472,7 @@
   <autotools id="cheese">
     <branch/>
     <dependencies>
+      <dep package="appdata-tools"/>
       <dep package="intltool"/>
       <dep package="glib"/>
       <dep package="gtk+"/>
@@ -477,7 +480,6 @@
       <dep package="gst-plugins-bad"/>
       <dep package="gst-plugins-base"/>
       <dep package="gst-plugins-good"/>
-      <dep package="gudev"/>
       <dep package="clutter-gst"/>
       <dep package="clutter-gtk"/>
       <dep package="libcanberra"/>
@@ -485,6 +487,9 @@
       <dep package="gnome-video-effects"/>
       <dep package="librsvg"/>
       <dep package="gnome-desktop"/>
+      <if condition-set="linux">
+        <dep package="gudev"/>
+      </if>
     </dependencies>
   </autotools>
 
@@ -578,11 +583,12 @@
       <dep package="libvirt-glib"/>
       <dep package="gtk+"/>
       <dep package="spice-gtk"/>
-      <dep package="clutter-gtk"/>
       <dep package="vala"/>
-      <dep package="gudev"/>
       <dep package="tracker"/>
       <dep package="gnome-themes-standard"/>
+      <if condition-set="linux">
+        <dep package="gudev"/>
+      </if>
     </dependencies>
   </autotools>
 
@@ -604,9 +610,6 @@
     <branch/>
     <dependencies>
       <dep package="accountsservice"/>
-      <dep package="cheese"/>
-      <dep package="clutter-gtk"/>
-      <dep package="clutter-gst"/>
       <dep package="geoclue"/>
       <dep package="gdm"/>
       <dep package="glib"/>
@@ -617,8 +620,10 @@
       <dep package="iso-codes"/>
       <dep package="libgweather"/>
       <dep package="libpwquality"/>
-      <dep package="network-manager-applet"/>
-      <dep package="NetworkManager"/>
+      <if condition-set="linux">
+        <dep package="network-manager-applet"/>
+        <dep package="NetworkManager"/>
+      </if>
     </dependencies>
     <suggests>
       <dep package="upower"/>
@@ -653,7 +658,7 @@
   </autotools>
 
   <autotools id="five-or-more">
-    <branch revision="gnome-3-10"/>
+    <branch/>
     <dependencies>
       <dep package="intltool"/>
       <dep package="librsvg"/>
@@ -664,7 +669,7 @@
   </autotools>
 
   <autotools id="four-in-a-row">
-    <branch revision="gnome-3-10"/>
+    <branch/>
     <dependencies>
       <dep package="intltool"/>
       <dep package="librsvg"/>
@@ -675,7 +680,7 @@
   </autotools>
 
   <autotools id="gnome-chess">
-    <branch revision="gnome-3-10"/>
+    <branch/>
     <dependencies>
       <dep package="intltool"/>
       <dep package="librsvg"/>
@@ -687,7 +692,7 @@
   </autotools>
 
   <autotools id="gnome-klotski">
-    <branch revision="gnome-3-10"/>
+    <branch/>
     <dependencies>
       <dep package="intltool"/>
       <dep package="librsvg"/>
@@ -696,8 +701,20 @@
     </dependencies>
   </autotools>
 
+  <autotools id="gnome-logs">
+    <branch/>
+    <dependencies>
+      <dep package="appdata-tools"/>
+      <dep package="intltool"/>
+      <dep package="gsettings-desktop-schemas"/>
+      <dep package="gtk+"/>
+      <dep package="libsystemd-journal"/>
+      <dep package="yelp-tools"/>
+    </dependencies>
+  </autotools>
+
   <autotools id="gnome-mahjongg">
-    <branch revision="gnome-3-10"/>
+    <branch/>
     <dependencies>
       <dep package="intltool"/>
       <dep package="gtk+"/>
@@ -708,18 +725,36 @@
   </autotools>
 
   <autotools id="gnome-mines">
-    <branch revision="gnome-3-10"/>
+    <branch/>
     <dependencies>
       <dep package="intltool"/>
       <dep package="librsvg"/>
+      <dep package="gnome-themes-standard"/>
       <dep package="gtk+"/>
       <dep package="vala"/>
       <dep package="yelp-tools"/>
     </dependencies>
   </autotools>
 
+  <autotools id="gnome-music">
+    <branch/>
+    <dependencies>
+      <dep package="dbus-python"/>
+      <dep package="gnome-icon-theme-symbolic"/>
+      <dep package="gnome-themes-standard"/>
+      <dep package="gobject-introspection"/>
+      <dep package="grilo"/>
+      <dep package="grilo-plugins"/>
+      <dep package="gtk+"/>
+      <dep package="gvfs"/>
+      <dep package="intltool"/>
+      <dep package="pygobject"/>
+      <dep package="tracker"/>
+    </dependencies>
+  </autotools>
+
   <autotools id="gnome-nibbles">
-    <branch revision="gnome-3-10"/>
+    <branch/>
     <dependencies>
       <dep package="intltool"/>
       <dep package="librsvg"/>
@@ -758,7 +793,7 @@
   </autotools>
 
   <autotools id="gnome-photos">
-    <branch revision="gnome-3-10"/>
+    <branch/>
     <dependencies>
       <dep package="gegl"/>
       <dep package="cairo"/>
@@ -770,13 +805,15 @@
       <dep package="gnome-online-accounts"/>
       <dep package="gnome-online-miners"/>
       <dep package="gobject-introspection"/>
+      <dep package="grilo"/>
+      <dep package="grilo-plugins"/>
       <dep package="gtk+"/>
       <dep package="tracker"/>
     </dependencies>
   </autotools>
 
   <autotools id="gnome-robots">
-    <branch revision="gnome-3-10"/>
+    <branch/>
     <dependencies>
       <dep package="intltool"/>
       <dep package="librsvg"/>
@@ -787,7 +824,7 @@
   </autotools>
 
   <autotools id="gnome-sudoku">
-    <branch revision="gnome-3-10"/>
+    <branch/>
     <dependencies>
       <dep package="intltool"/>
       <dep package="gtk+"/>
@@ -797,7 +834,7 @@
   </autotools>
 
   <autotools id="gnome-tetravex">
-    <branch revision="gnome-3-10"/>
+    <branch/>
     <dependencies>
       <dep package="intltool"/>
       <dep package="librsvg"/>
@@ -811,13 +848,13 @@
     <branch/>
     <dependencies>
       <dep package="gtk+"/>
-      <dep package="pygobject-python2"/>
+      <dep package="pygobject"/>
       <dep package="gsettings-desktop-schemas"/>
     </dependencies>
   </autotools>
 
   <autotools id="iagno">
-    <branch revision="gnome-3-10"/>
+    <branch/>
     <dependencies>
       <dep package="intltool"/>
       <dep package="librsvg"/>
@@ -829,7 +866,7 @@
   </autotools>
 
   <autotools id="lightsoff">
-    <branch revision="gnome-3-10"/>
+    <branch/>
     <dependencies>
       <dep package="intltool"/>
       <dep package="gtk+"/>
@@ -841,7 +878,7 @@
   </autotools>
 
   <autotools id="quadrapassel">
-    <branch revision="gnome-3-10"/>
+    <branch/>
     <dependencies>
       <dep package="intltool"/>
       <dep package="gtk+"/>
@@ -855,7 +892,7 @@
   </autotools>
 
   <autotools id="swell-foop">
-    <branch revision="gnome-3-10"/>
+    <branch/>
     <dependencies>
       <dep package="intltool"/>
       <dep package="gtk+"/>
@@ -867,7 +904,7 @@
   </autotools>
 
   <autotools id="tali">
-    <branch revision="gnome-3-10"/>
+    <branch/>
     <dependencies>
       <dep package="intltool"/>
       <dep package="librsvg"/>
@@ -886,6 +923,19 @@
     </dependencies>
   </autotools>
 
+  <autotools id="gnome-software">
+    <branch/>
+    <dependencies>
+      <dep package="glib"/>
+      <dep package="gsettings-desktop-schemas"/>
+      <dep package="gtk+"/>
+      <dep package="libnotify"/>
+      <dep package="libsoup"/>
+      <dep package="PackageKit"/>
+      <dep package="sqlite3"/>
+    </dependencies>
+  </autotools>
+
   <autotools id="nautilus-sendto">
     <branch/>
     <dependencies>
@@ -900,7 +950,8 @@
     </suggests>
   </autotools>
 
-  <autotools id="nemiver">
+  <autotools id="nemiver"
+             autogenargs="--enable-gsettings=yes">
     <branch/>
     <dependencies>
       <dep package="boost"/>
@@ -933,6 +984,17 @@
     </suggests>
   </autotools>
 
+  <autotools id="polari">
+    <branch/>
+    <dependencies>
+      <dep package="gjs"/>
+      <dep package="glib"/>
+      <dep package="gobject-introspection"/>
+      <dep package="gtk+"/>
+      <dep package="telepathy-glib"/>
+    </dependencies>
+  </autotools>
+
   <autotools id="seahorse">
     <branch/>
     <dependencies>
@@ -956,6 +1018,7 @@
   <autotools id="vinagre">
     <branch/>
     <dependencies>
+      <dep package="appdata-tools"/>
       <dep package="intltool"/>
       <dep package="libxml2"/>
       <dep package="gtk+"/>
@@ -972,6 +1035,9 @@
   </autotools>
 
   <autotools id="brasero">
+    <if condition-unset="linux">
+      <autogenargs value="--disable-inotify"/>
+    </if>
     <branch/>
     <dependencies>
       <dep package="glib"/>
@@ -997,6 +1063,14 @@
       <dep package="cairo"/>
       <dep package="libxkbcommon"/>
       <dep package="mesa-libGLES"/>
+    </dependencies>
+  </autotools>
+
+  <autotools id="jhbuild">
+    <branch/>
+    <dependencies>
+      <dep package="gnome-common"/>
+      <dep package="yelp-tools"/>
     </dependencies>
   </autotools>
 
@@ -1030,21 +1104,26 @@
       <dep package="gnome-initial-setup"/>
       <dep package="gnome-getting-started-docs"/>
       <dep package="gnome-klotski"/>
+      <dep package="gnome-logs"/>
       <dep package="gnome-mahjongg"/>
       <dep package="gnome-maps"/>
       <dep package="gnome-mines"/>
       <dep package="gnome-nettool"/>
       <dep package="gnome-nibbles"/>
-      <dep package="gnome-robots"/>
-      <dep package="gnome-sudoku"/>
       <dep package="gnome-photos"/>
+      <dep package="gnome-robots"/>
+      <dep package="gnome-software"/>
+      <dep package="gnome-sound-recorder"/>
+      <dep package="gnome-sudoku"/>
       <dep package="gnome-tetravex"/>
+      <dep package="gnome-tweak-tool"/>
       <dep package="gnome-weather"/>
       <dep package="iagno"/>
       <dep package="lightsoff"/>
       <dep package="nautilus-sendto"/>
       <dep package="nemiver"/>
       <dep package="orca"/>
+      <dep package="polari"/>
       <dep package="quadrapassel"/>
       <dep package="rygel"/>
       <dep package="seahorse"/>
