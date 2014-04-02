@@ -75,7 +75,7 @@
 <repository type="tarball" name="libndp"
     href="http://libndp.org/files/"/>
 
-<include href="gnome-sysdeps-3.12.modules"/>
+<include href="gnome-sysdeps.modules"/>
 
 <!-- Please try to keep organized alphabetically by section -->
 
