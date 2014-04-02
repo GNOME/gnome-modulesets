@@ -65,7 +65,7 @@
 <repository type="tarball" name="ftp.mozilla.org"
       href="http://ftp.mozilla.org/"/>
 
-<include href="gnome-sysdeps-3.8.modules"/>
+<include href="gnome-sysdeps.modules"/>
 
 <!-- Please try to keep organized alphabetically by section -->
 
