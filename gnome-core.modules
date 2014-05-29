@@ -24,7 +24,7 @@
   <repository type="tarball" name="kernel.org"
       href="http://www.kernel.org"/>
 
-<include href="gnome-suites-core-deps.modules"/>
+<include href="gnome-core-deps.modules"/>
 
 <!-- Please try to keep organized alphabetically by section -->
 
@@ -41,7 +41,7 @@
   </autotools>
 
   <autotools id="at-spi2-atk">
-    <branch/>
+    <branch revision="gnome-3-12"/>
     <dependencies>
       <dep package="dbus"/>
       <dep package="glib"/>
@@ -116,7 +116,7 @@
   </autotools>
 
   <autotools id="gnome-control-center" supports-non-srcdir-builds="no">
-    <branch/>
+    <branch revision="gnome-3-12"/>
     <dependencies>
       <dep package="accountsservice"/>
       <dep package="clutter-gtk"/>
@@ -167,7 +167,7 @@
   </autotools>
 
   <autotools id="gnome-desktop" autogenargs="--with-gnome-distributor=JHBuild">
-    <branch/>
+    <branch revision="gnome-3-12"/>
     <dependencies>
       <dep package="intltool"/>
       <dep package="libxkbfile"/>
@@ -184,7 +184,7 @@
   </autotools>
 
   <autotools id="gnome-icon-theme">
-    <branch/>
+    <branch repo="git.gnome.org" module="adwaita-icon-theme" revision="gnome-3-12"/>
     <dependencies>
       <dep package="hicolor-icon-theme"/>
       <dep package="icon-naming-utils"/>
@@ -275,7 +275,7 @@
     <if condition-unset="linux">
       <autogenargs value="--disable-rfkill --disable-gudev"/>
     </if>
-    <branch/>
+    <branch revision="gnome-3-12"/>
     <dependencies>
       <dep package="colord"/>
       <dep package="geoclue"/>
@@ -310,7 +310,7 @@
     <if condition-unset="linux">
       <autogenargs value="--disable-networkmanager"/>
     </if>
-    <branch/>
+    <branch revision="gnome-3-12"/>
     <dependencies>
       <dep package="accountsservice"/>
       <dep package="caribou"/>
@@ -368,7 +368,7 @@
   </autotools>
 
   <autotools id="gsettings-desktop-schemas" autogenargs="--enable-introspection=yes">
-    <branch/>
+    <branch revision="gnome-3-12"/>
     <dependencies>
       <dep package="glib"/>
       <dep package="gnome-common"/>
@@ -377,7 +377,7 @@
   </autotools>
 
  <autotools id="gvfs">
-    <branch/>
+    <branch revision="gnome-3-12"/>
     <dependencies>
       <dep package="intltool"/>
       <dep package="glib"/>
@@ -420,7 +420,7 @@
   </autotools>
 
   <autotools id="mutter" autogenargs="--enable-compile-warnings=maximum">
-    <branch />
+    <branch revision="gnome-3-12"/>
     <dependencies>
       <dep package="upower"/>
       <dep package="clutter"/>
@@ -453,11 +453,7 @@
       <dep package="wayland"/>
       <dep package="zenity"/>
       <dep package="xwayland"/>
-      <dep package="xf86-video-wayland"/>
     </dependencies>
-    <suggests>
-      <dep package="xf86-video-intel"/>
-    </suggests>
   </autotools>
   <autotools id="network-manager-applet"
              autogenargs="--enable-more-warnings=no --disable-migration --without-bluetooth">
@@ -580,7 +576,7 @@
   </autotools>
 
   <autotools id="eog">
-    <branch/>
+    <branch revision="gnome-3-12"/>
     <dependencies>
       <dep package="intltool"/>
       <dep package="glib"/>
@@ -648,7 +644,7 @@
   </autotools>
 
   <autotools id="gnome-calculator" supports-non-srcdir-builds="no">
-    <branch/>
+    <branch revision="gnome-3-12"/>
     <dependencies>
       <dep package="intltool"/>
       <dep package="glib"/>
@@ -661,7 +657,7 @@
   </autotools>
 
   <autotools id="gnome-contacts">
-    <branch/>
+    <branch revision="gnome-3-12"/>
     <dependencies>
       <dep package="folks"/>
       <dep package="glib"/>
@@ -714,7 +710,7 @@
   </autotools>
 
   <autotools id="gnome-screenshot">
-    <branch/>
+    <branch revision="gnome-3-12"/>
     <dependencies>
       <dep package="intltool"/>
       <dep package="glib"/>

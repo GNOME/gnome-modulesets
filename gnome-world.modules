@@ -260,6 +260,17 @@
     </dependencies>
   </autotools>
 
+  <autotools id="gnome-icon-theme">
+    <branch repo="git.gnome.org" module="adwaita-icon-theme" revision="gnome-3-12"/>
+    <dependencies>
+      <dep package="hicolor-icon-theme"/>
+      <dep package="icon-naming-utils"/>
+      <dep package="gnome-common"/>
+      <dep package="intltool"/>
+      <dep package="gtk+"/>
+    </dependencies>
+  </autotools>
+
   <autotools id="gtkglarea">
     <branch/>
     <dependencies>
@@ -793,6 +804,15 @@
     <dependencies>
       <dep package="libnotify"/>
       <dep package="gtkmm"/>
+    </dependencies>
+  </autotools>
+
+  <autotools id="cluttermm-1.0">
+    <branch revision="cluttermm-1-18" module="cluttermm" checkoutdir="cluttermm-1.0"/>
+    <dependencies>
+      <dep package="clutter"/>
+      <dep package="pangomm"/>
+      <dep package="atkmm"/>
     </dependencies>
   </autotools>
 
@@ -2483,7 +2503,8 @@
              supports-non-srcdir-builds="no">
     <branch repo="gstreamer.freedesktop.org"
             checkoutdir="gst-plugins-ugly"
-            module="gst-plugins-ugly"/>
+            module="gst-plugins-ugly"
+            revision="1.2" />
     <dependencies>
       <dep package="gstreamer"/>
       <dep package="gst-plugins-base"/>

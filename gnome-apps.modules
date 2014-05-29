@@ -34,7 +34,7 @@
   <repository type="tarball" name="tarball.github.com"
     href="https://github.com/"/>
 
-  <include href="gnome-suites-core.modules"/>
+  <include href="gnome-core.modules"/>
 
   <!-- NOTE: gnome-suites-core-* and gnome-suites-core-deps-*
        are supposed to remain self-contained. If apps have dependencies
@@ -58,7 +58,7 @@
   </autotools>
 
   <autotools id="bijiben">
-    <branch/>
+    <branch revision="gnome-3-12"/>
     <dependencies>
       <dep package="tracker"/>
       <dep package="clutter-gtk"/>
@@ -99,7 +99,7 @@
   </autotools>
 
   <autotools id="gnome-weather">
-    <branch/>
+    <branch revision="gnome-3-12"/>
     <dependencies>
       <dep package="gdk-pixbuf"/>
       <dep package="glib"/>
@@ -379,7 +379,7 @@
   </autotools>
 
   <autotools id="devhelp">
-    <branch/>
+    <branch revision="gnome-3-12"/>
     <dependencies>
       <dep package="intltool"/>
       <dep package="gtk+"/>
@@ -536,7 +536,7 @@
   </autotools>
 
   <autotools id="gedit">
-    <branch/>
+    <branch revision="gnome-3-12"/>
     <dependencies>
       <dep package="intltool"/>
       <dep package="libpeas"/>
@@ -632,7 +632,7 @@
   </autotools>
 
   <autotools id="gnome-getting-started-docs">
-    <branch/>
+    <branch revision="gnome-3-12"/>
     <dependencies>
       <dep package="yelp-tools"/>
     </dependencies>
@@ -927,6 +927,7 @@
     <branch revision="gnome-3-12"/>
     <dependencies>
       <dep package="glib"/>
+      <dep package="gnome-desktop"/>
       <dep package="gsettings-desktop-schemas"/>
       <dep package="gtk+"/>
       <dep package="libnotify"/>
@@ -985,7 +986,7 @@
   </autotools>
 
   <autotools id="polari">
-    <branch/>
+    <branch revision="gnome-3-12"/>
     <dependencies>
       <dep package="gjs"/>
       <dep package="glib"/>

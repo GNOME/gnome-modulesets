@@ -84,9 +84,9 @@
   <autotools id="appdata-tools">
     <branch repo="people.freedesktop.org"
             module="~hughsient/releases/appdata-tools-${version}.tar.xz"
-            version="0.1.7"
-            hash="sha256:3d704715aa105cdfa50b1dfbdc352445a2ceafd26ba01ff3260b0bcbf3d726c8"
-            size="265164"/>
+            version="0.1.8"
+            hash="sha256:401583d27f0f91bbc03de09f53efd4bf86b20da37d6930ff7bff297d7f1e5461"
+            size="251320"/>
 <!--
     <branch repo="github.com" checkoutdir="appdata-tools" module="hughsie/appdata-tools.git"/>
 -->
@@ -147,7 +147,7 @@
   </autotools>
 
   <autotools id="gcr">
-    <branch/>
+    <branch revision="gnome-3-12"/>
     <dependencies>
       <dep package="gnome-common"/>
       <dep package="glib"/>
@@ -624,7 +624,7 @@
     <if condition-set="coverage">
       <autogenargs value="--enable-coverage"/>
     </if>
-    <branch/>
+    <branch revision="gnome-3-12"/>
     <dependencies>
       <dep package="dbus-glib"/>
       <dep package="gobject-introspection"/>
@@ -651,7 +651,8 @@
              supports-non-srcdir-builds="no">
     <branch repo="gstreamer.freedesktop.org"
             module="gstreamer"
-            checkoutdir="gstreamer"/>
+            checkoutdir="gstreamer"
+            revision="1.2" />
     <dependencies>
       <dep package="glib"/>
       <dep package="libxml2"/>
@@ -664,7 +665,8 @@
              supports-non-srcdir-builds="no">
     <branch repo="gstreamer.freedesktop.org"
             module="gst-plugins-base"
-            checkoutdir="gst-plugins-base"/>
+            checkoutdir="gst-plugins-base"
+            revision="1.2" />
     <dependencies>
       <dep package="gstreamer"/>
       <dep package="gtk+"/>
@@ -682,7 +684,8 @@
              supports-non-srcdir-builds="no">
     <branch repo="gstreamer.freedesktop.org"
             module="gst-plugins-good"
-            checkoutdir="gst-plugins-good"/>
+            checkoutdir="gst-plugins-good"
+            revision="1.2" />
     <dependencies>
       <dep package="gstreamer"/>
       <dep package="gst-plugins-base"/>
@@ -706,7 +709,8 @@
              supports-non-srcdir-builds="no">
     <branch repo="gstreamer.freedesktop.org"
             checkoutdir="gst-plugins-bad"
-            module="gst-plugins-bad"/>
+            module="gst-plugins-bad"
+            revision="1.2" />
     <dependencies>
       <dep package="gstreamer"/>
       <dep package="gst-plugins-base"/>
@@ -927,7 +931,7 @@
   </autotools>
 
   <autotools id="libgweather">
-    <branch/>
+    <branch revision="gnome-3-12"/>
     <dependencies>
       <dep package="intltool"/>
       <dep package="libxml2"/>
@@ -1019,7 +1023,7 @@
   </autotools>
 
   <autotools id="libsoup" autogenargs="--disable-tls-check">
-    <branch/>
+    <branch revision="gnome-3-12"/>
     <dependencies>
       <dep package="glib"/>
       <dep package="libxml2"/>
@@ -1211,27 +1215,20 @@
     </dependencies>
   </autotools>
 
-  <autotools id="xwayland" autogenargs="--with-xkb-bin-directory=/usr/bin --with-xkb-path=/usr/share/X11/xkb --with-xkb-output=${prefix}/share/X11/xkb/compiled">
-    <branch repo="xorg.freedesktop.org" checkoutdir="xwayland" module="xserver" revision="xwayland"/>
+  <autotools id="libepoxy">
+    <branch repo="github.com" checkoutdir="libepoxy" module="anholt/libepoxy.git"/>
+    <dependencies>
+      <dep package="xtrans"/>
+    </dependencies>
+  </autotools>
+
+  <autotools id="xwayland" autogenargs="--with-xkb-bin-directory=/usr/bin --with-xkb-path=/usr/share/X11/xkb --with-xkb-output=${prefix}/share/X11/xkb/compiled --enable-xwayland">
+    <branch repo="xorg.freedesktop.org" checkoutdir="xwayland" module="xserver"/>
     <dependencies>
       <dep package="xfont"/>
       <dep package="xtrans"/>
       <dep package="wayland"/>
-    </dependencies>
-  </autotools>
-
-  <autotools id="xf86-video-intel">
-    <branch repo="xorg.freedesktop.org" checkoutdir="xf86-video-intel" module="driver/xf86-video-intel" revision="xwayland"/>
-    <dependencies>
-      <dep package="xwayland"/>
-    </dependencies>
-  </autotools>
-
-  <autotools id="xf86-video-wayland">
-    <branch repo="xorg.freedesktop.org"
-            module="driver/xf86-video-wayland"/>
-    <dependencies>
-      <dep package="xwayland"/>
+      <dep package="libepoxy"/>
     </dependencies>
   </autotools>
 
@@ -1239,9 +1236,9 @@
              autogenargs="--enable-introspection">
     <pkg-config>webkitgtk-3.0.pc</pkg-config>
     <branch repo="webkitgtk.org"
-            module="webkitgtk-2.4.0.tar.xz" version="2.4.0"
-            hash="sha256:dc5277cda89ee038408f78c94b1b07f101997f01ef877a142ffedac3b537dfbb"
-            size="9828272">
+            module="webkitgtk-2.4.3.tar.xz" version="2.4.3"
+            hash="sha256:9862c3eac1d12cc6e52cc39060a1284163950b304d534529a0dbcc5958a8ceac"
+            size="9841564">
     </branch>
     <dependencies>
       <dep package="at-spi2-core"/>
