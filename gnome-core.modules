@@ -24,7 +24,7 @@
   <repository type="tarball" name="kernel.org"
       href="http://www.kernel.org"/>
 
-<include href="gnome-suites-core-deps.modules"/>
+<include href="gnome-core-deps.modules"/>
 
 <!-- Please try to keep organized alphabetically by section -->
 
@@ -127,7 +127,6 @@
       <dep package="glib"/>
       <dep package="gtk+"/>
       <dep package="gnome-desktop"/>
-      <dep package="gnome-menus"/>
       <dep package="gnome-online-accounts"/>
       <dep package="gnome-settings-daemon"/>
       <dep package="gsettings-desktop-schemas"/>
@@ -183,7 +182,7 @@
     </dependencies>
   </autotools>
 
-  <autotools id="gnome-icon-theme">
+  <autotools id="adwaita-icon-theme">
     <branch/>
     <dependencies>
       <dep package="hicolor-icon-theme"/>
@@ -191,22 +190,6 @@
       <dep package="gnome-common"/>
       <dep package="intltool"/>
       <dep package="gtk+"/>
-    </dependencies>
-  </autotools>
-
-  <autotools id="gnome-icon-theme-extras">
-    <branch/>
-    <dependencies>
-      <dep package="gnome-icon-theme"/>
-    </dependencies>
-  </autotools>
-
-  <autotools id="gnome-icon-theme-symbolic">
-    <branch/>
-    <dependencies>
-      <dep package="gnome-common"/>
-      <dep package="gtk+"/>
-      <dep package="icon-naming-utils"/>
     </dependencies>
   </autotools>
 
@@ -296,6 +279,7 @@
       <dep package="ibus"/>
       <dep package="cups"/>
       <if condition-set="linux">
+        <dep package="libgsystem"/>
         <dep package="libwacom"/>
         <dep package="xorg-wacom"/>
         <dep package="gudev"/>
@@ -320,8 +304,7 @@
       <dep package="gjs"/>
       <dep package="glib"/>
       <dep package="gnome-desktop"/>
-      <dep package="gnome-icon-theme"/>
-      <dep package="gnome-icon-theme-symbolic"/>
+      <dep package="adwaita-icon-theme"/>
       <dep package="gnome-menus"/>
       <dep package="gnome-settings-daemon"/>
       <dep package="gobject-introspection"/>
@@ -347,9 +330,6 @@
     <suggests>
       <dep package="gstreamer"/>
       <dep package="gst-plugins-base"/>
-      <if condition-set="wayland">
-        <dep package="mutter-wayland"/>
-      </if>
     </suggests>
     <after>
       <dep package="librsvg"/>
@@ -436,29 +416,6 @@
     </dependencies>
   </autotools>
 
-  <autotools id="mutter-wayland" autogenargs="--enable-compile-warnings=maximum --enable-wayland">
-    <branch checkoutdir="mutter-wayland" module="mutter" revision="wayland"/>
-    <dependencies>
-      <dep package="clutter"/>
-      <dep package="gdk-pixbuf"/>
-      <dep package="gobject-introspection"/>
-      <dep package="gsettings-desktop-schemas"/>
-      <dep package="gtk+"/>
-      <dep package="intltool"/>
-      <dep package="libcanberra"/>
-      <dep package="libsystemd-login"/>
-      <dep package="libXinerama"/>
-      <dep package="startup-notification"/>
-      <dep package="upower"/>
-      <dep package="wayland"/>
-      <dep package="zenity"/>
-      <dep package="xwayland"/>
-      <dep package="xf86-video-wayland"/>
-    </dependencies>
-    <suggests>
-      <dep package="xf86-video-intel"/>
-    </suggests>
-  </autotools>
   <autotools id="network-manager-applet"
              autogenargs="--enable-more-warnings=no --disable-migration --without-bluetooth">
     <branch revision="nma-0-9-8"/>
@@ -587,7 +544,6 @@
       <dep package="gdk-pixbuf"/>
       <dep package="gtk+"/>
       <dep package="gnome-desktop"/>
-      <dep package="gnome-icon-theme"/>
       <dep package="gobject-introspection"/>
       <dep package="gsettings-desktop-schemas"/>
       <dep package="libjpeg"/>
@@ -635,7 +591,7 @@
       <dep package="glib"/>
       <dep package="gtk+"/>
       <dep package="libxml2"/>
-      <dep package="gnome-icon-theme"/>
+      <dep package="adwaita-icon-theme"/>
       <dep package="libsecret"/>
       <dep package="poppler"/>
       <dep package="nautilus"/>
@@ -740,7 +696,6 @@
       <dep package="libwnck"/>
       <dep package="libgtop"/>
       <dep package="gtk+"/>
-      <dep package="gnome-icon-theme"/>
       <dep package="gtkmm"/>
       <dep package="libxml2"/>
       <dep package="librsvg"/>
@@ -828,7 +783,6 @@
       <dep package="clutter-gtk"/>
       <dep package="gdk-pixbuf"/>
       <dep package="glib"/>
-      <dep package="gnome-icon-theme"/>
       <dep package="grilo"/>
       <dep package="grilo-plugins"/>
       <dep package="gsettings-desktop-schemas"/>
@@ -1093,9 +1047,7 @@
       <dep package="dconf"/>
       <dep package="evolution-data-server"/>
       <dep package="gnome-control-center"/>
-      <dep package="gnome-icon-theme"/>
-      <dep package="gnome-icon-theme-symbolic"/>
-      <dep package="gnome-icon-theme-extras"/>
+      <dep package="adwaita-icon-theme"/>
       <dep package="gnome-keyring"/>
       <dep package="gnome-menus"/>
       <dep package="gnome-online-accounts"/>

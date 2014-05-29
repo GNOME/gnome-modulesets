@@ -34,7 +34,7 @@
   <repository type="tarball" name="tarball.github.com"
     href="https://github.com/"/>
 
-  <include href="gnome-suites-core.modules"/>
+  <include href="gnome-core.modules"/>
 
   <!-- NOTE: gnome-suites-core-* and gnome-suites-core-deps-*
        are supposed to remain self-contained. If apps have dependencies
@@ -74,6 +74,7 @@
       <dep package="libxml2"/>
       <dep package="glib"/>
       <dep package="WebKit"/>
+      <dep package="evolution"/>
     </dependencies>
     <suggests>
       <dep package="zeitgeist"/>
@@ -140,7 +141,6 @@
       <dep package="enchant"/>
       <dep package="iso-codes"/>
       <dep package="libsoup"/>
-      <dep package="gnome-icon-theme"/>
     </dependencies>
   </autotools>
 
@@ -382,7 +382,6 @@
       <dep package="geocode-glib"/>
       <dep package="geoclue"/>
       <dep package="gnome-themes-standard"/>
-      <dep package="gnome-icon-theme-symbolic"/>
     </dependencies>
   </autotools>
 
@@ -507,7 +506,6 @@
       <dep package="bogofilter"/>
       <dep package="evolution-data-server"/>
       <dep package="gnome-desktop"/>
-      <dep package="gnome-icon-theme"/>
       <dep package="gnome-online-accounts"/>
       <dep package="gstreamer"/>
       <dep package="gtk+"/>
@@ -748,7 +746,6 @@
     <branch/>
     <dependencies>
       <dep package="dbus-python"/>
-      <dep package="gnome-icon-theme-symbolic"/>
       <dep package="gnome-themes-standard"/>
       <dep package="gobject-introspection"/>
       <dep package="grilo"/>
@@ -758,6 +755,7 @@
       <dep package="intltool"/>
       <dep package="pygobject"/>
       <dep package="tracker"/>
+      <dep package="libmediaart"/>
     </dependencies>
   </autotools>
 
@@ -882,6 +880,7 @@
       <dep package="clutter"/>
       <dep package="clutter-gtk"/>
       <dep package="yelp-tools"/>
+      <dep package="librsvg"/>
     </dependencies>
   </autotools>
 
@@ -936,6 +935,7 @@
     <dependencies>
       <dep package="appstream-glib"/>
       <dep package="glib"/>
+      <dep package="gnome-desktop"/>
       <dep package="gsettings-desktop-schemas"/>
       <dep package="gtk+"/>
       <dep package="libsoup"/>

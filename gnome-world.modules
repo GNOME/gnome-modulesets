@@ -164,6 +164,7 @@
       <!-- <dep package="id3tag" -->
       <!-- <dep package="id3lib" -->
       <dep package="libvorbis"/>
+      <dep package="opus"/>
       <dep package="speex"/>
       <dep package="taglib"/>
       <dep package="wavpack"/>
@@ -792,6 +793,15 @@
     <dependencies>
       <dep package="libnotify"/>
       <dep package="gtkmm"/>
+    </dependencies>
+  </autotools>
+
+  <autotools id="cluttermm-1.0">
+    <branch revision="cluttermm-1-18" module="cluttermm" checkoutdir="cluttermm-1.0"/>
+    <dependencies>
+      <dep package="clutter"/>
+      <dep package="pangomm"/>
+      <dep package="atkmm"/>
     </dependencies>
   </autotools>
 
@@ -2506,13 +2516,6 @@
     <dependencies>
       <dep package="ostree"/>
       <dep package="gjs"/>
-    </dependencies>
-  </autotools>
-
-  <autotools id="libgsystem">
-    <branch/>
-    <dependencies>
-      <dep package="glib"/>
     </dependencies>
   </autotools>
 

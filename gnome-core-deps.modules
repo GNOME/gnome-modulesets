@@ -74,6 +74,8 @@
     href="http://ftp.gnu.org/gnu/"/>
 <repository type="tarball" name="libndp"
     href="http://libndp.org/files/"/>
+<repository type="tarball" name="mir"
+    href="https://launchpad.net/mir/"/>
 
 <include href="gnome-sysdeps.modules"/>
 
@@ -113,7 +115,7 @@
 
   <autotools id="geoclue">
     <if condition-unset="linux">
-      <autogenargs value="--disable-3g-source --disable-modem-gps-source --disable-wifi-source"/>
+      <autogenargs value="--disable-3g-source --disable-modem-gps-source --disable-network-manager"/>
     </if>
     <branch repo="git.freedesktop.org"/>
     <dependencies>
@@ -217,6 +219,13 @@
     </dependencies>
   </autotools>
 
+  <autotools id="libgsystem">
+    <branch/>
+    <dependencies>
+      <dep package="glib"/>
+    </dependencies>
+  </autotools>
+
   <autotools id="libmbim">
     <branch repo="git.freedesktop.org"
             module="libmbim/libmbim.git"/>
@@ -253,6 +262,31 @@
       <dep package="gtk-doc"/>
     </dependencies>
   </autotools>
+
+  <cmake id="mir" cmakeargs="-DMIR_ENABLE_TESTS=0">
+    <branch repo="mir"
+            module="utopic/${version}/+download/mir-${version}.tar.bz2"
+            version="0.1.9"
+            hash="sha256:8aaeb911d5a017cded788a22c7322c1fa1e098b8b410e3a17607e9c44a7d7e82">
+      <patch file="mir-gflags-noshutdown.patch" strip="1"/>
+      <patch file="mir-makeinstall-nodocs.patch" strip="1"/>
+      <patch file="mir-nolink-lttng.patch" strip="1"/>
+    </branch>
+    <dependencies>
+      <dep package="boost"/>
+      <dep package="protobuf"/>
+      <dep package="mesa-libGLES"/>
+      <dep package="google-glog"/>
+      <dep package="google-gflags"/>
+      <dep package="gbm"/>
+      <dep package="egl"/>
+      <dep package="glm"/>
+      <dep package="lttng-ust"/>
+      <dep package="lcov"/>
+      <dep package="libudev"/>
+      <dep package="libxkbcommon"/>
+    </dependencies>
+  </cmake>
 
   <autotools id="ModemManager"
              autogenargs="--with-udev-base-dir=${libdir}/udev --with-systemdsystemunitdir=no --disable-more-warnings">
@@ -320,7 +354,7 @@
     <if condition-set="wayland">
       <autogenargs value="--enable-wayland-backend --enable-wayland-compositor --enable-evdev-input"/>
     </if>
-    <branch revision="clutter-1.18"/>
+    <branch revision="clutter-1.20"/>
     <dependencies>
       <dep package="cogl"/>
       <dep package="atk"/>
@@ -376,6 +410,9 @@
     <if condition-set="wayland">
       <autogenargs value="--enable-wayland-backend"/>
     </if>
+    <if condition-set="mir">
+      <autogenargs value="--enable-mir-backend"/>
+    </if>
     <branch/>
     <dependencies>
       <dep package="atk"/>
@@ -389,6 +426,9 @@
       <if condition-set="wayland">
         <dep package="libxkbcommon"/>
         <dep package="wayland"/>
+      </if>
+      <if condition-set="mir">
+        <dep package="mir"/>
       </if>
     </dependencies>
     <suggests>
@@ -931,6 +971,7 @@
     <dependencies>
       <dep package="intltool"/>
       <dep package="libxml2"/>
+      <dep package="geocode-glib"/>
       <dep package="glib"/>
       <dep package="gtk+"/>
       <dep package="libsoup"/>
@@ -1176,6 +1217,15 @@
     </dependencies>
   </autotools>
 
+  <autotools id="libepoxy">
+    <branch repo="github.com"
+            checkoutdir="libepoxy"
+            module="anholt/libepoxy.git"/>
+    <dependencies>
+      <dep package="xtrans"/>
+    </dependencies>
+  </autotools>
+
   <autotools id="libevdev" autogenargs="--disable-gcov">
     <branch repo="freedesktop.org"
             checkoutdir="libevdev"
@@ -1211,27 +1261,16 @@
     </dependencies>
   </autotools>
 
-  <autotools id="xwayland" autogenargs="--with-xkb-bin-directory=/usr/bin --with-xkb-path=/usr/share/X11/xkb --with-xkb-output=${prefix}/share/X11/xkb/compiled">
-    <branch repo="xorg.freedesktop.org" checkoutdir="xwayland" module="xserver" revision="xwayland"/>
+  <autotools id="xwayland"
+             autogenargs="--with-xkb-bin-directory=/usr/bin --with-xkb-path=/usr/share/X11/xkb --with-xkb-output=${prefix}/share/X11/xkb/compiled --enable-xwayland">
+    <branch repo="xorg.freedesktop.org"
+            checkoutdir="xwayland"
+            module="xserver"/>
     <dependencies>
       <dep package="xfont"/>
       <dep package="xtrans"/>
       <dep package="wayland"/>
-    </dependencies>
-  </autotools>
-
-  <autotools id="xf86-video-intel">
-    <branch repo="xorg.freedesktop.org" checkoutdir="xf86-video-intel" module="driver/xf86-video-intel" revision="xwayland"/>
-    <dependencies>
-      <dep package="xwayland"/>
-    </dependencies>
-  </autotools>
-
-  <autotools id="xf86-video-wayland">
-    <branch repo="xorg.freedesktop.org"
-            module="driver/xf86-video-wayland"/>
-    <dependencies>
-      <dep package="xwayland"/>
+      <dep package="libepoxy"/>
     </dependencies>
   </autotools>
 
@@ -1239,9 +1278,9 @@
              autogenargs="--enable-introspection">
     <pkg-config>webkitgtk-3.0.pc</pkg-config>
     <branch repo="webkitgtk.org"
-            module="webkitgtk-2.4.0.tar.xz" version="2.4.0"
-            hash="sha256:dc5277cda89ee038408f78c94b1b07f101997f01ef877a142ffedac3b537dfbb"
-            size="9828272">
+            module="webkitgtk-2.4.3.tar.xz" version="2.4.3"
+            hash="sha256:9862c3eac1d12cc6e52cc39060a1284163950b304d534529a0dbcc5958a8ceac"
+            size="9841564">
     </branch>
     <dependencies>
       <dep package="at-spi2-core"/>
@@ -1270,8 +1309,9 @@
     </suggests>
   </autotools>
 
- <autotools id="vte" autogenargs="--with-gtk=3.0 --enable-introspection=yes">
-    <branch revision="vte-0-36"/>
+ <autotools id="vte"
+            autogenargs="--enable-introspection=yes">
+    <branch/>
     <dependencies>
       <dep package="intltool"/>
       <dep package="glib"/>
@@ -1518,5 +1558,4 @@
       <dep package="telepathy-glib"/>
     </suggests>
   </autotools>
-
 </moduleset>
