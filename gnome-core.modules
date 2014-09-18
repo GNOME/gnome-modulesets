@@ -13,14 +13,14 @@
       href="git://anongit.freedesktop.org/pulseaudio/"/>
   <repository type="git" name="telepathy.freedesktop.org"
     href="git://anongit.freedesktop.org/telepathy/"/>
-  <repository type="git" name="packagekit.gitorious.org"
-      href="git://gitorious.org/packagekit"/>
+  <repository type="git" name="github.com"
+      href="git://github.com/"/>
 
 <!-- tarball repos -->
   <repository type="tarball" name="freedesktop.org"
       href="http://freedesktop.org/"/>
   <repository type="tarball" name="gnome.org"
-      href="http://download.gnome.org/sources/"/>
+      href="https://download.gnome.org/sources/"/>
   <repository type="tarball" name="kernel.org"
       href="http://www.kernel.org"/>
 
@@ -64,8 +64,15 @@
 
   <autotools id="evolution-data-server"
              supports-non-srcdir-builds="no"
-             autogenargs="--enable-vala-bindings --disable-strict --disable-uoa">
-    <branch/>
+             autogenargs="--enable-vala-bindings --disable-strict --disable-uoa"
+             uninstall-before-install="true">
+    <!-- We uninstall the old copy before installing, because the our usage
+         of DESTDIR and libtool's relinking interfere and cause camel providers
+         to link against the install version of libcamel. -->
+    <if condition-set="freebsd">
+      <autogenargs value="DB_CFLAGS=-I/usr/local/include/db5 DB_LIBS=-ldb-5.3"/>
+    </if>
+    <branch revision="evolution-data-server-3-12"/>
     <dependencies>
       <dep package="intltool"/>
       <dep package="libsoup"/>
@@ -106,7 +113,7 @@
     <branch/>
     <dependencies>
       <dep package="gtk+"/>
-      <dep package="WebKit"/>
+      <dep package="WebKit1"/>
       <dep package="libnotify"/>
       <dep package="librest"/>
       <dep package="json-glib"/>
@@ -186,10 +193,10 @@
     <branch/>
     <dependencies>
       <dep package="hicolor-icon-theme"/>
-      <dep package="icon-naming-utils"/>
       <dep package="gnome-common"/>
       <dep package="intltool"/>
       <dep package="gtk+"/>
+      <dep package="librsvg"/>
     </dependencies>
   </autotools>
 
@@ -223,9 +230,7 @@
       <dep package="PackageKit"/>
       <dep package="gtk+"/>
       <dep package="libnotify"/>
-      <dep package="gnome-menus"/>
       <dep package="libcanberra"/>
-      <dep package="gnome-control-center"/>
     </dependencies>
     <suggests>
       <if condition-set="linux">
@@ -245,9 +250,9 @@
       <dep package="dbus-glib"/>
       <dep package="startup-notification"/>
       <dep package="upower"/>
-      <dep package="librsvg"/>
       <dep package="libXcomposite"/>
       <dep package="sm"/>
+      <dep package="xtrans"/>
     </dependencies>
     <suggests>
       <dep package="polkit"/>
@@ -256,7 +261,7 @@
 
   <autotools id="gnome-settings-daemon">
     <if condition-unset="linux">
-      <autogenargs value="--disable-rfkill --disable-gudev"/>
+      <autogenargs value="--disable-rfkill --disable-gudev --disable-network-manager"/>
     </if>
     <branch/>
     <dependencies>
@@ -271,7 +276,6 @@
       <dep package="libcanberra"/>
       <dep package="libgweather"/>
       <dep package="libnotify"/>
-      <dep package="librsvg"/>
       <dep package="PackageKit"/>
       <dep package="polkit"/>
       <dep package="pulseaudio"/>
@@ -280,9 +284,11 @@
       <dep package="cups"/>
       <if condition-set="linux">
         <dep package="libgsystem"/>
+        <dep package="librsvg"/>
         <dep package="libwacom"/>
         <dep package="xorg-wacom"/>
         <dep package="gudev"/>
+        <dep package="NetworkManager"/>
       </if>
     </dependencies>
     <suggests>
@@ -376,6 +382,9 @@
   </autotools>
 
   <autotools id="glib-networking" autogenargs="--enable-installed-tests">
+    <if condition-set="freebsd">
+      <autogenargs value="--with-ca-certificates=/usr/local/share/certs/ca-root-nss.crt"/>
+    </if>
     <branch/>
     <dependencies>
       <dep package="glib"/>
@@ -399,20 +408,38 @@
     </dependencies>
   </autotools>
 
-  <autotools id="mutter" autogenargs="--enable-compile-warnings=maximum">
+  <autotools id="mutter" autogenargs="--enable-compile-warnings=maximum --enable-installed-tests">
     <branch />
     <dependencies>
-      <dep package="upower"/>
+      <dep package="cogl"/>
       <dep package="clutter"/>
       <dep package="gdk-pixbuf"/>
+      <dep package="glib"/>
+      <dep package="gnome-desktop"/>
       <dep package="gobject-introspection"/>
       <dep package="gsettings-desktop-schemas"/>
       <dep package="gtk+"/>
+      <dep package="gtk-doc"/>
       <dep package="intltool"/>
       <dep package="libcanberra"/>
+      <dep package="libXdamage"/>
+      <dep package="libXext"/>
+      <dep package="libXfixes"/>
+      <dep package="libXi"/>
       <dep package="libXinerama"/>
+      <dep package="libXcomposite"/>
+      <dep package="libXrandr"/>
+      <dep package="pango"/>
+      <dep package="sm"/>
       <dep package="startup-notification"/>
+      <dep package="upower"/>
       <dep package="zenity"/>
+      <if condition-set="wayland">
+        <dep package="libdrm"/>
+        <dep package="libsystemd"/>
+        <dep package="wayland"/>
+        <dep package="xwayland"/>
+      </if>
     </dependencies>
   </autotools>
 
@@ -521,7 +548,7 @@
       <dep package="telepathy-logger"/>
       <dep package="telepathy-mission-control"/>
       <dep package="libnotify"/>
-      <dep package="WebKit"/>
+      <dep package="WebKit1"/>
     </dependencies>
     <suggests>
       <dep package="enchant"/>
@@ -714,6 +741,7 @@
       <dep package="vte"/>
       <dep package="yelp-tools"/>
       <dep package="nautilus"/>
+      <dep package="appdata-tools"/>
     </dependencies>
     <suggests>
       <dep package="gnome-shell"/>
@@ -766,7 +794,7 @@
       <dep package="clutter-gtk"/>
       <dep package="clutter-gst"/>
       <dep package="gtksourceview"/>
-      <dep package="WebKit"/>
+      <dep package="WebKit1"/>
       <dep package="gstreamer"/>
       <dep package="gst-plugins-base"/>
       <dep package="gtk+"/>
@@ -803,6 +831,9 @@
   </autotools>
 
   <autotools id="yelp">
+    <if condition-set="freebsd">
+      <autogenargs value="YELP_LZMA_CFLAGS=' ' YELP_LZMA_LIBS='-llzma'"/>
+    </if>
     <branch/>
     <dependencies>
       <dep package="intltool"/>
@@ -810,7 +841,7 @@
       <dep package="gtk+"/>
       <dep package="libxml2"/>
       <dep package="libxslt"/>
-      <dep package="WebKit"/>
+      <dep package="WebKit1"/>
       <dep package="yelp-xsl"/>
     </dependencies>
   </autotools>
@@ -944,7 +975,7 @@
       <autogenargs value="--enable-ports"/>
     </if>
 
-    <branch repo="packagekit.gitorious.org" checkoutdir="PackageKit" module="packagekit.git"/>
+    <branch repo="github.com" module="hughsie/PackageKit.git"/>
     <dependencies>
       <dep package="glib"/>
       <dep package="gtk+"/>
@@ -970,7 +1001,7 @@
       <dep package="gobject-introspection"/>
       <dep package="expat"/>
       <dep package="intltool"/>
-      <dep package="js185"/>
+      <dep package="js17"/>
       <dep package="pam"/>
     </dependencies>
   </autotools>
@@ -989,7 +1020,6 @@
   <autotools id="upower">
     <branch repo="git.freedesktop.org" />
     <dependencies>
-      <dep package="polkit"/>
       <dep package="dbus-glib"/>
       <dep package="gobject-introspection"/>
     </dependencies>

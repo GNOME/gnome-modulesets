@@ -86,13 +86,14 @@
   <autotools id="appdata-tools">
     <branch repo="people.freedesktop.org"
             module="~hughsient/releases/appdata-tools-${version}.tar.xz"
-            version="0.1.7"
-            hash="sha256:3d704715aa105cdfa50b1dfbdc352445a2ceafd26ba01ff3260b0bcbf3d726c8"
-            size="265164"/>
+            version="0.1.8"
+            hash="sha256:401583d27f0f91bbc03de09f53efd4bf86b20da37d6930ff7bff297d7f1e5461"
+            size="251320"/>
 <!--
     <branch repo="github.com" checkoutdir="appdata-tools" module="hughsie/appdata-tools.git"/>
 -->
     <dependencies>
+      <dep package="appstream-glib"/>
       <dep package="gdk-pixbuf"/>
       <dep package="glib"/>
       <dep package="glib-networking"/>
@@ -115,7 +116,7 @@
 
   <autotools id="geoclue">
     <if condition-unset="linux">
-      <autogenargs value="--disable-3g-source --disable-modem-gps-source --disable-network-manager"/>
+      <autogenargs value="--disable-3g-source --disable-modem-gps-source --disable-cdma-source"/>
     </if>
     <branch repo="git.freedesktop.org"/>
     <dependencies>
@@ -265,12 +266,11 @@
 
   <cmake id="mir" cmakeargs="-DMIR_ENABLE_TESTS=0">
     <branch repo="mir"
-            module="utopic/${version}/+download/mir-${version}.tar.bz2"
-            version="0.1.9"
-            hash="sha256:8aaeb911d5a017cded788a22c7322c1fa1e098b8b410e3a17607e9c44a7d7e82">
+            module="0.4/${version}/+download/mir-${version}.tar.bz2"
+            version="0.4.0"
+            hash="sha256:5d859d353da88d81bf383e37d0744796d74d24a858fcc7d978a91575ebccd524"
+            size="949452">
       <patch file="mir-gflags-noshutdown.patch" strip="1"/>
-      <patch file="mir-makeinstall-nodocs.patch" strip="1"/>
-      <patch file="mir-nolink-lttng.patch" strip="1"/>
     </branch>
     <dependencies>
       <dep package="boost"/>
@@ -348,6 +348,18 @@
     <suggests>
       <dep package="gobject-introspection"/>
     </suggests>
+  </autotools>
+
+  <!-- libXi prior to 1.7.4 contains locking bugs that will deadlock the
+       compositor when touch events are received. Avoid a bleading-edge
+       system dependency by building from git. -->
+  <autotools id="libXi">
+    <branch repo="xorg.freedesktop.org" module="lib/libXi" checkoutdir="libXi"/>
+    <dependencies>
+      <dep package="libX11"/>
+      <dep package="libXext"/>
+      <dep package="xorg-xproto"/>
+    </dependencies>
   </autotools>
 
   <autotools id="clutter" autogenargs="--enable-installed-tests --enable-egl-backend">
@@ -433,6 +445,7 @@
     </dependencies>
     <suggests>
       <dep package="shared-mime-info"/>
+      <dep package="adwaita-icon-theme"/>
     </suggests>
   </autotools>
 
@@ -463,8 +476,8 @@
     <pkg-config>fontconfig.pc</pkg-config>
     <branch repo="freedesktop.org"
             module="fontconfig/release/fontconfig-${version}.tar.bz2"
-            version="2.11.0"
-            hash="sha256:cb0e0ef6f03bc8568e95653840bb07d5859dc89d7ce2cade9d94fcccf8c1a467"/>
+            version="2.11.1"
+            hash="sha256:dc62447533bca844463a3c3fd4083b57c90f18a70506e7a9f4936b5a1e516a99"/>
     <dependencies>
       <dep package="freetype2"/>
       <dep package="libxml2"/>
@@ -520,13 +533,16 @@
   <autotools id="farstream" autogenargs="--disable-python">
     <branch repo="freedesktop.org"
             module="farstream/releases/farstream/farstream-${version}.tar.gz"
-            version="0.2.2"
-            hash="sha256:ffd3c536372781713956eeb28644a6e9ee6e3bab034bee65af6bbb61213cb080">
-      <patch file="farstream.netinet-in.patch" strip="1"/>
-    </branch>
+            version="0.2.4"
+            hash="sha256:120d5b5cd79fcbe19d9e046526fc4bc059e0a3733b3de2d7e5299dc5a3a7bb30"/>
     <dependencies>
+      <dep package="glib"/>
+      <dep package="gobject-introspection"/>
       <dep package="libnice"/>
     </dependencies>
+    <suggests>
+      <dep package="gupnp-igd"/>
+    </suggests>
   </autotools>
 
   <autotools id="telepathy-farstream" autogenargs="--disable-python --disable-Werror">
@@ -541,8 +557,8 @@
     <pkg-config>exempi-2.0.pc</pkg-config>
     <branch repo="libopenraw.freedesktop.org"
             module="exempi-${version}.tar.bz2"
-            version="2.2.0"
-            hash="sha256:8ac374cca17df023ae978bb5f7a9d5d116da89141192f8de8c8060de0722b00f"/>
+            version="2.2.1"
+            hash="sha256:6c9e4380041abca80ef0e0029c07109f183506b812f870d8689e7140997fa601"/>
   </autotools>
 
   <autotools id="folks" autogenargs="--enable-eds-backend --disable-libsocialweb-backend --disable-fatal-warnings">
@@ -597,14 +613,23 @@
       <dep package="totem-pl-parser"/>
     </dependencies>
     <suggests>
-      <dep package="libgdata"/>
+      <dep package="avahi"/>
       <dep package="gmime"/>
+      <dep package="gnome-online-accounts"/>
+      <dep package="gssdp"/>
       <dep package="gupnp"/>
       <dep package="gupnp-av"/>
-      <dep package="sqlite3"/>
+      <dep package="json-glib"/>
+      <dep package="libarchive"/>
+      <dep package="libdmapsharing"/>
       <dep package="libgcrypt"/>
-      <dep package="tracker"/>
+      <dep package="libgdata"/>
       <dep package="libmediaart"/>
+      <dep package="liboauth"/>
+      <dep package="librest"/>
+      <dep package="libsoup"/>
+      <dep package="sqlite3"/>
+      <dep package="tracker"/>
     </suggests>
   </autotools>
 
@@ -631,6 +656,9 @@
   </autotools>
 
   <autotools id="librest">
+    <if condition-set="freebsd">
+      <autogenargs value="--with-ca-certificates=/usr/local/share/certs/ca-root-nss.crt"/>
+    </if>
     <branch/>
     <dependencies>
       <dep package="glib"/>
@@ -643,6 +671,7 @@
     <branch/>
     <dependencies>
       <dep package="glib"/>
+      <dep package="gobject-introspection"/>
     </dependencies>
     <suggests>
       <dep package="libgcrypt"/>
@@ -679,7 +708,7 @@
     <branch/>
     <dependencies>
       <dep package="gobject-introspection"/>
-      <dep package="WebKit"/>
+      <dep package="WebKit1"/>
       <dep package="gnome-js-common"/>
       <dep package="mpfr"/>
       <dep package="readline"/>
@@ -691,7 +720,8 @@
              supports-non-srcdir-builds="no">
     <branch repo="gstreamer.freedesktop.org"
             module="gstreamer"
-            checkoutdir="gstreamer"/>
+            checkoutdir="gstreamer"
+            revision="1.4"/>
     <dependencies>
       <dep package="glib"/>
       <dep package="libxml2"/>
@@ -704,7 +734,8 @@
              supports-non-srcdir-builds="no">
     <branch repo="gstreamer.freedesktop.org"
             module="gst-plugins-base"
-            checkoutdir="gst-plugins-base"/>
+            checkoutdir="gst-plugins-base"
+            revision="1.4"/>
     <dependencies>
       <dep package="gstreamer"/>
       <dep package="gtk+"/>
@@ -722,7 +753,8 @@
              supports-non-srcdir-builds="no">
     <branch repo="gstreamer.freedesktop.org"
             module="gst-plugins-good"
-            checkoutdir="gst-plugins-good"/>
+            checkoutdir="gst-plugins-good"
+            revision="1.4"/>
     <dependencies>
       <dep package="gstreamer"/>
       <dep package="gst-plugins-base"/>
@@ -746,7 +778,8 @@
              supports-non-srcdir-builds="no">
     <branch repo="gstreamer.freedesktop.org"
             checkoutdir="gst-plugins-bad"
-            module="gst-plugins-bad"/>
+            module="gst-plugins-bad"
+            revision="1.4"/>
     <dependencies>
       <dep package="gstreamer"/>
       <dep package="gst-plugins-base"/>
@@ -838,12 +871,15 @@
     </dependencies>
   </autotools>
 
-  <autotools id="itstool">
+  <!-- Remove annoying autogen-sh="autoreconf" when itstool.use-correct-libxml.patch is removed -->
+  <autotools id="itstool" autogen-sh="autoreconf">
     <branch repo="itstool.org"
             module="itstool-2.0.2.tar.bz2"
             version="2.0.2"
             hash="sha256:bf909fb59b11a646681a8534d5700fec99be83bb2c57badf8c1844512227033a"
-            size="96748"/>
+            size="96748">
+      <patch file="itstool.use-correct-libxml.patch" strip="1"/>
+    </branch>
   </autotools>
 
   <autotools id="java-gnome" autogen-sh="configure" skip-autogen="never">
@@ -901,6 +937,18 @@
     <suggests>
       <dep package="gobject-introspection"/>
     </suggests>
+  </autotools>
+
+  <autotools id="libdmapsharing">
+    <branch/>
+    <dependencies>
+      <dep package="avahi"/>
+      <dep package="glib"/>
+      <dep package="gstreamer"/>
+      <dep package="gst-plugins-base"/>
+      <dep package="libgee"/>
+      <dep package="libsoup"/>
+    </dependencies>
   </autotools>
 
   <autotools id="libcanberra" autogen-sh="configure" autogenargs="--with-systemdsystemunitdir=no">
@@ -1012,9 +1060,9 @@
              autogenargs="--enable-gupnp">
     <pkg-config>nice.pc</pkg-config>
     <branch repo="nice.freedesktop.org"
-            module="libnice-0.1.3.tar.gz"
-            version="0.1.3"
-            hash="sha256:046ce11f66638b54f2e042e7b1fbcc537ec99c27185fb006edbfd80d7f990074"/>
+            module="libnice-0.1.7.tar.gz"
+            version="0.1.7"
+            hash="sha256:4ed165aa2203136dce548c7cef735d8becf5d9869793f96b99dcbbaa9acf78d8"/>
     <dependencies>
       <dep package="glib"/>
       <dep package="gst-plugins-base"/>
@@ -1047,7 +1095,7 @@
     </suggests>
   </autotools>
 
-  <autotools id="librsvg" supports-non-srcdir-builds="no" autogenargs="--disable-gtk-theme">
+  <autotools id="librsvg" supports-non-srcdir-builds="no">
     <branch/>
     <dependencies>
       <dep package="libxml2"/>
@@ -1077,20 +1125,26 @@
   </autotools>
 
   <autotools id="p11-kit" supports-non-srcdir-builds="no">
+    <if condition-set="freebsd">
+      <autogenargs value="--with-trust-paths=/usr/local/share/certs/ca-root-nss.crt"/>
+    </if>
     <branch repo="p11-glue.freedesktop.org"
-            module="p11-kit-0.20.1.tar.gz"
-            version="0.20.1"
-            hash="sha256:524548f0a3bfa1b5712721165b49f0300fb244c907533677e88a9c9743eb4a53"
-            size="1175729" />
+            module="p11-kit-0.20.3.tar.gz"
+            version="0.20.3"
+            hash="sha256:b77032bc68c24e6c3cfd8cb340a4a3bb8b7d62a7c659dae08e9b6bb7287193c3"
+            size="1171155" />
   </autotools>
 
   <autotools id="poppler" autogenargs="--enable-xpdf-headers --enable-poppler-glib" makeargs="POPPLER_GLIB_DISABLE_DEPRECATED=">
+    <if condition-set="freebsd">
+      <autogenargs value="CXXFLAGS=-std=c++11"/>
+    </if>
     <pkg-config>poppler-glib.pc</pkg-config>
     <branch repo="poppler.freedesktop.org"
-            module="poppler-0.24.1.tar.xz"
-            version="0.24.1"
-            hash="5cefc01aa0184bd92b0b3999922b62cf09599ebb3d95f553c2f3de02738effc6"
-            size="1504620"/>
+            module="poppler-0.26.4.tar.xz"
+            version="0.26.4"
+            hash="sha256:7ede502a5ad6651d2ca56f3846ddee1ae66d0b1ab9bd302fb8b39a366d195c65"
+            size="1595096"/>
     <dependencies>
       <dep package="cairo"/>
       <dep package="glib"/>
@@ -1192,7 +1246,7 @@
   </autotools>
 
   <autotools id="vala" autogenargs="--enable-vapigen" supports-non-srcdir-builds="no">
-    <pkg-config>libvala-0.24.pc</pkg-config>
+    <pkg-config>libvala-0.26.pc</pkg-config>
     <branch/>
     <dependencies>
       <dep package="glib"/>
@@ -1230,8 +1284,8 @@
     <branch repo="freedesktop.org"
             checkoutdir="libevdev"
             module="libevdev/libevdev-${version}.tar.xz"
-            version="1.0"
-            hash="sha256:6e6d1e307eff03f1c939c9af532228b19030fc896a9257a8abfa6e9b7dc91803"/>
+            version="1.2.2"
+            hash="sha256:860e9a1d5594393ff1f711cdeaf048efe354992019068408abbcfa4914ad6709"/>
   </autotools>
 
   <autotools id="libinput">
@@ -1243,13 +1297,31 @@
     </dependencies>
   </autotools>
 
-  <autotools id="libxkbcommon" autogenargs="--with-xkb-config-root=/usr/share/X11/xkb --disable-x11">
+  <autotools id="xcb-proto">
+    <branch repo="git.freedesktop.org"
+            checkoutdir="xcb-proto"
+            module="xcb/proto.git"
+            revision="1.10"/>
+  </autotools>
+
+  <autotools id="libxcb">
+    <branch repo="git.freedesktop.org"
+            checkoutdir="libxcb"
+            module="xcb/libxcb.git"
+            revision="1.10"/>
+    <dependencies>
+      <dep package="xcb-proto"/>
+    </dependencies>
+  </autotools>
+
+  <autotools id="libxkbcommon" autogenargs="--with-xkb-config-root=/usr/share/X11/xkb">
     <branch repo="github.com" checkoutdir="libxkbcommon" module="xkbcommon/libxkbcommon.git"/>
     <dependencies>
       <dep package="xorg-macros"/>
       <dep package="xorg-xproto"/>
       <dep package="xorg-kbproto"/>
       <dep package="libX11"/>
+      <dep package="libxcb"/>
     </dependencies>
   </autotools>
 
@@ -1274,13 +1346,11 @@
     </dependencies>
   </autotools>
 
-  <autotools id="WebKit" makefile="GNUmakefile"
-             autogenargs="--enable-introspection">
-    <pkg-config>webkitgtk-3.0.pc</pkg-config>
+  <cmake id="WebKit" cmakeargs="-DPORT=GTK -DCMAKE_BUILD_TYPE=Release">
     <branch repo="webkitgtk.org"
-            module="webkitgtk-2.4.3.tar.xz" version="2.4.3"
-            hash="sha256:9862c3eac1d12cc6e52cc39060a1284163950b304d534529a0dbcc5958a8ceac"
-            size="9841564">
+            module="webkitgtk-2.5.3.tar.xz" version="2.5.3"
+            hash="sha256:010803e371ac92a3e0e297e929978f83a9a3c597e4a10d50363fb1aaa6ea18d6"
+            size="10093908">
     </branch>
     <dependencies>
       <dep package="at-spi2-core"/>
@@ -1290,7 +1360,7 @@
       <dep package="libxml2"/>
       <dep package="gst-plugins-base"/>
       <dep package="gtk+"/>
-      <!-- GTK+ 2.x required for the plugin process when build Webkit2 -->
+      <!-- GTK+ 2.x required for the plugin process -->
       <dep package="gtk+-2"/>
       <dep package="pango"/>
       <dep package="libsoup"/>
@@ -1307,7 +1377,7 @@
       <dep package="sqlite3"/>
       <dep package="enchant"/>
     </suggests>
-  </autotools>
+  </cmake>
 
  <autotools id="vte"
             autogenargs="--enable-introspection=yes">
@@ -1356,6 +1426,7 @@
     <branch repo="gitorious.org" checkoutdir="libgusb" module="gusb/gusb.git"/>
     <dependencies>
       <dep package="glib"/>
+      <dep package="gobject-introspection"/>
       <dep package="vala"/>
     </dependencies>
   </autotools>
@@ -1395,9 +1466,9 @@
   </autotools>
 
   <autotools id="libwacom">
-    <branch repo="sourceforge.net" module="linuxwacom/libwacom-0.7.tar.bz2" version="0.7"
-            hash="sha256:210c48b595461ebee63b1a846a6eb1d8f029b49d02ccbde34eadf551a5a68a78"
-            size="403532"/>
+    <branch repo="sourceforge.net" module="linuxwacom/libwacom-0.9.tar.bz2" version="0.9"
+            hash="sha256:7a5848b5f069e526257a00ce2d409e2018c17f5a968bdec256423bcb54f2f097"
+            size="413917"/>
     <dependencies>
       <dep package="glib"/>
       <dep package="gudev"/>
@@ -1410,9 +1481,9 @@
       <autogenargs value="--disable-pam"/>
     </if>
     <branch repo="libpwquality"
-            module="https://fedorahosted.org/releases/l/i/libpwquality/libpwquality-1.2.2.tar.bz2" version="1.2.2"
-            hash="sha256:9689627283b43d20ca74ca822404ee486242e3e528fa95bf7016d37ff46e0696"
-            size="362081">
+            module="https://fedorahosted.org/releases/l/i/libpwquality/libpwquality-1.2.3.tar.bz2" version="1.2.3"
+            hash="sha256:b11c79ce7b03cdf878fccb653e67bd430155cc6fd224efbbb3e78842f752516a"
+            size="367794">
       <patch file="libpwquality.libintl-link.patch" strip="1"/>
     </branch>
     <dependencies>
@@ -1540,6 +1611,39 @@
             hash="sha256:9a30ad2dc20979a0847a7b1a06ea073498810f358a02fcad68ab414f239cfbc6"/>
     <dependencies>
     </dependencies>
+  </autotools>
+
+  <autotools id="WebKit1" makefile="GNUmakefile"
+             autogenargs="--enable-introspection --disable-webkit2">
+    <pkg-config>webkitgtk-3.0.pc</pkg-config>
+    <branch repo="webkitgtk.org"
+            module="webkitgtk-2.4.4.tar.xz" version="2.4.4"
+            hash="sha256:58cbfc7e352ae1e1f5e383f9f766795794d88483e9a52377a295f56eedf53ab9"
+            size="9844048">
+    </branch>
+    <dependencies>
+      <dep package="at-spi2-core"/>
+      <dep package="cairo"/>
+      <dep package="fontconfig"/>
+      <dep package="geoclue"/>
+      <dep package="libxml2"/>
+      <dep package="gst-plugins-base"/>
+      <dep package="gtk+"/>
+      <dep package="pango"/>
+      <dep package="libsoup"/>
+      <dep package="gobject-introspection"/>
+      <dep package="gperf"/>
+      <dep package="libicu"/>
+      <dep package="libXt"/>
+      <dep package="ruby"/>
+      <dep package="libsecret"/>
+      <dep package="libwebp"/>
+    </dependencies>
+    <suggests>
+      <dep package="libxslt"/>
+      <dep package="sqlite3"/>
+      <dep package="enchant"/>
+    </suggests>
   </autotools>
 
   <autotools id="zeitgeist">

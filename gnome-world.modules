@@ -75,8 +75,6 @@
       href="git://git.fishsoup.net/"/>
   <repository type="git" name="diracvideo.org"
     href="git://diracvideo.org/git/"/>
-  <repository type="svn" name="liferea.svn.sourceforge.net"
-      href="http://liferea.svn.sourceforge.net/svnroot/"/>
   <repository type="cvs" name="cvs.claws-mail"
       cvsroot=":ext:cvs@scm.dotsrc.org:/srv/cvs/claws-mail"
       password=""/>
@@ -102,9 +100,7 @@
   <repository type="tarball" name="openchange.org"
       href="http://tracker.openchange.org/attachments/download/"/>
   <repository type="tarball" name="gnome.org"
-      href="http://download.gnome.org/sources/"/>
-  <repository type="git" name="yorba.org"
-      href="git://yorba.org/"/>
+      href="https://download.gnome.org/sources/"/>
   <repository type="git" name="fedorahosted.org"
       href="git://git.fedorahosted.org/git/"/>
   <repository type="svn" name="opalvoip.sf.net"
@@ -198,21 +194,37 @@
       <dep package="libunique"/>
       <dep package="sqlite3"/>
       <dep package="vala"/>
-      <dep package="WebKit"/>
+      <dep package="WebKit1"/>
     </dependencies>
   </cmake>
 
-  <cmake id="corebird"
-         cmakeargs="-DPREFIX=${prefix}">
-     <branch repo="github.com" checkoutdir="corebird" module="baedert/corebird.git"/>
-     <dependencies>
-       <dep package="intltool"/>
-       <dep package="vala"/>
-       <dep package="glib-networking"/>
-       <dep package="librsvg"/>
-       <dep package="gtk+"/>
-     </dependencies>
-  </cmake>
+  <autotools id="corebird">
+    <branch repo="github.com" checkoutdir="corebird" module="baedert/corebird.git"/>
+    <dependencies>
+      <dep package="glib-networking"/>
+      <dep package="gst-plugins-base"/>
+      <dep package="gtk+"/>
+      <dep package="intltool"/>
+      <dep package="json-glib"/>
+      <dep package="libgee"/>
+      <dep package="librest"/>
+      <dep package="librsvg"/>
+      <dep package="libsoup"/>
+      <dep package="sqlite3"/>
+      <dep package="vala"/>
+    </dependencies>
+  </autotools>
+
+  <autotools id="gnome-builder">
+    <branch/>
+    <dependencies>
+      <dep package="devhelp"/>
+      <dep package="glib"/>
+      <dep package="gtk+"/>
+      <dep package="gtksourceview"/>
+      <dep package="WebKit"/>
+    </dependencies>
+  </autotools>
 
   <autotools id="gnome-calendar">
     <branch/>
@@ -497,18 +509,6 @@
     <branch/>
   </autotools>
 
-  <autotools id="libdmapsharing">
-    <branch/>
-    <dependencies>
-      <dep package="avahi"/>
-      <dep package="glib"/>
-      <dep package="gstreamer"/>
-      <dep package="gst-plugins-base"/>
-      <dep package="libgee"/>
-      <dep package="libsoup"/>
-    </dependencies>
-  </autotools>
-
   <autotools id="gst-openmax" autogenargs="-- --disable-tests" supports-non-srcdir-builds="no">
     <branch repo="gstreamer.freedesktop.org" module="gst-openmax"/>
     <dependencies>
@@ -601,7 +601,7 @@
 
   <autotools id="gst-libav"
              autogenargs="--disable-fatal-warnings">
-    <branch repo="gstreamer.freedesktop.org"/>
+    <branch repo="gstreamer.freedesktop.org" revision="1.4"/>
     <dependencies>
       <dep package="gstreamer"/>
       <dep package="gst-plugins-base"/>
@@ -1952,26 +1952,22 @@
   </autotools>
 
   <autotools id="liferea">
-    <branch repo="liferea.svn.sourceforge.net"
-            module="liferea/trunk/liferea"
-            checkoutdir="liferea"/>
+    <branch repo="github.com" checkoutdir="liferea" module="lwindolf/liferea"/>
     <dependencies>
-      <dep package="gtk+-2"/>
-      <dep package="intltool"/>
+      <dep package="gtk+"/>
       <dep package="glib"/>
       <dep package="pango"/>
-      <dep package="gconf"/>
       <dep package="libxml2"/>
+      <dep package="libxslt"/>
       <dep package="sqlite3"/>
       <dep package="libsoup"/>
-      <dep package="libunique-1"/>
-      <dep package="WebKit"/>
+      <dep package="WebKit1"/>
+      <dep package="json-glib"/>
+      <dep package="gobject-introspection"/>
+      <dep package="gsettings-desktop-schemas"/>
+      <dep package="libpeas"/>
+      <dep package="intltool"/>
     </dependencies>
-    <suggests>
-      <dep package="dbus"/>
-      <dep package="NetworkManager"/>
-      <dep package="libnotify"/>
-    </suggests>
   </autotools>
 
   <autotools id="krb5-auth-dialog">
@@ -2047,7 +2043,7 @@
     <branch repo="git.xfce.org" branch="kalikiana/midori"/>
     <dependencies>
       <dep package="gtk+-2"/>
-      <dep package="WebKit"/>
+      <dep package="WebKit1"/>
       <dep package="libsoup"/>
       <dep package="libxml2"/>
     </dependencies>
@@ -2492,7 +2488,8 @@
              supports-non-srcdir-builds="no">
     <branch repo="gstreamer.freedesktop.org"
             checkoutdir="gst-plugins-ugly"
-            module="gst-plugins-ugly"/>
+            module="gst-plugins-ugly"
+            revision="1.4"/>
     <dependencies>
       <dep package="gstreamer"/>
       <dep package="gst-plugins-base"/>
@@ -2585,7 +2582,7 @@
     <dependencies>
       <dep package="intltool"/>
       <dep package="gdk-pixbuf"/>
-      <dep package="gtk+-2"/>
+      <dep package="gtk+"/>
       <dep package="gsettings-desktop-schemas"/>
       <dep package="intltool"/>
       <dep package="libcanberra"/>
@@ -2627,6 +2624,15 @@
     </dependencies>
   </autotools>
 
+  <autotools id="gnome-flashback">
+    <branch/>
+    <dependencies>
+      <dep package="intltool"/>
+      <dep package="gnome-desktop"/>
+      <dep package="gtk+"/>
+    </dependencies>
+  </autotools>
+
   <metamodule id="meta-gnome-flashback">
     <dependencies>
       <dep package="gnome-panel"/>
@@ -2637,7 +2643,7 @@
 
   <!-- ########## End of Gnome Flashback Modules ########## -->
 
-  <autotools id="librsync">
+  <autotools id="librsync" autogen-sh="configure">
     <branch repo="downloads.sourceforge.net"
             module="librsync/librsync-0.9.7.tar.gz"
             version="0.9.7"
@@ -2667,7 +2673,7 @@
   <!--   enscript                                   -->
   <!--   libavcodec                                 -->
   <!-- Those are not managed by jhbuild             -->
-  <autotools id="gnome-applets" autogenargs="--without-hal --enable-mixer-applet --enable-mini-commander">
+  <autotools id="gnome-applets" autogenargs="--enable-mixer-applet --enable-mini-commander">
     <branch/>
     <dependencies>
       <dep package="intltool"/>
@@ -2970,7 +2976,6 @@
     </dependencies>
     <suggests>
       <dep package="iso-codes"/>
-      <dep package="WebKit"/>
       <dep package="librsvg"/>
       <dep package="poppler"/>
       <dep package="libgnome-keyring"/>
@@ -3161,7 +3166,7 @@
       <dep package="libdmapsharing"/>
       <dep package="libgnome-keyring"/>
       <dep package="vala"/>
-      <dep package="WebKit"/>
+      <dep package="WebKit1"/>
     </suggests>
   </autotools>
 
@@ -3178,7 +3183,7 @@
   </autotools>
 
   <autotools id="shotwell">
-    <branch repo="yorba.org" module="shotwell"/>
+    <branch/>
     <dependencies>
       <dep package="desktop-file-utils"/>
       <dep package="gexiv2"/>
@@ -3196,7 +3201,7 @@
       <dep package="libxml2"/>
       <dep package="sqlite3"/>
       <dep package="vala"/>
-      <dep package="WebKit"/>
+      <dep package="WebKit1"/>
     </dependencies>
   </autotools>
 
@@ -3229,6 +3234,23 @@
     </dependencies>
     <suggests>
       <dep package="gtkspell"/>
+    </suggests>
+  </autotools>
+
+  <autotools id="budgie-desktop">
+    <branch repo="github.com"
+            module="evolve-os/budgie-desktop.git"/>
+    <dependencies>
+      <dep package="gtk+"/>
+      <dep package="vala"/>
+      <dep package="mutter"/>
+      <dep package="libpeas"/>
+      <dep package="libgee"/>
+      <dep package="libwnck"/>
+      <dep package="gnome-menus"/>
+    </dependencies>
+    <suggests>
+      <dep package="pulseaudio"/>
     </suggests>
   </autotools>
 

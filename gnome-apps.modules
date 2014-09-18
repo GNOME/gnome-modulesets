@@ -22,13 +22,15 @@
 
 <!-- tarball repos -->
   <repository type="tarball" name="gnome.org"
-    href="http://download.gnome.org/sources/"/>
+    href="https://download.gnome.org/sources/"/>
   <repository type="tarball" name="spice"
       href="http://www.spice-space.org/download/"/>
   <repository type="tarball" name="libvirt.org"
       href="http://libvirt.org/sources/"/>
   <repository type="tarball" name="ftp.gnu.org"
       href="http://ftp.gnu.org/gnu/"/>
+  <repository type="tarball" name="qqwing"
+      href="http://ostermiller.org/qqwing/"/>
   <repository type="tarball" name="speech-dispatcher"
       href="http://devel.freebsoft.org/pub/projects/speechd/"/>
   <repository type="tarball" name="tarball.github.com"
@@ -42,7 +44,10 @@
     -->
 
   <autotools id="appstream-glib">
-    <branch repo="github.com" module="hughsie/appstream-glib.git" checkoutdir="appstream-glib"/>
+    <if condition-set="freebsd">
+      <autogenargs value="LIBARCHIVE_CFLAGS=' ' LIBARCHIVE_LIBS='-larchive'"/>
+    </if>
+    <branch repo="github.com" module="hughsie/appstream-glib.git" revision="0_2_X"/>
     <dependencies>
       <dep package="glib"/>
       <dep package="gobject-introspection"/>
@@ -73,7 +78,7 @@
       <dep package="gtk+"/>
       <dep package="libxml2"/>
       <dep package="glib"/>
-      <dep package="WebKit"/>
+      <dep package="WebKit1"/>
       <dep package="evolution"/>
     </dependencies>
     <suggests>
@@ -108,8 +113,15 @@
   </autotools>
 
   <autotools id="gnome-weather">
+    <if condition-set="coverage">
+      <autogenargs value="--enable-coverage"/>
+    </if>
+    <if condition-unset="dogtail">
+      <autogenargs value="--disable-dogtail"/>
+    </if>
     <branch/>
     <dependencies>
+      <dep package="appstream-glib"/>
       <dep package="gdk-pixbuf"/>
       <dep package="glib"/>
       <dep package="gobject-introspection"/>
@@ -117,10 +129,13 @@
       <dep package="intltool"/>
       <dep package="libgweather"/>
       <dep package="gjs"/>
+      <if condition-set="coverage">
+        <dep package="lcov"/>
+      </if>
+      <if condition-set="dogtail">
+        <dep package="dogtail"/>
+      </if>
     </dependencies>
-    <suggests>
-      <dep package="dogtail"/>
-    </suggests>
   </autotools>
 
   <autotools id="ghex">
@@ -165,15 +180,23 @@
   </autotools>
 
   <autotools id="guile">
+    <if condition-set="freebsd">
+      <autogenargs value="BDW_GC_CFLAGS=' ' BDW_GC_LIBS='-lgc-threaded'"/>
+    </if>
     <pkg-config>guile-2.0.pc</pkg-config>
     <branch repo="ftp.gnu.org"
-            module="guile/guile-2.0.7.tar.xz"
-            version="2.0.7"
-            hash="sha256:6f278fa699685382ae51ba8bfad5840959e0af6414f3ad803d61131567bfa338"
-            size="4396724"/>
+            module="guile/guile-2.0.11.tar.xz"
+            version="2.0.11"
+            hash="sha256:aed0a4a6db4e310cbdfeb3613fa6f86fddc91ef624c1e3f8937a6304c69103e2"
+            size="4634060"/>
     <dependencies>
       <dep package="libunistring"/>
-      <dep package="gc"/>
+      <if condition-unset="freebsd">
+        <dep package="gc"/>
+      </if>
+      <if condition-set="freebsd">
+        <dep package="gc-threaded"/>
+      </if>
     </dependencies>
   </autotools>
 
@@ -202,9 +225,13 @@
  </autotools>
 
   <autotools id="libgda" autogenargs="--with-java=no --disable-tools">
-    <branch/>
+    <if condition-set="freebsd">
+      <autogenargs value="LIBCRYPTO_CFLAGS=' ' LIBCRYPTO_LIBS='-lcrypto' --with-bdb=/usr/local --with-bdb-libdir-name=lib/db5 --with-bdb-includedir-name=include/db5"/>
+    </if>
+    <branch revision="LIBGDA_5.2"/>
     <dependencies>
       <dep package="glib"/>
+      <dep package="gobject-introspection"/>
       <dep package="libxml2"/>
       <dep package="openssl"/>
       <dep package="vala"/>
@@ -243,6 +270,15 @@
     </suggests>
   </autotools>
 
+  <autotools id="qqwing">
+    <branch repo="qqwing"
+            module="qqwing-${version}.tar.gz"
+            version="1.2.0"
+            hash="sha256:b9de6cc596049cf852d17a37014f9a4b0cac1682bd8ccff5def4433b0b52d1e1"
+            size="350915"/>
+    <dependencies />
+  </autotools>
+
   <autotools id="speech-dispatcher" autogenargs="--with-espeak">
     <branch repo="speech-dispatcher"
             module="speech-dispatcher-${version}.tar.gz"
@@ -255,13 +291,14 @@
   </autotools>
 
   <autotools id="spice-gtk" autogenargs="--disable-smartcard --enable-vala --enable-static">
+    <if condition-set="freebsd">
+      <autogenargs value="SSL_CFLAGS=' ' SSL_LIBS='-lssl'"/>
+    </if>
     <branch repo="spice"
-            module="gtk/spice-gtk-0.23.tar.bz2"
-            version="0.23"
-            hash="sha256:bfdfa6cb12c40327b63167fe7191ce94e7f2a272473c87df31790c25d60cc81d"
-            size="1224546">
-       <patch file="spice-gtk-0.23-fix-disable-static-builds.patch" strip="1"/>
-    </branch>
+            module="gtk/spice-gtk-0.25.tar.bz2"
+            version="0.25"
+            hash="sha256:0730c6a80ad9f5012f65927d443377019f300573f7ccc93db84eadec462ad087"
+            size="1242457"/>
     <dependencies>
       <dep package="cairo"/>
       <dep package="cyrus-sasl"/>
@@ -273,8 +310,19 @@
       <dep package="opus"/>
       <dep package="pixman"/>
       <dep package="pulseaudio"/>
+      <dep package="spice-protocol"/>
       <dep package="vala"/>
       <dep package="zlib"/>
+    </dependencies>
+  </autotools>
+
+  <autotools id="spice-protocol">
+    <branch repo="spice"
+            module="releases/spice-protocol-0.12.7.tar.bz2"
+            version="0.12.7"
+            hash="sha256:96c6cb73361816ed19bfd8536f65d4547da35709aa00af1380e650c1174916c2"
+            size="71276"/>
+    <dependencies>
     </dependencies>
   </autotools>
 
@@ -322,9 +370,9 @@
          cmakeargs="-DTHREADSAFE:BOOL=1">
     <branch repo="tarball.github.com"
             module="libgit2/libgit2/archive/v${version}.tar.gz"
-            version="0.20.0"
-            hash="509ab8091623df5b745cd13682539ca2dc2372051d3418355a7acc5b4a20c2f1"
-            checkoutdir="libgit2">
+            version="0.21.0"
+            hash="ae2afb5729ab6dcf6f690e5d66cb876372eaaedd37dc4fb072ad8da92338e099"
+            checkoutdir="libgit2-${version}">
     </branch>
   </cmake>
 
@@ -333,6 +381,7 @@
     <dependencies>
       <dep package="libgit2"/>
       <dep package="glib"/>
+      <dep package="gobject-introspection"/>
     </dependencies>
   </autotools>
 
@@ -479,7 +528,7 @@
   <autotools id="cheese">
     <branch/>
     <dependencies>
-      <dep package="appdata-tools"/>
+      <dep package="appstream-glib"/>
       <dep package="intltool"/>
       <dep package="glib"/>
       <dep package="gtk+"/>
@@ -501,7 +550,7 @@
   </autotools>
 
   <autotools id="evolution" autogenargs="--disable-pst-import">
-    <branch/>
+    <branch revision="evolution-3-12"/>
     <dependencies>
       <dep package="bogofilter"/>
       <dep package="evolution-data-server"/>
@@ -607,6 +656,7 @@
       <dep package="gnome-desktop"/>
       <dep package="libgweather"/>
       <dep package="libnotify"/>
+      <dep package="geoclue"/>
       <dep package="geocode-glib"/>
       <dep package="yelp-tools"/>
     </dependencies>
@@ -710,7 +760,7 @@
   <autotools id="gnome-logs">
     <branch/>
     <dependencies>
-      <dep package="appdata-tools"/>
+      <dep package="appstream-glib"/>
       <dep package="intltool"/>
       <dep package="gsettings-desktop-schemas"/>
       <dep package="gtk+"/>
@@ -735,7 +785,6 @@
     <dependencies>
       <dep package="intltool"/>
       <dep package="librsvg"/>
-      <dep package="gnome-themes-standard"/>
       <dep package="gtk+"/>
       <dep package="vala"/>
       <dep package="yelp-tools"/>
@@ -798,6 +847,17 @@
     </dependencies>
   </autotools>
 
+  <autotools id="dleyna-server">
+    <branch repo="github-01org"/>
+    <dependencies>
+      <dep package="dleyna-core"/>
+      <dep package="gssdp"/>
+      <dep package="gupnp"/>
+      <dep package="gupnp-av"/>
+      <dep package="gupnp-dlna"/>
+    </dependencies>
+  </autotools>
+
   <autotools id="gnome-photos">
     <branch/>
     <dependencies>
@@ -832,9 +892,12 @@
   <autotools id="gnome-sudoku">
     <branch/>
     <dependencies>
-      <dep package="intltool"/>
+      <dep package="glib"/>
       <dep package="gtk+"/>
-      <dep package="pygobject"/>
+      <dep package="intltool"/>
+      <dep package="json-glib"/>
+      <dep package="libgee"/>
+      <dep package="qqwing"/>
       <dep package="yelp-tools"/>
     </dependencies>
   </autotools>
@@ -856,6 +919,18 @@
       <dep package="gtk+"/>
       <dep package="pygobject"/>
       <dep package="gsettings-desktop-schemas"/>
+    </dependencies>
+  </autotools>
+
+  <autotools id="hitori">
+    <branch/>
+    <dependencies>
+      <dep package="appstream-glib"/>
+      <dep package="cairo"/>
+      <dep package="glib"/>
+      <dep package="gtk+"/>
+      <dep package="intltool"/>
+      <dep package="yelp-tools"/>
     </dependencies>
   </autotools>
 
@@ -1026,7 +1101,7 @@
   <autotools id="vinagre">
     <branch/>
     <dependencies>
-      <dep package="appdata-tools"/>
+      <dep package="appstream-glib"/>
       <dep package="intltool"/>
       <dep package="libxml2"/>
       <dep package="gtk+"/>
@@ -1126,6 +1201,7 @@
       <dep package="gnome-tetravex"/>
       <dep package="gnome-tweak-tool"/>
       <dep package="gnome-weather"/>
+      <dep package="hitori"/>
       <dep package="iagno"/>
       <dep package="lightsoff"/>
       <dep package="nautilus-sendto"/>
