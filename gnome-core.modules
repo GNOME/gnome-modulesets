@@ -32,7 +32,7 @@
 <!-- Core User Shell -->
 
   <autotools id="at-spi2-core">
-    <branch/>
+    <branch revision="gnome-3-14"/>
     <dependencies>
       <dep package="dbus"/>
       <dep package="glib"/>
@@ -41,7 +41,7 @@
   </autotools>
 
   <autotools id="at-spi2-atk">
-    <branch/>
+    <branch revision="gnome-3-14"/>
     <dependencies>
       <dep package="dbus"/>
       <dep package="glib"/>
@@ -55,8 +55,10 @@
     <branch/>
     <dependencies>
       <dep package="glib"/>
+      <dep package="gtk+"/>
       <dep package="dbus"/>
       <dep package="vala"/>
+      <dep package="libxml2"/>
     </dependencies>
   </autotools>
 
@@ -70,7 +72,7 @@
     <if condition-set="freebsd">
       <autogenargs value="DB_CFLAGS=-I/usr/local/include/db5 DB_LIBS=-ldb-5.3"/>
     </if>
-    <branch/>
+    <branch revision="evolution-data-server-3-12"/>
     <dependencies>
       <dep package="intltool"/>
       <dep package="libsoup"/>
@@ -98,6 +100,8 @@
       <dep package="gtk+"/>
       <dep package="gtk-doc"/>
       <dep package="glib"/>
+      <dep package="dbus-glib"/>
+      <dep package="libnotify"/>
       <dep package="nautilus-sendto"/>
     </dependencies>
     <suggests>
@@ -106,22 +110,20 @@
   </autotools>
 
   <autotools id="gnome-online-accounts">
-    <branch/>
+    <branch revision="gnome-3-14"/>
     <dependencies>
       <dep package="gtk+"/>
-      <dep package="WebKit"/>
+      <dep package="WebKit1"/>
+      <dep package="libnotify"/>
       <dep package="librest"/>
-      <dep package="libsoup"/>
-      <dep package="libsecret"/>
       <dep package="json-glib"/>
       <dep package="libsecret"/>
-      <dep package="libxml2"/>
       <dep package="telepathy-glib"/>
     </dependencies>
   </autotools>
 
   <autotools id="gnome-control-center" supports-non-srcdir-builds="no">
-    <branch/>
+    <branch revision="gnome-3-14"/>
     <dependencies>
       <dep package="accountsservice"/>
       <dep package="clutter-gtk"/>
@@ -138,13 +140,12 @@
       <dep package="ibus"/>
       <dep package="intltool"/>
       <dep package="iso-codes"/>
-      <dep package="krb5"/>
-      <dep package="libcanberra-gtk3"/>
+      <dep package="libcanberra"/>
       <dep package="libgtop"/>
       <dep package="libnotify"/>
       <dep package="libpwquality"/>
       <dep package="libxml2"/>
-      <dep package="polkit-gobject"/>
+      <dep package="polkit"/>
       <dep package="pulseaudio"/>
       <dep package="smbclient"/>
       <dep package="sound-theme-freedesktop"/>
@@ -160,7 +161,7 @@
       <dep package="cups"/>
       <dep package="cheese"/>
       <dep package="gstreamer"/>
-      <dep package="ibus-libpinyin"/>
+      <dep package="ibus-pinyin"/>
       <dep package="ibus-anthy"/>
       <dep package="ibus-hangul"/>
       <if condition-set="linux">
@@ -172,7 +173,7 @@
   </autotools>
 
   <autotools id="gnome-desktop" autogenargs="--with-gnome-distributor=JHBuild">
-    <branch/>
+    <branch revision="gnome-3-14"/>
     <dependencies>
       <dep package="intltool"/>
       <dep package="libxkbfile"/>
@@ -189,7 +190,7 @@
   </autotools>
 
   <autotools id="adwaita-icon-theme">
-    <branch/>
+    <branch revision="gnome-3-14"/>
     <dependencies>
       <dep package="hicolor-icon-theme"/>
       <dep package="gnome-common"/>
@@ -200,7 +201,7 @@
   </autotools>
 
   <autotools id="gnome-keyring">
-    <branch/>
+    <branch revision="gnome-3-14"/>
     <dependencies>
       <dep package="intltool"/>
       <dep package="dbus"/>
@@ -235,9 +236,6 @@
       <if condition-set="linux">
         <dep package="gudev"/>
       </if>
-      <if condition-set="systemd">
-        <dep package="libsystemd-login"/>
-      </if>
     </suggests>
   </autotools>
 
@@ -249,23 +247,23 @@
       <dep package="gtk+"/>
       <dep package="gnome-desktop"/>
       <dep package="json-glib"/>
+      <dep package="dbus-glib"/>
+      <dep package="startup-notification"/>
       <dep package="upower"/>
       <dep package="libXcomposite"/>
       <dep package="sm"/>
       <dep package="xtrans"/>
-      <if condition-set="systemd">
-        <dep package="libsystemd-daemon"/>
-        <dep package="libsystemd-journal"/>
-        <dep package="libsystemd-login"/>
-      </if>
     </dependencies>
+    <suggests>
+      <dep package="polkit"/>
+    </suggests>
   </autotools>
 
   <autotools id="gnome-settings-daemon">
     <if condition-unset="linux">
       <autogenargs value="--disable-rfkill --disable-gudev --disable-network-manager"/>
     </if>
-    <branch/>
+    <branch revision="gnome-3-14"/>
     <dependencies>
       <dep package="colord"/>
       <dep package="geoclue"/>
@@ -275,16 +273,17 @@
       <dep package="gsettings-desktop-schemas"/>
       <dep package="gtk+"/>
       <dep package="intltool"/>
-      <dep package="libcanberra-gtk3"/>
+      <dep package="libcanberra"/>
       <dep package="libgweather"/>
       <dep package="libnotify"/>
       <dep package="PackageKit"/>
-      <dep package="polkit-gobject"/>
+      <dep package="polkit"/>
       <dep package="pulseaudio"/>
       <dep package="upower"/>
       <dep package="ibus"/>
       <dep package="cups"/>
       <if condition-set="linux">
+        <dep package="libgsystem"/>
         <dep package="librsvg"/>
         <dep package="libwacom"/>
         <dep package="xorg-wacom"/>
@@ -301,7 +300,7 @@
     <if condition-unset="linux">
       <autogenargs value="--disable-networkmanager"/>
     </if>
-    <branch/>
+    <branch revision="gnome-3-14"/>
     <dependencies>
       <dep package="accountsservice"/>
       <dep package="caribou"/>
@@ -312,6 +311,7 @@
       <dep package="glib"/>
       <dep package="gnome-desktop"/>
       <dep package="adwaita-icon-theme"/>
+      <dep package="gnome-menus"/>
       <dep package="gnome-settings-daemon"/>
       <dep package="gobject-introspection"/>
       <dep package="gtk+"/>
@@ -320,7 +320,7 @@
       <dep package="libcroco"/>
       <dep package="libsoup"/>
       <dep package="mutter"/>
-      <dep package="polkit-agent"/>
+      <dep package="polkit"/>
       <dep package="pulseaudio"/>
       <dep package="startup-notification"/>
       <dep package="telepathy-glib"/>
@@ -330,9 +330,7 @@
       <if condition-set="linux">
         <dep package="gnome-bluetooth"/>
         <dep package="NetworkManager"/>
-      </if>
-      <if condition-set="systemd">
-        <dep package="libsystemd-journal"/>
+        <dep package="network-manager-applet"/>
       </if>
     </dependencies>
     <suggests>
@@ -345,7 +343,7 @@
   </autotools>
 
   <autotools id="gnome-themes-standard">
-    <branch/>
+    <branch revision="gnome-3-14"/>
     <dependencies>
       <dep package="intltool"/>
       <dep package="cantarell-fonts"/>
@@ -365,19 +363,14 @@
   </autotools>
 
  <autotools id="gvfs">
-    <branch/>
+    <branch revision="gnome-3-14"/>
     <dependencies>
       <dep package="intltool"/>
       <dep package="glib"/>
       <dep package="dbus"/>
-      <dep package="libgcrypt"/>
       <dep package="libsoup"/>
       <if condition-set="linux">
         <dep package="udisks"/>
-      </if>
-      <if condition-set="systemd">
-        <dep package="libsystemd"/>
-        <dep package="libsystemd-login"/>
       </if>
     </dependencies>
     <suggests>
@@ -416,10 +409,11 @@
   </autotools>
 
   <autotools id="mutter" autogenargs="--enable-compile-warnings=maximum --enable-installed-tests">
-    <branch />
+    <branch revision="gnome-3-14"/>
     <dependencies>
       <dep package="cogl"/>
       <dep package="clutter"/>
+      <dep package="gbm"/>
       <dep package="gdk-pixbuf"/>
       <dep package="glib"/>
       <dep package="gnome-desktop"/>
@@ -443,13 +437,32 @@
       <dep package="upower"/>
       <dep package="zenity"/>
       <if condition-set="wayland">
-        <dep package="gbm"/>
         <dep package="libdrm"/>
         <dep package="libsystemd"/>
         <dep package="wayland"/>
         <dep package="xwayland"/>
       </if>
     </dependencies>
+  </autotools>
+
+  <autotools id="network-manager-applet"
+             autogenargs="--enable-more-warnings=no --disable-migration --without-bluetooth">
+    <branch revision="nma-0-9-8"/>
+    <dependencies>
+      <dep package="glib"/>
+      <dep package="dbus-glib"/>
+      <dep package="gnome-bluetooth"/>
+      <dep package="gobject-introspection"/>
+      <dep package="gtk+"/>
+      <dep package="gudev"/>
+      <dep package="iso-codes"/>
+      <dep package="libsecret"/>
+      <dep package="NetworkManager"/>
+      <dep package="libnotify"/>
+    </dependencies>
+    <suggests>
+      <dep package="mobile-broadband-provider-info"/>
+    </suggests>
   </autotools>
 
   <autotools id="pulseaudio"
@@ -473,13 +486,10 @@
         <dep package="libudev"/>
         <dep package="sbc"/>
       </if>
-      <if condition-set="systemd">
-        <dep package="libsystemd"/>
-        <dep package="libsystemd-daemon"/>
-        <dep package="libsystemd-journal"/>
-        <dep package="libsystemd-login"/>
-      </if>
     </dependencies>
+    <after>
+      <dep package="polkit"/>
+    </after>
   </autotools>
 
   <!-- mc 5.16 doesn't build against upower 1.0 -->
@@ -502,7 +512,7 @@
 <!-- Core Utilities -->
 
   <autotools id="baobab">
-    <branch/>
+    <branch revision="gnome-3-14"/>
     <dependencies>
       <dep package="intltool"/>
       <dep package="glib"/>
@@ -580,7 +590,7 @@
   </autotools>
 
   <autotools id="epiphany">
-    <branch/>
+    <branch revision="gnome-3-14"/>
     <dependencies>
       <dep package="intltool"/>
       <dep package="iso-codes"/>
@@ -623,21 +633,20 @@
   </autotools>
 
   <autotools id="gnome-calculator" supports-non-srcdir-builds="no">
-    <branch/>
+    <branch revision="gnome-3-14"/>
     <dependencies>
       <dep package="intltool"/>
       <dep package="glib"/>
       <dep package="gtk+"/>
       <dep package="gtksourceview"/>
       <dep package="libxml2"/>
-      <dep package="mpfr"/>
       <dep package="vala"/>
       <dep package="yelp-tools"/>
     </dependencies>
   </autotools>
 
   <autotools id="gnome-contacts">
-    <branch/>
+    <branch revision="gnome-3-14"/>
     <dependencies>
       <dep package="folks"/>
       <dep package="glib"/>
@@ -656,7 +665,7 @@
   </autotools>
 
   <autotools id="gnome-dictionary">
-    <branch/>
+    <branch revision="gnome-3-14"/>
     <dependencies>
       <dep package="intltool"/>
       <dep package="glib"/>
@@ -680,7 +689,7 @@
   </autotools>
 
   <autotools id="gnome-font-viewer">
-    <branch/>
+    <branch revision="gnome-3-14"/>
     <dependencies>
       <dep package="intltool"/>
       <dep package="glib"/>
@@ -690,7 +699,7 @@
   </autotools>
 
   <autotools id="gnome-screenshot">
-    <branch/>
+    <branch revision="gnome-3-14"/>
     <dependencies>
       <dep package="intltool"/>
       <dep package="glib"/>
@@ -709,7 +718,7 @@
   </autotools>
 
   <autotools id="gnome-system-monitor">
-    <branch/>
+    <branch revision="gnome-3-14"/>
     <dependencies>
       <dep package="intltool"/>
       <dep package="glib"/>
@@ -723,7 +732,7 @@
   </autotools>
 
   <autotools id="gnome-terminal" autogenargs="--disable-migration">
-    <branch/>
+    <branch revision="gnome-3-14"/>
     <dependencies>
       <dep package="dconf"/>
       <dep package="intltool"/>
@@ -734,7 +743,7 @@
       <dep package="vte"/>
       <dep package="yelp-tools"/>
       <dep package="nautilus"/>
-      <dep package="appstream-glib"/>
+      <dep package="appdata-tools"/>
     </dependencies>
     <suggests>
       <dep package="gnome-shell"/>
@@ -749,7 +758,7 @@
   </autotools>
 
   <autotools id="gucharmap">
-    <branch/>
+    <branch revision="gnome-3-14"/>
     <dependencies>
       <dep package="intltool"/>
       <dep package="glib"/>
@@ -759,7 +768,7 @@
   </autotools>
 
   <autotools id="nautilus">
-    <branch/>
+    <branch revision="gnome-3-14"/>
     <dependencies>
       <dep package="intltool"/>
       <dep package="glib"/>
@@ -787,7 +796,7 @@
       <dep package="clutter-gtk"/>
       <dep package="clutter-gst"/>
       <dep package="gtksourceview"/>
-      <dep package="WebKit"/>
+      <dep package="WebKit1"/>
       <dep package="gstreamer"/>
       <dep package="gst-plugins-base"/>
       <dep package="gtk+"/>
@@ -797,14 +806,13 @@
   <autotools id="totem">
     <branch/>
     <dependencies>
-      <dep package="appstream-glib"/>
+      <dep package="appdata-tools"/>
       <dep package="cairo"/>
       <dep package="clutter"/>
-      <dep package="clutter-gst3"/>
+      <dep package="clutter-gst"/>
       <dep package="clutter-gtk"/>
       <dep package="gdk-pixbuf"/>
       <dep package="glib"/>
-      <dep package="gnome-desktop"/>
       <dep package="grilo"/>
       <dep package="grilo-plugins"/>
       <dep package="gsettings-desktop-schemas"/>
@@ -869,7 +877,7 @@
   </autotools>
 
   <autotools id="vino">
-    <branch/>
+    <branch revision="gnome-3-14"/>
     <dependencies>
       <dep package="intltool"/>
       <dep package="glib"/>
@@ -895,12 +903,8 @@
   <autotools id="accountsservice" autogenargs="--with-systemdsystemunitdir=no">
     <branch repo="git.freedesktop.org" module="accountsservice"/>
     <dependencies>
-      <dep package="glib"/>
+      <dep package="dbus-glib"/>
       <dep package="gobject-introspection"/>
-      <dep package="polkit-gobject"/>
-      <if condition-set="systemd">
-        <dep package="libsystemd-login"/>
-      </if>
     </dependencies>
   </autotools>
 
@@ -923,9 +927,6 @@
   </autotools>
 
   <autotools id="gdm">
-    <if condition-unset="linux">
-      <autogenargs value="--without-plymouth"/>
-    </if>
     <branch/>
     <dependencies>
       <dep package="accountsservice"/>
@@ -936,15 +937,6 @@
       <dep package="intltool"/>
       <dep package="libcanberra"/>
       <dep package="nss"/>
-      <dep package="pam"/>
-      <if condition-set="linux">
-        <dep package="plymouth"/>
-      </if>
-      <if condition-set="systemd">
-        <dep package="libsystemd-daemon"/>
-        <dep package="libsystemd-login"/>
-        <dep package="libsystemd-journal"/>
-      </if>
     </dependencies>
     <suggests>
       <dep package="upower"/>
@@ -968,16 +960,12 @@
       <dep package="libgcrypt"/>
       <dep package="libuuid"/>
       <dep package="gtk-doc"/>
-      <dep package="polkit-agent"/>
+      <dep package="polkit"/>
       <dep package="gudev"/>
       <dep package="gnutls"/>
       <dep package="ppp"/>
       <dep package="vala"/>
       <dep package="wireless-tools"/>
-      <if condition-set="systemd">
-        <dep package="libsystemd"/>
-        <dep package="libsystemd-login"/>
-      </if>
     </dependencies>
   </autotools>
 
@@ -995,18 +983,29 @@
       <dep package="gtk+"/>
       <dep package="dbus"/>
       <dep package="dbus-glib"/>
-      <if condition-set="systemd">
-        <dep package="libsystemd-journal"/>
-        <dep package="libsystemd-login"/>
-      </if>
     </dependencies>
     <suggests>
-      <dep package="polkit-gobject"/>
+      <dep package="polkit"/>
       <if condition-set="linux">
         <dep package="gudev"/>
         <dep package="NetworkManager"/>
       </if>
     </suggests>
+  </autotools>
+
+  <autotools id="polkit">
+    <if condition-unset="linux">
+      <autogenargs value="--disable-test"/>
+    </if>
+    <branch repo="git.freedesktop.org"/>
+    <dependencies>
+      <dep package="glib"/>
+      <dep package="gobject-introspection"/>
+      <dep package="expat"/>
+      <dep package="intltool"/>
+      <dep package="js17"/>
+      <dep package="pam"/>
+    </dependencies>
   </autotools>
 
   <autotools id="udisks">
@@ -1015,14 +1014,8 @@
     <dependencies>
       <dep package="gudev"/>
       <dep package="libacl"/>
-      <dep package="polkit-gobject"/>
-      <dep package="polkit-agent"/>
+      <dep package="polkit"/>
       <dep package="libatasmart"/>
-      <if condition-set="systemd">
-        <dep package="libsystemd"/>
-        <dep package="libsystemd-daemon"/>
-        <dep package="libsystemd-login"/>
-      </if>
     </dependencies>
   </autotools>
 
@@ -1040,10 +1033,9 @@
   </autotools>
 
   <autotools id="gnome-shell-extensions" autogenargs="--enable-extensions=classic-mode">
-    <branch/>
+    <branch revision="gnome-3-14"/>
     <dependencies>
       <dep package="gnome-shell"/>
-      <dep package="gnome-menus"/>
     </dependencies>
   </autotools>
 
@@ -1089,6 +1081,7 @@
       <dep package="gnome-control-center"/>
       <dep package="adwaita-icon-theme"/>
       <dep package="gnome-keyring"/>
+      <dep package="gnome-menus"/>
       <dep package="gnome-online-accounts"/>
       <dep package="gnome-packagekit"/>
       <dep package="gnome-session"/>
@@ -1126,6 +1119,7 @@
       <dep package="dbus"/>
       <dep package="gdm"/>
       <dep package="PackageKit"/>
+      <dep package="polkit"/>
       <dep package="upower"/>
       <dep package="cups"/>
       <!-- <dep package="systemd"/> -->
@@ -1172,6 +1166,7 @@
       <dep package="libnotify"/>
       <dep package="libpeas"/>
       <dep package="PackageKit"/>
+      <dep package="polkit"/>
       <dep package="telepathy-glib"/>
       <dep package="upower"/>
       <dep package="WebKit"/>
@@ -1179,6 +1174,7 @@
       <dep package="pygobject"/>
       <dep package="gtkmm"/>
       <dep package="java-gnome"/>
+      <dep package="seed"/>
       <if condition-set="linux">
         <dep package="NetworkManager"/>
       </if>

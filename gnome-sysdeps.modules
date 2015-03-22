@@ -15,12 +15,6 @@
             version="1.0.19"/>
   </systemmodule>
 
-  <systemmodule id="anthy">
-    <pkg-config>anthy.pc</pkg-config>
-    <branch repo="system"
-            version="9100h"/>
-  </systemmodule>
-
   <systemmodule id="avahi">
     <pkg-config>avahi-gobject.pc</pkg-config>
     <branch repo="system"
@@ -28,7 +22,7 @@
   </systemmodule>
 
   <systemmodule id="bison">
-    <branch repo="system" version="2.4"/>
+    <branch repo="system" version="2.0"/>
     <systemdependencies>
       <dep type="path" name="bison"/>
     </systemdependencies>
@@ -48,24 +42,10 @@
     </systemdependencies>
   </systemmodule>
 
-  <systemmodule id="c++">
-    <branch repo="system"/>
-    <systemdependencies>
-      <dep type="path" name="c++"/>
-    </systemdependencies>
-  </systemmodule>
-
   <systemmodule id="cairomm">
     <pkg-config>cairomm-1.0.pc</pkg-config>
     <branch repo="system"
             version="1.8.4"/>
-  </systemmodule>
-
-  <systemmodule id="cc">
-    <branch repo="system"/>
-    <systemdependencies>
-      <dep type="path" name="cc"/>
-    </systemdependencies>
   </systemmodule>
 
   <systemmodule id="cracklib">
@@ -117,13 +97,6 @@
     </systemdependencies>
   </systemmodule>
 
-  <systemmodule id="docbook-xsl">
-    <branch repo="system"/>
-    <systemdependencies>
-      <dep type="xml" name="http://docbook.sourceforge.net/release/xsl/current/"/>
-    </systemdependencies>
-  </systemmodule>
-
   <systemmodule id="dotconf">
     <pkg-config>dotconf.pc</pkg-config>
     <branch repo="system" version="1.3"/>
@@ -152,12 +125,6 @@
     <systemdependencies>
       <dep type="c_include" name="espeak/speak_lib.h"/>
     </systemdependencies>
-  </systemmodule>
-
-  <systemmodule id="exempi">
-    <pkg-config>exempi-2.0.pc</pkg-config>
-    <branch repo="system"
-            version="2.2.0"/>
   </systemmodule>
 
   <systemmodule id="exiv2">
@@ -229,13 +196,6 @@
     </systemdependencies>
   </systemmodule>
 
-  <systemmodule id="gettext-bin">
-    <branch repo="system"/>
-    <systemdependencies>
-      <dep type="path" name="msgfmt"/>
-    </systemdependencies>
-  </systemmodule>
-
   <systemmodule id="gexiv2">
     <pkg-config>gexiv2.pc</pkg-config>
     <branch repo="system"/>
@@ -288,15 +248,15 @@
     </systemdependencies>
   </systemmodule>
 
-  <systemmodule id="graphviz">
-    <pkg-config>libgvc.pc</pkg-config>
-    <branch repo="system"
-            version="2.26.0"/>
-  </systemmodule>
-
   <systemmodule id="gudev">
     <pkg-config>gudev-1.0.pc</pkg-config>
     <branch repo="system" version="173"/>
+  </systemmodule>
+
+  <systemmodule id="gypsy">
+    <pkg-config>gypsy.pc</pkg-config>
+    <branch repo="system"
+            version="0.8"/>
   </systemmodule>
 
   <systemmodule id="highlight">
@@ -328,17 +288,10 @@
             version="0.11"/>
   </systemmodule>
 
-  <systemmodule id="js24">
-    <pkg-config>mozjs-24.pc</pkg-config>
+  <systemmodule id="lcms2">
+    <pkg-config>lcms2.pc</pkg-config>
     <branch repo="system"
-            version="24.2"/>
-  </systemmodule>
-
-  <systemmodule id="krb5">
-    <branch repo="system"/>
-    <systemdependencies>
-      <dep type="path" name="krb5-config"/>
-    </systemdependencies>
+            version="2.6"/>
   </systemmodule>
 
   <systemmodule id="lcov">
@@ -355,34 +308,10 @@
             version="0.17"/>
   </systemmodule>
 
-  <systemmodule id="libcanberra">
-    <pkg-config>libcanberra-gtk.pc</pkg-config>
-    <branch repo="system"
-            version="0.30"/>
-  </systemmodule>
-
-  <systemmodule id="libcanberra-gtk3">
-    <pkg-config>libcanberra-gtk3.pc</pkg-config>
-    <branch repo="system"/>
-  </systemmodule>
-
-  <systemmodule id="libhangul">
-    <pkg-config>libhangul.pc</pkg-config>
-    <branch repo="system"
-            version="0.1.0"/>
-  </systemmodule>
-
   <systemmodule id="libmusicbrainz">
     <pkg-config>libmusicbrainz5.pc</pkg-config>
     <branch repo="system"
             version="5.0"/>
-  </systemmodule>
-
-  <systemmodule id="libtool">
-    <branch repo="system"/>
-    <systemdependencies>
-      <dep type="path" name="libtoolize"/>
-    </systemdependencies>
   </systemmodule>
 
   <systemmodule id="libX11">
@@ -447,7 +376,7 @@
     <branch repo="system"/>
   </systemmodule>
 
-  <systemmodule id="xorg-macros">
+  <systemmodule id="xorg-x11-util-macros">
     <pkg-config>xorg-macros.pc</pkg-config>
     <branch repo="system"/>
   </systemmodule>
@@ -457,43 +386,8 @@
     <branch repo="system"/>
   </systemmodule>
 
-  <systemmodule id="xorg-bigreqsproto">
-    <pkg-config>bigreqsproto.pc</pkg-config>
-    <branch repo="system"/>
-  </systemmodule>
-
   <systemmodule id="xorg-kbproto">
     <pkg-config>kbproto.pc</pkg-config>
-    <branch repo="system"/>
-  </systemmodule>
-
-  <systemmodule id="xorg-presentproto">
-    <pkg-config>presentproto.pc</pkg-config>
-    <branch repo="system"/>
-    </systemmodule>
-
-  <systemmodule id="xorg-resourceproto">
-    <pkg-config>resourceproto.pc</pkg-config>
-    <branch repo="system"/>
-  </systemmodule>
-
-  <systemmodule id="xorg-scrnsaverproto">
-    <pkg-config>scrnsaverproto.pc</pkg-config>
-    <branch repo="system"/>
-  </systemmodule>
-
-  <systemmodule id="xorg-videoproto">
-    <pkg-config>videoproto.pc</pkg-config>
-    <branch repo="system"/>
-    </systemmodule>
-
-  <systemmodule id="xorg-xcmiscproto">
-    <pkg-config>xcmiscproto.pc</pkg-config>
-    <branch repo="system"/>
-  </systemmodule>
-
-  <systemmodule id="xorg-xf86driproto">
-    <pkg-config>xf86driproto.pc</pkg-config>
     <branch repo="system"/>
   </systemmodule>
 
@@ -554,6 +448,12 @@
             version="2.4.13"/>
   </systemmodule>
 
+  <systemmodule id="libical">
+    <pkg-config>libical.pc</pkg-config>
+    <branch repo="system"
+            version="0.44"/>
+  </systemmodule>
+
   <systemmodule id="libicu">
     <pkg-config>icu-i18n.pc</pkg-config>
     <branch repo="system" version="4"/>
@@ -590,11 +490,6 @@
             version="0.9.4"/>
   </systemmodule>
 
-  <systemmodule id="libpinyin">
-    <pkg-config>libpinyin.pc</pkg-config>
-    <branch repo="system"/>
-  </systemmodule>
-
   <systemmodule id="libpng">
     <pkg-config>libpng.pc</pkg-config>
     <branch repo="system"/>
@@ -616,30 +511,16 @@
             version="1.0.21"/>
   </systemmodule>
 
-  <systemmodule id="libssh2">
-    <pkg-config>libssh2.pc</pkg-config>
-    <branch repo="system"/>
-  </systemmodule>
-
   <systemmodule id="libsystemd">
     <pkg-config>libsystemd.pc</pkg-config>
     <branch repo="system"
             version="210"/>
   </systemmodule>
 
-  <systemmodule id="libsystemd-daemon">
-    <pkg-config>libsystemd-daemon.pc</pkg-config>
-    <branch repo="system" version="210"/>
-  </systemmodule>
-
   <systemmodule id="libsystemd-journal">
     <pkg-config>libsystemd-journal.pc</pkg-config>
-    <branch repo="system" version="201"/>
-  </systemmodule>
-
-  <systemmodule id="libsystemd-login">
-    <pkg-config>libsystemd-login.pc</pkg-config>
-    <branch repo="system" version="210"/>
+    <branch repo="system"
+            version="201"/>
   </systemmodule>
 
   <systemmodule id="libtasn1">
@@ -690,12 +571,6 @@
     <branch repo="system"/>
   </systemmodule>
 
-  <systemmodule id="libvirt">
-    <pkg-config>libvirt.pc</pkg-config>
-    <branch repo="system"
-            version="1.0.6"/>
-  </systemmodule>
-
   <systemmodule id="libvorbis">
     <pkg-config>vorbisfile.pc</pkg-config>
     <branch repo="system"/>
@@ -723,24 +598,10 @@
             version="2.7.8"/>
   </systemmodule>
 
-  <systemmodule id="libxml2-python">
-    <branch repo="system"/>
-    <systemdependencies>
-      <dep type="python2" name="libxml2"/>
-    </systemdependencies>
-  </systemmodule>
-
   <systemmodule id="libxslt">
     <pkg-config>libxslt.pc</pkg-config>
     <branch repo="system"
             version="1.1.26"/>
-  </systemmodule>
-
-  <systemmodule id="libyaml">
-    <branch repo="system"/>
-    <systemdependencies>
-      <dep type="c_include" name="yaml.h"/>
-    </systemdependencies>
   </systemmodule>
 
   <systemmodule id="libwebp">
@@ -793,12 +654,6 @@
     <branch repo="system"/>
   </systemmodule>
 
-  <systemmodule id="p11-kit">
-    <pkg-config>p11-kit-1.pc</pkg-config>
-    <branch repo="system"
-            version="0.19.0"/>
-  </systemmodule>
-
   <systemmodule id="pam">
     <branch repo="system"/>
     <systemdependencies>
@@ -806,44 +661,10 @@
     </systemdependencies>
   </systemmodule>
 
-  <systemmodule id="pciaccess">
-    <pkg-config>pciaccess.pc</pkg-config>
-    <branch repo="system" version="0.12.901"/>
-  </systemmodule>
-
   <systemmodule id="pixman">
     <pkg-config>pixman-1.pc</pkg-config>
     <branch repo="system"
             version="0.30"/>
-  </systemmodule>
-
-  <systemmodule id="pkg-config">
-    <branch repo="system"/>
-    <systemdependencies>
-      <dep type="path" name="pkg-config"/>
-    </systemdependencies>
-  </systemmodule>
-
-  <systemmodule id="plymouth">
-    <pkg-config>ply-boot-client.pc</pkg-config>
-    <branch repo="system"
-            version="0.8.9"/>
-  </systemmodule>
-
-  <systemmodule id="polkit-agent">
-    <pkg-config>polkit-agent-1.pc</pkg-config>
-    <branch repo="system" version="0.102"/>
-  </systemmodule>
-
-  <systemmodule id="polkit-gobject">
-    <pkg-config>polkit-gobject-1.pc</pkg-config>
-    <branch repo="system" version="0.103"/>
-  </systemmodule>
-
-  <systemmodule id="poppler">
-    <pkg-config>poppler-glib.pc</pkg-config>
-    <branch repo="system"
-            version="0.24.0"/>
   </systemmodule>
 
   <systemmodule id="ppp">
@@ -863,13 +684,6 @@
     <pkg-config>py3cairo.pc</pkg-config>
     <branch repo="system"
             version="1.10.0"/>
-  </systemmodule>
-
-  <systemmodule id="python2">
-    <branch repo="system"/>
-    <systemdependencies>
-      <dep type="path" name="python2"/>
-    </systemdependencies>
   </systemmodule>
 
   <systemmodule id="python2-devel">
@@ -892,20 +706,6 @@
     </systemdependencies>
   </systemmodule>
 
-  <systemmodule id="rapper">
-    <branch repo="system"/>
-    <systemdependencies>
-      <dep type="path" name="rapper"/>
-    </systemdependencies>
-  </systemmodule>
-
-  <systemmodule id="rdflib">
-    <branch repo="system"/>
-    <systemdependencies>
-      <dep type="python2" name="rdflib"/>
-    </systemdependencies>
-  </systemmodule>
-
   <systemmodule id="readline">
     <branch repo="system"/>
     <systemdependencies>
@@ -918,12 +718,6 @@
     <systemdependencies>
       <dep type="path" name="ruby"/>
     </systemdependencies>
-  </systemmodule>
-
-  <systemmodule id="sbc">
-    <pkg-config>sbc.pc</pkg-config>
-    <branch repo="system"
-            version="1.1"/>
   </systemmodule>
 
   <systemmodule id="shared-mime-info">
@@ -1004,29 +798,14 @@
     </systemdependencies>
   </systemmodule>
 
-  <systemmodule id="xcb">
-    <pkg-config>xcb.pc</pkg-config>
-    <branch repo="system" version="1.10"/>
-  </systemmodule>
-
   <systemmodule id="xcb-dri2">
     <pkg-config>xcb-dri2.pc</pkg-config>
     <branch repo="system" version="1.8.1"/>
   </systemmodule>
 
-  <systemmodule id="xcb-keysyms">
-    <pkg-config>xcb-keysyms.pc</pkg-config>
-    <branch repo="system"/>
-  </systemmodule>
-
   <systemmodule id="xcb-util">
     <pkg-config>xcb-aux.pc</pkg-config>
     <branch repo="system" version="0.1"/>
-  </systemmodule>
-
-  <systemmodule id="xcb-xkb">
-    <pkg-config>xcb-xkb.pc</pkg-config>
-    <branch repo="system" version="1.10"/>
   </systemmodule>
 
   <systemmodule id="xkeyboard-config">
@@ -1037,6 +816,13 @@
   <systemmodule id="xorg-wacom">
     <pkg-config>xorg-wacom.pc</pkg-config>
     <branch repo="system"/>
+  </systemmodule>
+
+  <systemmodule id="yajl">
+    <branch repo="system"/>
+    <systemdependencies>
+      <dep type="c_include" name="yajl/yajl_common.h"/>
+    </systemdependencies>
   </systemmodule>
 
   <systemmodule id="yasm">
@@ -1059,6 +845,11 @@
 
   <systemmodule id="xfont">
     <pkg-config>xfont.pc</pkg-config>
+    <branch repo="system"/>
+  </systemmodule>
+
+  <systemmodule id="xtrans">
+    <pkg-config>xtrans.pc</pkg-config>
     <branch repo="system"/>
   </systemmodule>
 
@@ -1106,43 +897,5 @@
   <systemmodule id="lttng-ust">
     <pkg-config>lttng-ust.pc</pkg-config>
     <branch repo="system" version="2.3.0"/>
-  </systemmodule>
-
-  <systemmodule id="WebKit1">
-    <pkg-config>webkitgtk-3.0.pc</pkg-config>
-    <branch repo="system" version="2.0.0"/>
-  </systemmodule>
-
-  <systemmodule id="xmlcatalog">
-    <branch repo="system"/>
-    <systemdependencies>
-      <dep type="path" name="xmlcatalog"/>
-    </systemdependencies>
-  </systemmodule>
-
-  <systemmodule id="xmllint">
-    <branch repo="system"/>
-    <systemdependencies>
-      <dep type="path" name="xmllint"/>
-    </systemdependencies>
-  </systemmodule>
-
-  <systemmodule id="xmlto">
-    <branch repo="system"/>
-    <systemdependencies>
-      <dep type="path" name="xmlto"/>
-    </systemdependencies>
-  </systemmodule>
-
-  <systemmodule id="xsltproc">
-    <branch repo="system"/>
-    <systemdependencies>
-      <dep type="path" name="xsltproc"/>
-    </systemdependencies>
-  </systemmodule>
-
-  <systemmodule id="zlib">
-    <pkg-config>zlib.pc</pkg-config>
-    <branch repo="system"/>
   </systemmodule>
 </moduleset>
