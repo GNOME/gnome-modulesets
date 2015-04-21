@@ -86,7 +86,7 @@
   </autotools>
 
   <autotools id="gnome-calendar">
-    <branch/>
+    <branch revision="gnome-3-16"/>
     <dependencies>
       <dep package="appstream-glib"/>
       <dep package="evolution-data-server"/>
@@ -512,7 +512,7 @@
   </autotools>
 
   <autotools id="rygel">
-    <branch/>
+    <branch revision="rygel-0-26"/>
     <dependencies>
       <dep package="vala"/>
       <dep package="gupnp"/>
@@ -633,7 +633,7 @@
   </autotools>
 
   <autotools id="gedit">
-    <branch/>
+    <branch revision="gnome-3-16"/>
     <dependencies>
       <dep package="intltool"/>
       <dep package="libpeas"/>
@@ -1138,7 +1138,7 @@
   </autotools>
 
   <autotools id="polari">
-    <branch/>
+    <branch revision="gnome-3-16"/>
     <dependencies>
       <dep package="gjs"/>
       <dep package="glib"/>
