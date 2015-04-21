@@ -416,7 +416,7 @@
   </autotools>
 
   <autotools id="mutter" autogenargs="--enable-compile-warnings=maximum --enable-installed-tests">
-    <branch />
+    <branch/>
     <dependencies>
       <dep package="cogl"/>
       <dep package="clutter"/>
