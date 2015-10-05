@@ -127,7 +127,7 @@
   </autotools>
 
   <autotools id="geocode-glib">
-    <branch/>
+    <branch revision="gnome-3-16"/>
     <dependencies>
       <dep package="glib"/>
       <dep package="json-glib"/>
@@ -318,7 +318,7 @@
 <!-- OS Core API/ABI stable dependencies -->
 
   <autotools id="atk">
-    <branch/>
+    <branch revision="gnome-3-16"/>
     <dependencies>
       <dep package="glib"/>
       <dep package="gobject-introspection"/>
@@ -504,7 +504,7 @@
   </autotools>
 
   <autotools id="caribou" autogenargs="--disable-gtk2-module">
-    <branch/>
+    <branch revision="gnome-3-16"/>
     <dependencies>
       <dep package="pygobject"/>
       <dep package="gtk+"/>
@@ -702,7 +702,7 @@
   </autotools>
 
   <autotools id="gobject-introspection">
-    <branch/>
+    <branch revision="gnome-3-16"/>
     <dependencies>
       <dep package="bison"/>
       <dep package="flex"/>
@@ -983,7 +983,7 @@
   </autotools>
 
   <autotools id="libgweather">
-    <branch/>
+    <branch revision="gnome-3-16"/>
     <dependencies>
       <dep package="intltool"/>
       <dep package="libxml2"/>
@@ -1056,7 +1056,6 @@
       <dep package="gtk+"/>
     </dependencies>
     <suggests>
-      <dep package="gjs"/>
       <dep package="glade"/>
       <dep package="pygobject"/>
     </suggests>
@@ -1080,7 +1079,7 @@
   </autotools>
 
   <autotools id="libsoup" autogenargs="--disable-tls-check">
-    <branch/>
+    <branch revision="gnome-3-16"/>
     <dependencies>
       <dep package="glib"/>
       <dep package="libxml2"/>
@@ -1234,13 +1233,14 @@
     </dependencies>
   </autotools>
 
-  <autotools id="libxkbcommon" autogenargs="--with-xkb-config-root=/usr/share/X11/xkb">
+  <autotools id="libxkbcommon">
     <branch repo="libxkbcommon"
             module="http://xkbcommon.org/download/libxkbcommon-${version}.tar.xz"
             version="0.5.0"
             hash="sha256:90bd7824742b9a6f52a6cf80e2cadd6f5349cf600a358d08260772615b89d19c"
             size="615504"/>
     <dependencies>
+      <dep package="xkeyboard-config"/>
       <dep package="xorg-macros"/>
       <dep package="xorg-xproto"/>
       <dep package="xorg-kbproto"/>
@@ -1296,9 +1296,9 @@
   <cmake id="WebKit" cmakeargs="-DPORT=GTK -DCMAKE_BUILD_TYPE=Release">
     <pkg-config>webkit2gtk-4.0.pc</pkg-config>
     <branch repo="webkitgtk.org"
-            module="webkitgtk-2.8.1.tar.xz" version="2.8.1"
-            hash="sha256:7d214459d216ca499ad75bccae7f248655d6ef5b295ffafd299773e7331860ff"
-            size="10435512">
+            module="webkitgtk-2.8.5.tar.xz" version="2.8.5"
+            hash="sha256:3d1f0c534935f43fd74df90f2648fcee672d60f1f57a30fa557a77891ae04d20"
+            size="10455256">
     </branch>
     <dependencies>
       <dep package="c++"/>
@@ -1352,7 +1352,7 @@
   </autotools>
 
   <autotools id="yelp-xsl">
-    <branch/>
+    <branch revision="gnome-3-16"/>
     <dependencies>
       <dep package="libxslt"/>
       <dep package="libxml2"/>
@@ -1362,7 +1362,7 @@
   </autotools>
 
   <autotools id="zenity">
-    <branch/>
+    <branch revision="gnome-3-16"/>
     <dependencies>
       <dep package="intltool"/>
       <dep package="gtk+"/>
