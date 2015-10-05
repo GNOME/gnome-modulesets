@@ -120,6 +120,26 @@
     </dependencies>
   </autotools>
 
+  <autotools id="network-manager-applet"
+             autogenargs="--enable-more-warnings=no --disable-migration --without-bluetooth">
+    <branch/>
+    <dependencies>
+      <dep package="glib"/>
+      <dep package="dbus-glib"/>
+      <dep package="gnome-bluetooth"/>
+      <dep package="gobject-introspection"/>
+      <dep package="gtk+"/>
+      <dep package="gudev"/>
+      <dep package="iso-codes"/>
+      <dep package="libsecret"/>
+      <dep package="NetworkManager"/>
+      <dep package="libnotify"/>
+    </dependencies>
+    <suggests>
+      <dep package="mobile-broadband-provider-info"/>
+    </suggests>
+  </autotools>
+
   <autotools id="gnome-control-center" supports-non-srcdir-builds="no">
     <branch/>
     <dependencies>
@@ -164,7 +184,6 @@
       <dep package="ibus-anthy"/>
       <dep package="ibus-hangul"/>
       <if condition-set="linux">
-        <dep package="network-manager-applet"/>
         <dep package="ModemManager"/>
         <dep package="NetworkManager"/>
       </if>
@@ -297,7 +316,7 @@
     </suggests>
   </autotools>
 
-  <autotools id="gnome-shell" autogenargs="--enable-compile-warnings=maximum">
+  <autotools id="gnome-shell">
     <if condition-unset="linux">
       <autogenargs value="--disable-networkmanager"/>
     </if>
@@ -319,6 +338,7 @@
       <dep package="libcanberra"/>
       <dep package="libcroco"/>
       <dep package="libsoup"/>
+      <dep package="m4-common"/>
       <dep package="mutter"/>
       <dep package="polkit-agent"/>
       <dep package="pulseaudio"/>
@@ -372,6 +392,7 @@
       <dep package="dbus"/>
       <dep package="libgcrypt"/>
       <dep package="libsoup"/>
+      <dep package="gcr"/>
       <if condition-set="linux">
         <dep package="udisks"/>
       </if>
@@ -582,9 +603,11 @@
   <autotools id="epiphany">
     <branch/>
     <dependencies>
+      <dep package="appstream-glib"/>
       <dep package="intltool"/>
       <dep package="iso-codes"/>
       <dep package="gtk+"/>
+      <dep package="m4-common"/>
       <dep package="startup-notification"/>
       <dep package="WebKit"/>
       <dep package="gcr"/>
@@ -630,6 +653,7 @@
       <dep package="gtk+"/>
       <dep package="gtksourceview"/>
       <dep package="libxml2"/>
+      <dep package="m4-common"/>
       <dep package="mpfr"/>
       <dep package="vala"/>
       <dep package="yelp-tools"/>
@@ -648,6 +672,7 @@
       <dep package="libnotify"/>
       <dep package="telepathy-glib"/>
       <dep package="vala"/>
+      <dep package="libchamplain"/>
     </dependencies>
     <suggests>
       <dep package="cheese"/>
@@ -668,12 +693,14 @@
   <autotools id="gnome-disk-utility">
     <branch/>
     <dependencies>
+      <dep package="appstream-glib"/>
       <dep package="glib"/>
       <dep package="gnome-settings-daemon"/>
       <dep package="gtk+"/>
       <dep package="libnotify"/>
       <dep package="libpwquality"/>
       <dep package="libsecret"/>
+      <dep package="m4-common"/>
       <dep package="udisks"/>
       <dep package="dvdread"/>
     </dependencies>
@@ -835,7 +862,8 @@
       <dep package="gtk+"/>
       <dep package="libxml2"/>
       <dep package="libxslt"/>
-      <dep package="WebKit1"/>
+      <dep package="m4-common"/>
+      <dep package="WebKit"/>
       <dep package="yelp-xsl"/>
     </dependencies>
   </autotools>
@@ -922,7 +950,7 @@
     </dependencies>
   </autotools>
 
-  <autotools id="gdm">
+  <autotools id="gdm" autogenargs="--with-systemdsystemunitdir=no --with-log-dir=${prefix}/var/log/gdm">
     <if condition-unset="linux">
       <autogenargs value="--without-plymouth"/>
     </if>
@@ -971,6 +999,7 @@
       <dep package="polkit-agent"/>
       <dep package="gudev"/>
       <dep package="gnutls"/>
+      <dep package="readline"/>
       <dep package="ppp"/>
       <dep package="vala"/>
       <dep package="wireless-tools"/>
@@ -981,7 +1010,7 @@
     </dependencies>
   </autotools>
 
-  <autotools id="PackageKit" autogenargs="--disable-tests --disable-qt --disable-browser-plugin" makeargs="CFLAGS=-Wno-error">
+  <autotools id="PackageKit" autogenargs="--disable-tests --disable-qt --disable-browser-plugin --disable-bash-completion --with-systemdsystemunitdir=no" makeargs="CFLAGS=-Wno-error">
     <if condition-unset="linux">
       <autogenargs value="--disable-systemd --disable-systemd-updates"/>
     </if>
@@ -1009,7 +1038,7 @@
     </suggests>
   </autotools>
 
-  <autotools id="udisks">
+  <autotools id="udisks" autogenargs="--with-systemdsystemunitdir=no">
     <pkg-config>udisks2.pc</pkg-config>
     <branch repo="git.freedesktop.org" module="udisks"/>
     <dependencies>
@@ -1018,6 +1047,7 @@
       <dep package="polkit-gobject"/>
       <dep package="polkit-agent"/>
       <dep package="libatasmart"/>
+      <dep package="m4-common"/>
       <if condition-set="systemd">
         <dep package="libsystemd"/>
         <dep package="libsystemd-daemon"/>
@@ -1026,7 +1056,7 @@
     </dependencies>
   </autotools>
 
-  <autotools id="upower">
+  <autotools id="upower" autogenargs="--with-systemdsystemunitdir=no">
     <branch repo="git.freedesktop.org" />
     <dependencies>
       <dep package="dbus-glib"/>
