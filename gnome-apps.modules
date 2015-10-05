@@ -17,8 +17,6 @@
       href="git://git.fedorahosted.org/git/"/>
   <repository type="git" name="wayland"
       href="git://anongit.freedesktop.org/git/wayland"/>
-  <repository type="git" name="github-01org"
-    href="git://github.com/01org/"/>
 
 <!-- tarball repos -->
   <repository type="tarball" name="gnome.org"
@@ -33,6 +31,8 @@
       href="http://devel.freebsoft.org/pub/projects/speechd/"/>
   <repository type="tarball" name="tarball.github.com"
     href="https://github.com/"/>
+  <repository type="tarball" name="downloads.sourceforge.net"
+      href="http://downloads.sourceforge.net/"/>
 
   <include href="gnome-core.modules"/>
 
@@ -77,6 +77,7 @@
   <autotools id="dconf-editor">
     <branch/>
     <dependencies>
+      <dep package="appstream-glib"/>
       <dep package="glib"/>
       <dep package="dconf"/>
       <dep package="gtk+"/>
@@ -89,6 +90,18 @@
     <branch/>
     <dependencies>
       <dep package="appstream-glib"/>
+      <dep package="gnome-online-accounts"/>
+      <dep package="evolution-data-server"/>
+      <dep package="glib"/>
+      <dep package="gtk+"/>
+    </dependencies>
+  </autotools>
+
+  <autotools id="gnome-todo">
+    <branch/>
+    <dependencies>
+      <dep package="appstream-glib"/>
+      <dep package="gnome-online-accounts"/>
       <dep package="evolution-data-server"/>
       <dep package="glib"/>
       <dep package="gtk+"/>
@@ -238,6 +251,15 @@
     </dependencies>
   </autotools>
 
+  <autotools id="libgovirt">
+    <branch/>
+    <dependencies>
+      <dep package="librest"/>
+      <dep package="intltool"/>
+      <dep package="gobject-introspection"/>
+    </dependencies>
+  </autotools>
+
   <autotools id="libosinfo"
              autogenargs="--enable-tests=no --enable-werror=no">
     <branch repo="fedorahosted.org" module="libosinfo.git"/>
@@ -260,6 +282,16 @@
     </dependencies>
   </autotools>
 
+  <autotools id="phodav">
+    <branch/>
+    <dependencies>
+      <dep package="glib"/>
+      <dep package="libsoup"/>
+      <dep package="avahi"/>
+      <dep package="libxml2"/>
+    </dependencies>
+  </autotools>
+
   <autotools id="pyatspi2" autogenargs="--with-python=python3" >
     <branch/>
     <dependencies>
@@ -273,9 +305,9 @@
   <autotools id="qqwing">
     <branch repo="qqwing"
             module="qqwing-${version}.tar.gz"
-            version="1.2.0"
-            hash="sha256:b9de6cc596049cf852d17a37014f9a4b0cac1682bd8ccff5def4433b0b52d1e1"
-            size="350915"/>
+            version="1.3.4"
+            hash="sha256:1753736c31feea0085f5cfac33143743204f8a7e66b81ccd17e249ecafba802f"
+            size="352060"/>
     <dependencies>
       <dep package="c++"/>
     </dependencies>
@@ -302,15 +334,15 @@
     </dependencies>
   </autotools>
 
-  <autotools id="spice-gtk" autogenargs="--disable-smartcard --enable-vala --enable-static">
+  <autotools id="spice-gtk" autogenargs="--disable-smartcard --enable-vala --enable-webdav --enable-static">
     <if condition-set="freebsd">
       <autogenargs value="SSL_CFLAGS=' ' SSL_LIBS='-lssl'"/>
     </if>
     <branch repo="spice"
-            module="gtk/spice-gtk-0.28.tar.bz2"
-            version="0.28"
-            hash="sha256:15aeeb63422cb3bfaa2edbf4602ed2025baa4455abfd1677f631245a0d0f81c4"
-            size="1274095"/>
+            module="gtk/spice-gtk-0.29.tar.bz2"
+            version="0.29"
+            hash="sha256:44c7e22713246a2054c3c3b6e0280fd4c1fdbd2c8d33e5eb95bcda4748d5e973"
+            size="1277160"/>
     <dependencies>
       <dep package="cairo"/>
       <dep package="cyrus-sasl"/>
@@ -320,6 +352,7 @@
       <dep package="libjpeg"/>
       <dep package="openssl"/>
       <dep package="opus"/>
+      <dep package="phodav"/>
       <dep package="pixman"/>
       <dep package="pulseaudio"/>
       <dep package="spice-protocol"/>
@@ -331,10 +364,10 @@
 
   <autotools id="spice-protocol">
     <branch repo="spice"
-            module="releases/spice-protocol-0.12.7.tar.bz2"
-            version="0.12.7"
-            hash="sha256:96c6cb73361816ed19bfd8536f65d4547da35709aa00af1380e650c1174916c2"
-            size="71276"/>
+            module="releases/spice-protocol-0.12.9.tar.bz2"
+            version="0.12.9"
+            hash="sha256:290cf834dd156014d229b474e98006265ab9c5f63b4c471ea3b2cf8b2ff37876"
+            size="71766"/>
     <dependencies>
     </dependencies>
   </autotools>
@@ -383,8 +416,8 @@
          cmakeargs="-DTHREADSAFE:BOOL=1">
     <branch repo="tarball.github.com"
             module="libgit2/libgit2/archive/v${version}.tar.gz"
-            version="0.22.0"
-            hash="b70965b35e6d0adc891ba2edb28d982cb27729a3f2bb02186084f692e94922b2"
+            version="0.23.1"
+            hash="113748018e5876bea84af5c749af25b62f58cb4ca82730dcbffaac90c87f7056"
             checkoutdir="libgit2-${version}">
     </branch>
     <dependencies>
@@ -398,6 +431,17 @@
       <dep package="libgit2"/>
       <dep package="glib"/>
       <dep package="gobject-introspection"/>
+    </dependencies>
+  </autotools>
+
+  <autotools id="uncrustify">
+    <branch repo="downloads.sourceforge.net"
+            module="project/uncrustify/uncrustify/uncrustify-0.61/uncrustify-0.61.tar.gz"
+            version="0.61"
+            hash="sha256:1df0e5a2716e256f0a4993db12f23d10195b3030326fdf2e07f8e6421e172df9"
+            size="1143946"/>
+    <dependencies>
+      <dep package="c++"/>
     </dependencies>
   </autotools>
 
@@ -450,6 +494,8 @@
       <dep package="gnome-online-accounts"/>
       <dep package="libgfbgraph"/>
       <dep package="gnome-themes-standard"/>
+      <dep package="folks"/>
+      <dep package="libgee"/>
     </dependencies>
   </autotools>
 
@@ -512,7 +558,7 @@
   </autotools>
 
   <autotools id="rygel">
-    <branch/>
+    <branch revision="rygel-0-28"/>
     <dependencies>
       <dep package="vala"/>
       <dep package="gupnp"/>
@@ -568,7 +614,7 @@
       <dep package="gst-plugins-bad"/>
       <dep package="gst-plugins-base"/>
       <dep package="gst-plugins-good"/>
-      <dep package="clutter-gst"/>
+      <dep package="clutter-gst3"/>
       <dep package="clutter-gtk"/>
       <dep package="libcanberra"/>
       <dep package="vala"/>
@@ -632,6 +678,28 @@
     </dependencies>
   </autotools>
 
+
+
+  <autotools id="fwupd"
+             autogenargs="--disable-colorhug --disable-uefi">
+    <branch repo="tarball.github.com"
+            module="hughsie/fwupd/archive/${version}.tar.gz"
+            version="0.1.5"
+            hash="35f7e8c7b169c58b2e34391ea4dd0c99001ecfe2c767df2861159f05a43b9be1"
+            checkoutdir="fwupd-${version}"/>
+    <dependencies>
+      <dep package="appstream-glib"/>
+      <dep package="gcab"/>
+      <dep package="glib"/>
+      <dep package="gudev"/>
+      <dep package="libarchive"/>
+      <dep package="libgusb"/>
+      <dep package="libsoup"/>
+      <dep package="polkit-gobject"/>
+      <dep package="sqlite3"/>
+    </dependencies>
+  </autotools>
+
   <autotools id="gedit">
     <branch/>
     <dependencies>
@@ -649,7 +717,7 @@
   </autotools>
 
   <autotools id="gitg">
-    <branch/>
+    <branch revision="gnome-3-18"/>
     <dependencies>
       <dep package="gtk+"/>
       <dep package="glib"/>
@@ -687,6 +755,26 @@
       <if condition-set="linux">
         <dep package="gudev"/>
       </if>
+    </dependencies>
+  </autotools>
+
+  <autotools id="gnome-builder">
+    <branch/>
+    <dependencies>
+      <dep package="clang"/>
+      <dep package="devhelp"/>
+      <dep package="gjs"/>
+      <dep package="glib"/>
+      <dep package="gnome-code-assistance"/>
+      <dep package="gtk+"/>
+      <dep package="gtksourceview"/>
+      <dep package="libgit2-glib"/>
+      <dep package="libpeas"/>
+      <dep package="librsvg"/>
+      <dep package="llvm"/>
+      <dep package="pygobject"/>
+      <dep package="uncrustify"/>
+      <dep package="vte"/>
     </dependencies>
   </autotools>
 
@@ -784,6 +872,7 @@
       <dep package="appstream-glib"/>
       <dep package="intltool"/>
       <dep package="librsvg"/>
+      <dep package="m4-common"/>
       <dep package="gtk+"/>
       <dep package="vala"/>
       <dep package="yelp-tools"/>
@@ -866,43 +955,6 @@
       <dep package="yelp-tools"/>
       <dep package="clutter"/>
       <dep package="clutter-gtk"/>
-    </dependencies>
-  </autotools>
-
-  <autotools id="dleyna-core">
-    <branch repo="github-01org"/>
-    <dependencies>
-      <dep package="gupnp"/>
-    </dependencies>
-  </autotools>
-
-  <autotools id="dleyna-connector-dbus">
-    <branch repo="github-01org"/>
-    <dependencies>
-      <dep package="dleyna-core"/>
-    </dependencies>
-  </autotools>
-
-  <autotools id="dleyna-renderer">
-    <branch repo="github-01org"/>
-    <dependencies>
-      <dep package="dleyna-connector-dbus"/>
-      <dep package="dleyna-core"/>
-      <dep package="gssdp"/>
-      <dep package="gupnp"/>
-      <dep package="gupnp-av"/>
-      <dep package="gupnp-dlna"/>
-    </dependencies>
-  </autotools>
-
-  <autotools id="dleyna-server">
-    <branch repo="github-01org"/>
-    <dependencies>
-      <dep package="dleyna-core"/>
-      <dep package="gssdp"/>
-      <dep package="gupnp"/>
-      <dep package="gupnp-av"/>
-      <dep package="gupnp-dlna"/>
     </dependencies>
   </autotools>
 
@@ -995,6 +1047,7 @@
       <dep package="glib"/>
       <dep package="gtk+"/>
       <dep package="intltool"/>
+      <dep package="m4-common"/>
       <dep package="yelp-tools"/>
     </dependencies>
   </autotools>
@@ -1086,6 +1139,9 @@
       <dep package="libsoup"/>
       <dep package="PackageKit"/>
       <dep package="sqlite3"/>
+      <if condition-set="linux">
+        <dep package="fwupd"/>
+      </if>
     </dependencies>
   </autotools>
 
@@ -1140,6 +1196,7 @@
   <autotools id="polari">
     <branch/>
     <dependencies>
+      <dep package="appstream-glib"/>
       <dep package="gjs"/>
       <dep package="glib"/>
       <dep package="gobject-introspection"/>
@@ -1255,6 +1312,7 @@
       <dep package="gitg"/>
       <dep package="glade"/>
       <dep package="gnome-boxes"/>
+      <dep package="gnome-builder"/>
       <dep package="gnome-clocks"/>
       <dep package="gnome-characters"/>
       <dep package="gnome-chess"/>
@@ -1278,6 +1336,7 @@
       <dep package="gnome-sudoku"/>
       <dep package="gnome-taquin"/>
       <dep package="gnome-tetravex"/>
+      <dep package="gnome-todo"/>
       <dep package="gnome-tweak-tool"/>
       <dep package="gnome-weather"/>
       <dep package="hitori"/>
