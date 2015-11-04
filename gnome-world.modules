@@ -114,6 +114,9 @@
 
   <include href="gnome-apps.modules"/>
 
+  <!-- Temporarily moved from gnome-apps to gnome-world due to the dependency
+       on gconf. gconf is not needed at runtime or even make time, only at
+       configure time, so this should not be hard to fix. -->
   <autotools id="aisleriot"
              autogenargs="--with-platform=gtk-only">
     <branch/>
@@ -181,7 +184,7 @@
       <dep package="dbus-glib"/>
     </dependencies>
     <suggests>
-      <dep package="polkit"/>
+      <dep package="polkit-gobject"/>
     </suggests>
   </autotools>
 
@@ -219,31 +222,6 @@
     </dependencies>
   </autotools>
 
-  <autotools id="uncrustify">
-    <branch repo="downloads.sourceforge.net"
-            module="project/uncrustify/uncrustify/uncrustify-0.61/uncrustify-0.61.tar.gz"
-            version="0.61"
-            hash="sha256:1df0e5a2716e256f0a4993db12f23d10195b3030326fdf2e07f8e6421e172df9"
-            size="1143946"/>
-    <dependencies>
-      <dep package="c++"/>
-    </dependencies>
-  </autotools>
-
-  <autotools id="gnome-builder">
-    <branch/>
-    <dependencies>
-      <dep package="devhelp"/>
-      <dep package="glib"/>
-      <dep package="gnome-code-assistance"/>
-      <dep package="gtk+"/>
-      <dep package="gtksourceview"/>
-      <dep package="libgit2-glib"/>
-      <dep package="librsvg"/>
-      <dep package="uncrustify"/>
-    </dependencies>
-  </autotools>
-
   <autotools id="gnome-chat">
     <branch/>
     <dependencies>
@@ -276,6 +254,46 @@
       <dep package="libxslt"/>
       <dep package="libxml2"/>
       <dep package="intltool"/>
+    </dependencies>
+  </autotools>
+
+  <!-- Temporarily removed from gnome-apps because:
+
+       a) It needs to be ported to grilo-0.3.
+       b) dbus-python is in gnome-world, which is not included in gnome-apps.
+       c) dbus-python is a python2 build that depends on pygobject-python2,
+          whereas gnome-music depends on pygobject (python3 build).
+
+       Also, pygobject-python2 has a dependency on unknown "py2cairo" module,
+       but that doesn't matter much since this should not depend on
+       pygobject-python2 anyway.
+
+       https://mail.gnome.org/archives/desktop-devel-list/2015-October/msg00030.html
+  -->
+  <autotools id="gnome-music">
+    <branch/>
+    <dependencies>
+      <dep package="dbus-python"/>
+      <dep package="gnome-themes-standard"/>
+      <dep package="gobject-introspection"/>
+      <dep package="grilo"/>
+      <dep package="grilo-plugins"/>
+      <dep package="gtk+"/>
+      <dep package="gvfs"/>
+      <dep package="intltool"/>
+      <dep package="pygobject"/>
+      <dep package="tracker"/>
+      <dep package="libmediaart"/>
+    </dependencies>
+  </autotools>
+
+  <autotools id="gnome-news">
+    <branch repo="github.com" module="ignatenkobrain/gnome-news"/>
+    <dependencies>
+      <dep package="glib"/>
+      <dep package="gtk+"/>
+      <dep package="tracker"/>
+      <dep package="WebKit"/>
     </dependencies>
   </autotools>
 
@@ -622,7 +640,7 @@
 
   <autotools id="gst-libav"
              autogenargs="--disable-fatal-warnings">
-    <branch repo="gstreamer.freedesktop.org" revision="1.4"/>
+    <branch repo="gstreamer.freedesktop.org" revision="1.6"/>
     <dependencies>
       <dep package="gstreamer"/>
       <dep package="gst-plugins-base"/>
@@ -630,7 +648,7 @@
   </autotools>
 
   <autotools id="gst-python">
-    <branch repo="gstreamer.freedesktop.org"/>
+    <branch repo="gstreamer.freedesktop.org" revision="1.6"/>
     <dependencies>
       <dep package="pygobject-python2"/>
       <dep package="gstreamer"/>
@@ -1342,7 +1360,6 @@
     <branch />
     <dependencies>
       <dep package="gnome-doc-utils"/>
-      <dep package="polkit"/>
       <dep package="pygtk"/>
     </dependencies>
   </autotools>
@@ -1831,12 +1848,16 @@
   <autotools id="almanah">
     <branch/>
     <dependencies>
-      <dep package="intltool"/>
+      <dep package="gcr"/>
+      <dep package="glib"/>
+      <dep package="gpgme"/>
       <dep package="gtk+"/>
-      <dep package="gconf"/>
       <dep package="sqlite3"/>
+      <dep package="intltool"/>
+      <dep package="appdata-tools"/>
     </dependencies>
     <suggests>
+      <dep package="evolution-data-server"/>
       <dep package="gtkspell-3"/>
     </suggests>
   </autotools>
@@ -2425,7 +2446,7 @@
     <branch repo="gstreamer.freedesktop.org"
             checkoutdir="gst-plugins-ugly"
             module="gst-plugins-ugly"
-            revision="1.4"/>
+            revision="1.6"/>
     <dependencies>
       <dep package="gstreamer"/>
       <dep package="gst-plugins-base"/>
@@ -2478,8 +2499,20 @@
       <dep package="gsettings-desktop-schemas"/>
       <dep package="vala"/>
       <dep package="libgee"/>
-      <dep package="enchant"/>
+      <dep package="gspell"/>
       <dep package="yelp-tools"/>
+    </dependencies>
+  </autotools>
+
+  <autotools id="gspell">
+    <branch/>
+    <dependencies>
+      <dep package="gtk+"/>
+      <dep package="enchant"/>
+      <dep package="iso-codes"/>
+      <dep package="m4-common"/>
+      <dep package="gtksourceview"/>
+      <dep package="libxml2"/>
     </dependencies>
   </autotools>
 
@@ -2498,50 +2531,6 @@
       <dep package="libgsf"/>
       <dep package="poppler"/>
     </suggests>
-  </autotools>
-
-  <!-- ########## Gnome Flashback Modules ########## -->
-
-  <autotools id="gnome-panel">
-    <branch/>
-    <dependencies>
-      <dep package="intltool"/>
-      <dep package="gnome-desktop"/>
-      <dep package="libwnck"/>
-      <dep package="evolution-data-server"/>
-      <dep package="gnome-menus"/>
-      <dep package="dbus-glib"/>
-      <dep package="librsvg"/>
-      <dep package="libgweather"/>
-      <dep package="libcanberra"/>
-      <dep package="yelp-tools"/>
-    </dependencies>
-    <suggests>
-      <dep package="polkit-gobject"/>
-    </suggests>
-  </autotools>
-
-  <autotools id="metacity">
-    <branch/>
-    <dependencies>
-      <dep package="intltool"/>
-      <dep package="gdk-pixbuf"/>
-      <dep package="gtk+"/>
-      <dep package="gsettings-desktop-schemas"/>
-      <dep package="intltool"/>
-      <dep package="libcanberra"/>
-      <dep package="zenity"/>
-    </dependencies>
-  </autotools>
-
-  <autotools id="notification-daemon">
-    <branch/>
-    <dependencies>
-      <dep package="dbus"/>
-      <dep package="glib"/>
-      <dep package="gtk+"/>
-      <dep package="libcanberra"/>
-    </dependencies>
   </autotools>
 
   <autotools id="libgnomekbd">
@@ -2567,36 +2556,6 @@
       <dep package="libnotify"/>
     </suggests>
   </autotools>
-
- <autotools id="polkit-gnome" autogenargs="--with-gtk=3.0">
-    <branch checkoutdir="polkit-gnome" module="PolicyKit-gnome"/>
-    <dependencies>
-      <dep package="polkit"/>
-      <dep package="gtk+"/>
-      <dep package="intltool"/>
-    </dependencies>
-  </autotools>
-
-  <autotools id="gnome-flashback">
-    <branch/>
-    <dependencies>
-      <dep package="intltool"/>
-      <dep package="gnome-desktop"/>
-      <dep package="gtk+"/>
-    </dependencies>
-  </autotools>
-
-  <metamodule id="meta-gnome-flashback">
-    <dependencies>
-      <dep package="gnome-applets"/>
-      <dep package="gnome-flashback"/>
-      <dep package="gnome-panel"/>
-      <dep package="metacity"/>
-      <dep package="notification-daemon"/>
-    </dependencies>
-  </metamodule>
-
-  <!-- ########## End of Gnome Flashback Modules ########## -->
 
   <autotools id="librsync" autogen-sh="configure">
     <branch repo="downloads.sourceforge.net"
@@ -2628,32 +2587,6 @@
   <!--   enscript                                   -->
   <!--   libavcodec                                 -->
   <!-- Those are not managed by jhbuild             -->
-  <autotools id="gnome-applets" autogenargs="--enable-mini-commander">
-    <branch/>
-    <dependencies>
-      <dep package="intltool"/>
-      <dep package="gnome-panel"/>
-      <dep package="libgtop"/>
-      <dep package="libgnomekbd"/>
-      <dep package="gucharmap"/>
-      <dep package="libgweather"/>
-      <dep package="gdk-pixbuf"/>
-      <dep package="gtk+"/>
-      <dep package="glib"/>
-      <dep package="libxklavier" />
-      <dep package="libwnck"/>
-      <dep package="libnotify"/>
-      <dep package="dbus"/>
-      <dep package="dbus-glib"/>
-      <dep package="pygobject"/>
-      <dep package="adwaita-icon-theme"/>
-      <dep package="libxml2"/>
-      <dep package="polkit-gobject"/>
-    </dependencies>
-    <after>
-      <dep package="gnome-control-center"/>
-    </after>
-  </autotools>
 
   <autotools id="gnome-search-tool">
     <branch/>
@@ -2848,6 +2781,7 @@
   <autotools id="abiword">
     <branch repo="svn.abisource.com"/>
     <dependencies>
+      <dep package="boost"/>
       <dep package="cairo"/>
       <dep package="glib"/>
       <dep package="gtk+"/>
@@ -3096,7 +3030,7 @@
   </autotools>
 
   <autotools id="retro-gobject"
-             skip-autogen="true">
+             autogenargs="--enable-vala">
     <branch repo="github.com"
             module="Kekun/retro-gobject.git"/>
     <dependencies>
@@ -3105,13 +3039,55 @@
     </dependencies>
   </autotools>
 
+  <autotools id="retro-plugins-game-boy">
+    <branch repo="github.com"
+            module="Kekun/retro-plugins-game-boy.git"/>
+    <dependencies>
+    </dependencies>
+  </autotools>
+
+  <autotools id="retro-plugins-nes">
+    <branch repo="github.com"
+            module="Kekun/retro-plugins-nes.git"/>
+    <dependencies>
+    </dependencies>
+  </autotools>
+
+  <autotools id="retro-plugins-pce">
+    <branch repo="github.com"
+            module="Kekun/retro-plugins-pce.git"/>
+    <dependencies>
+    </dependencies>
+  </autotools>
+
+  <autotools id="retro-plugins-snes">
+    <branch repo="github.com"
+            module="Kekun/retro-plugins-snes.git"/>
+    <dependencies>
+    </dependencies>
+  </autotools>
+
+  <autotools id="jsk"
+             autogenargs="--enable-vala">
+    <branch repo="github.com"
+            module="Kekun/jsk.git"/>
+    <dependencies>
+      <dep package="glib"/>
+      <dep package="vala"/>
+    </dependencies>
+  </autotools>
+
   <autotools id="retro-gtk"
-             skip-autogen="true">
+             autogenargs="--enable-vala">
     <branch repo="github.com"
             module="Kekun/retro-gtk.git"/>
     <dependencies>
+      <dep package="clutter-gtk"/>
+      <dep package="glib"/>
       <dep package="gtk+"/>
-      <dep package="retro-gtk"/>
+      <dep package="jsk"/>
+      <dep package="pulseaudio"/>
+      <dep package="retro-gobject"/>
       <dep package="vala"/>
     </dependencies>
   </autotools>
@@ -3288,33 +3264,33 @@
     </dependencies>
   </autotools>
 
-  <autotools id="libgames-support">
-    <branch/>
+  <autotools id="libratbag">
+    <branch repo="github.com" checkoutdir="libratbag" module="libratbag/libratbag.git"/>
     <dependencies>
-      <dep package="glib"/>
-      <dep package="gtk+"/>
-      <dep package="libgee"/>
-      <dep package="vala"/>
+      <dep package="libudev"/>
+      <dep package="libevdev"/>
     </dependencies>
   </autotools>
 
-  <autotools id="network-manager-applet"
-             autogenargs="--enable-more-warnings=no --disable-migration --without-bluetooth">
-    <branch revision="nma-0-9-8"/>
+  <autotools id="gnome-games"
+             autogenargs="--enable-vala">
+    <branch repo="github.com"
+            module="Kekun/gnome-games.git"/>
     <dependencies>
       <dep package="glib"/>
-      <dep package="dbus-glib"/>
-      <dep package="gnome-bluetooth"/>
-      <dep package="gobject-introspection"/>
       <dep package="gtk+"/>
-      <dep package="gudev"/>
-      <dep package="iso-codes"/>
-      <dep package="libsecret"/>
-      <dep package="NetworkManager"/>
-      <dep package="libnotify"/>
+      <dep package="libarchive"/>
+      <dep package="retro-gobject"/>
+      <dep package="retro-gtk"/>
+      <dep package="tracker"/>
+      <dep package="vala"/>
+      <dep package="gnome-themes-standard"/>
     </dependencies>
     <suggests>
-      <dep package="mobile-broadband-provider-info"/>
+      <dep package="retro-plugins-game-boy"/>
+      <dep package="retro-plugins-nes"/>
+      <dep package="retro-plugins-pce"/>
+      <dep package="retro-plugins-snes"/>
     </suggests>
   </autotools>
 

@@ -48,6 +48,11 @@
     </systemdependencies>
   </systemmodule>
 
+  <systemmodule id="cairo">
+    <pkg-config>cairo.pc</pkg-config>
+    <branch repo="system" version="1.14.0"/>
+  </systemmodule>
+
   <systemmodule id="c++">
     <branch repo="system"/>
     <systemdependencies>
@@ -66,13 +71,6 @@
     <branch repo="system"/>
     <systemdependencies>
       <dep type="path" name="llvm-config"/>
-    </systemdependencies>
-  </systemmodule>
-
-  <systemmodule id="cracklib">
-    <branch repo="system"/>
-    <systemdependencies>
-      <dep type="c_include" name="crack.h"/>
     </systemdependencies>
   </systemmodule>
 
@@ -116,12 +114,6 @@
     <systemdependencies>
       <dep type="c_include" name="libdevmapper.h"/>
     </systemdependencies>
-  </systemmodule>
-
-  <systemmodule id="dleyna-renderer">
-    <pkg-config>dleyna-renderer-service-1.0.pc</pkg-config>
-    <branch repo="system"
-            version="0.4"/>
   </systemmodule>
 
   <systemmodule id="docbook-xsl">
@@ -197,6 +189,12 @@
     <systemdependencies>
       <dep type="path" name="flex"/>
     </systemdependencies>
+  </systemmodule>
+
+  <systemmodule id="fontconfig">
+    <pkg-config>fontconfig.pc</pkg-config>
+    <branch repo="system"
+            version="2.11.0"/>
   </systemmodule>
 
   <systemmodule id="freetype2">
@@ -336,6 +334,13 @@
     </systemdependencies>
   </systemmodule>
 
+  <systemmodule id="itstool">
+    <branch repo="system"/>
+    <systemdependencies>
+      <dep type="path" name="itstool"/>
+    </systemdependencies>
+  </systemmodule>
+
   <systemmodule id="json">
     <pkg-config>json-c.pc</pkg-config>
     <branch repo="system"
@@ -353,6 +358,12 @@
     <systemdependencies>
       <dep type="path" name="krb5-config"/>
     </systemdependencies>
+  </systemmodule>
+
+  <systemmodule id="lcms2">
+    <pkg-config>lcms2.pc</pkg-config>
+    <branch repo="system"
+            version="2.6"/>
   </systemmodule>
 
   <systemmodule id="lcov">
@@ -407,6 +418,11 @@
   <systemmodule id="libX11">
     <pkg-config>x11.pc</pkg-config>
     <branch repo="system"/>
+  </systemmodule>
+
+  <systemmodule id="libXi">
+    <pkg-config>xi.pc</pkg-config>
+    <branch repo="system" version="1.7.4"/>
   </systemmodule>
 
   <systemmodule id="libXdamage">
@@ -476,43 +492,8 @@
     <branch repo="system"/>
   </systemmodule>
 
-  <systemmodule id="xorg-bigreqsproto">
-    <pkg-config>bigreqsproto.pc</pkg-config>
-    <branch repo="system"/>
-  </systemmodule>
-
   <systemmodule id="xorg-kbproto">
     <pkg-config>kbproto.pc</pkg-config>
-    <branch repo="system"/>
-  </systemmodule>
-
-  <systemmodule id="xorg-presentproto">
-    <pkg-config>presentproto.pc</pkg-config>
-    <branch repo="system"/>
-    </systemmodule>
-
-  <systemmodule id="xorg-resourceproto">
-    <pkg-config>resourceproto.pc</pkg-config>
-    <branch repo="system"/>
-  </systemmodule>
-
-  <systemmodule id="xorg-scrnsaverproto">
-    <pkg-config>scrnsaverproto.pc</pkg-config>
-    <branch repo="system"/>
-  </systemmodule>
-
-  <systemmodule id="xorg-videoproto">
-    <pkg-config>videoproto.pc</pkg-config>
-    <branch repo="system"/>
-    </systemmodule>
-
-  <systemmodule id="xorg-xcmiscproto">
-    <pkg-config>xcmiscproto.pc</pkg-config>
-    <branch repo="system"/>
-  </systemmodule>
-
-  <systemmodule id="xorg-xf86driproto">
-    <pkg-config>xf86driproto.pc</pkg-config>
     <branch repo="system"/>
   </systemmodule>
 
@@ -546,6 +527,18 @@
     <pkg-config>libdrm.pc</pkg-config>
     <branch repo="system"
             version="2.4.45"/>
+  </systemmodule>
+
+  <systemmodule id="libepoxy">
+    <pkg-config>epoxy.pc</pkg-config>
+    <branch repo="system"
+            version="1.2"/>
+  </systemmodule>
+
+  <systemmodule id="libevdev">
+    <pkg-config>libevdev.pc</pkg-config>
+    <branch repo="system"
+            version="1.2.2"/>
   </systemmodule>
 
   <systemmodule id="libexif">
@@ -585,6 +578,12 @@
     </systemdependencies>
   </systemmodule>
 
+  <systemmodule id="libndp">
+    <pkg-config>libndp.pc</pkg-config>
+    <branch repo="system"
+            version="1.4"/>
+  </systemmodule>
+
   <systemmodule id="libnl">
     <pkg-config>libnl-3.0.pc</pkg-config>
     <branch repo="system"
@@ -621,6 +620,11 @@
 
   <systemmodule id="libproxy">
     <pkg-config>libproxy-1.0.pc</pkg-config>
+    <branch repo="system"/>
+  </systemmodule>
+
+  <systemmodule id="libpwquality">
+    <pkg-config>pwquality.pc</pkg-config>
     <branch repo="system"/>
   </systemmodule>
 
@@ -742,13 +746,6 @@
             version="2.7.8"/>
   </systemmodule>
 
-  <systemmodule id="libxml2-python">
-    <branch repo="system"/>
-    <systemdependencies>
-      <dep type="python2" name="libxml2"/>
-    </systemdependencies>
-  </systemmodule>
-
   <systemmodule id="libxslt">
     <pkg-config>libxslt.pc</pkg-config>
     <branch repo="system"
@@ -830,11 +827,6 @@
     <systemdependencies>
       <dep type="c_include" name="security/pam_appl.h"/>
     </systemdependencies>
-  </systemmodule>
-
-  <systemmodule id="pciaccess">
-    <pkg-config>pciaccess.pc</pkg-config>
-    <branch repo="system" version="0.12.901"/>
   </systemmodule>
 
   <systemmodule id="pixman">
@@ -1034,11 +1026,6 @@
     <branch repo="system" version="1.8.1"/>
   </systemmodule>
 
-  <systemmodule id="xcb-keysyms">
-    <pkg-config>xcb-keysyms.pc</pkg-config>
-    <branch repo="system"/>
-  </systemmodule>
-
   <systemmodule id="xcb-util">
     <pkg-config>xcb-aux.pc</pkg-config>
     <branch repo="system" version="0.1"/>
@@ -1075,11 +1062,6 @@
     <pkg-config>libarchive.pc</pkg-config>
     <branch repo="system"
             version="3.0.0"/>
-  </systemmodule>
-
-  <systemmodule id="xfont">
-    <pkg-config>xfont.pc</pkg-config>
-    <branch repo="system"/>
   </systemmodule>
 
   <systemmodule id="gtkspell-3">
@@ -1158,6 +1140,13 @@
     <branch repo="system"/>
     <systemdependencies>
       <dep type="path" name="xsltproc"/>
+    </systemdependencies>
+  </systemmodule>
+
+  <systemmodule id="xwayland">
+    <branch repo="system"/>
+    <systemdependencies>
+      <dep type="path" name="Xwayland"/>
     </systemdependencies>
   </systemmodule>
 

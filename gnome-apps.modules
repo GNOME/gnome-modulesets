@@ -36,7 +36,7 @@
 
   <include href="gnome-core.modules"/>
 
-  <!-- NOTE: gnome-suites-core-* and gnome-suites-core-deps-*
+  <!-- NOTE: gnome-core-* and gnome-core-deps-*
        are supposed to remain self-contained. If apps have dependencies
        that are not covered there, add them in here
     -->
@@ -82,7 +82,6 @@
       <dep package="dconf"/>
       <dep package="gtk+"/>
       <dep package="vala"/>
-      <dep package="libxml2"/>
     </dependencies>
   </autotools>
 
@@ -221,6 +220,17 @@
       <dep package="gst-plugins-good"/>
     </suggests>
  </autotools>
+
+  <autotools id="libgames-support">
+    <branch/>
+    <dependencies>
+      <dep package="glib"/>
+      <dep package="gtk+"/>
+      <dep package="libgee"/>
+      <dep package="m4-common"/>
+      <dep package="vala"/>
+    </dependencies>
+  </autotools>
 
   <autotools id="libgda-5.2" autogenargs="--with-java=no --disable-tools --enable-gda-gi --enable-gdaui-gi --disable-vala --disable-gdaui-vala">
     <if condition-set="freebsd">
@@ -684,8 +694,8 @@
              autogenargs="--disable-colorhug --disable-uefi">
     <branch repo="tarball.github.com"
             module="hughsie/fwupd/archive/${version}.tar.gz"
-            version="0.1.5"
-            hash="35f7e8c7b169c58b2e34391ea4dd0c99001ecfe2c767df2861159f05a43b9be1"
+            version="0.5.1"
+            hash="9640a6099c6be03e335a527b864d058a2621202a3050a3d4f9180cc81ac928f0"
             checkoutdir="fwupd-${version}"/>
     <dependencies>
       <dep package="appstream-glib"/>
@@ -926,34 +936,19 @@
     </dependencies>
   </autotools>
 
-  <autotools id="gnome-music">
-    <branch/>
-    <dependencies>
-      <dep package="dbus-python"/>
-      <dep package="gnome-themes-standard"/>
-      <dep package="gobject-introspection"/>
-      <dep package="grilo"/>
-      <dep package="grilo-plugins"/>
-      <dep package="gtk+"/>
-      <dep package="gvfs"/>
-      <dep package="intltool"/>
-      <dep package="pygobject"/>
-      <dep package="tracker"/>
-      <dep package="libmediaart"/>
-    </dependencies>
-  </autotools>
-
   <autotools id="gnome-nibbles">
     <branch/>
     <dependencies>
       <dep package="appstream-glib"/>
-      <dep package="intltool"/>
-      <dep package="librsvg"/>
-      <dep package="gtk+"/>
-      <dep package="libcanberra"/>
-      <dep package="yelp-tools"/>
       <dep package="clutter"/>
       <dep package="clutter-gtk"/>
+      <dep package="gtk+"/>
+      <dep package="intltool"/>
+      <dep package="libcanberra"/>
+      <dep package="libgames-support"/>
+      <dep package="librsvg"/>
+      <dep package="vala"/>
+      <dep package="yelp-tools"/>
     </dependencies>
   </autotools>
 
@@ -963,7 +958,6 @@
       <dep package="gegl"/>
       <dep package="cairo"/>
       <dep package="clutter-gtk"/>
-      <dep package="dleyna-renderer"/>
       <dep package="gdk-pixbuf"/>
       <dep package="glib"/>
       <dep package="gnome-desktop"/>
@@ -1200,6 +1194,7 @@
       <dep package="glib"/>
       <dep package="gobject-introspection"/>
       <dep package="gtk+"/>
+      <dep package="m4-common"/>
       <dep package="telepathy-glib"/>
     </dependencies>
   </autotools>
