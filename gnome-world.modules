@@ -53,8 +53,6 @@
     href="http://www.gnome.org/~sebp/git/"/>
   <repository type="svn" name="hotwire.googlecode.com"
       href="http://hotwire-shell.googlecode.com/svn/"/>
-  <repository type="svn" name="labyrinth.googlecode.com"
-      href="http://labyrinth.googlecode.com/svn/"/>
   <repository type="hg" name="hg.circular-chaos.org"
     href="http://hg.circular-chaos.org" />
   <repository type="svn" name="transmissionbt.com"
@@ -174,6 +172,25 @@
     </suggests>
   </autotools>
 
+  <cmake id="FeedReader"
+         cmakeargs="-DUSE_WEBKIT_4=ON -DWITH_LIBUNITY=OFF">
+    <branch repo="github.com" checkoutdir="FeedReader" module="jangernert/FeedReader.git"/>
+    <dependencies>
+      <dep package="gtk+"/>
+      <dep package="glib"/>
+      <dep package="gobject-introspection"/>
+      <dep package="libxml2"/>
+      <dep package="json-glib"/>
+      <dep package="libsoup"/>
+      <dep package="libgee"/>
+      <dep package="vala"/>
+      <dep package="WebKit"/>
+      <dep package="sqlite3"/>
+      <dep package="librest"/>
+      <dep package="libnotify"/>
+    </dependencies>
+  </cmake>
+
   <autotools id="gconf"
              autogenargs="--enable-gtk --with-gtk=3.0 --disable-orbit">
     <branch/>
@@ -257,41 +274,12 @@
     </dependencies>
   </autotools>
 
-  <!-- Temporarily removed from gnome-apps because:
-
-       a) It needs to be ported to grilo-0.3.
-       b) dbus-python is in gnome-world, which is not included in gnome-apps.
-       c) dbus-python is a python2 build that depends on pygobject-python2,
-          whereas gnome-music depends on pygobject (python3 build).
-
-       Also, pygobject-python2 has a dependency on unknown "py2cairo" module,
-       but that doesn't matter much since this should not depend on
-       pygobject-python2 anyway.
-
-       https://mail.gnome.org/archives/desktop-devel-list/2015-October/msg00030.html
-  -->
-  <autotools id="gnome-music">
-    <branch/>
-    <dependencies>
-      <dep package="dbus-python"/>
-      <dep package="gnome-themes-standard"/>
-      <dep package="gobject-introspection"/>
-      <dep package="grilo"/>
-      <dep package="grilo-plugins"/>
-      <dep package="gtk+"/>
-      <dep package="gvfs"/>
-      <dep package="intltool"/>
-      <dep package="pygobject"/>
-      <dep package="tracker"/>
-      <dep package="libmediaart"/>
-    </dependencies>
-  </autotools>
-
   <autotools id="gnome-news">
-    <branch repo="github.com" module="ignatenkobrain/gnome-news"/>
+    <branch/>
     <dependencies>
       <dep package="glib"/>
       <dep package="gtk+"/>
+      <dep package="pygobject"/>
       <dep package="tracker"/>
       <dep package="WebKit"/>
     </dependencies>
@@ -335,16 +323,6 @@
       <dep package="gconf"/>
     </dependencies>
   </autotools>
-
-  <waf id="hamster-applet">
-    <branch/>
-    <dependencies>
-      <dep package="intltool"/>
-      <dep package="pygtk"/>
-      <dep package="py2cairo"/>
-      <dep package="gnome-control-center"/>
-    </dependencies>
-  </waf>
 
   <autotools id="libbtctl">
     <branch/>
@@ -494,13 +472,6 @@
     </dependencies>
   </autotools>
 
-  <autotools id="gnome-code-assistance">
-    <branch/>
-    <dependencies>
-      <dep package="vala"/>
-    </dependencies>
-  </autotools>
-
   <autotools id="gedit-code-assistance">
     <branch/>
     <dependencies>
@@ -640,7 +611,7 @@
 
   <autotools id="gst-libav"
              autogenargs="--disable-fatal-warnings">
-    <branch repo="gstreamer.freedesktop.org" revision="1.6"/>
+    <branch repo="gstreamer.freedesktop.org" revision="1.8"/>
     <dependencies>
       <dep package="gstreamer"/>
       <dep package="gst-plugins-base"/>
@@ -1042,6 +1013,16 @@
     </dependencies>
   </autotools>
 
+  <autotools id="gnome-system-log">
+    <branch/>
+    <dependencies>
+      <dep package="intltool"/>
+      <dep package="glib"/>
+      <dep package="gtk+"/>
+      <dep package="yelp-tools"/>
+    </dependencies>
+  </autotools>
+
   <autotools id="gnome-cups-manager">
     <branch/>
     <dependencies>
@@ -1186,11 +1167,7 @@
   <autotools id="pitivi">
     <branch/>
     <dependencies>
-      <dep package="clutter"/>
-      <dep package="clutter-gst"/>
-      <dep package="clutter-gtk"/>
       <dep package="glib"/>
-      <dep package="gnonlin"/>
       <dep package="gobject-introspection"/>
       <dep package="gstreamer"/>
       <dep package="gst-editing-services"/>
@@ -1201,8 +1178,8 @@
       <dep package="gst-plugins-ugly"/>
       <dep package="gst-python"/>
       <dep package="gtk+"/>
-      <dep package="py2cairo"/>
-      <dep package="pygobject-python2"/>
+      <dep package="pycairo"/>
+      <dep package="pygobject"/>
     </dependencies>
   </autotools>
 
@@ -1311,6 +1288,16 @@
       <dep package="clutter-gtk"/>
     </dependencies>
   </metamodule>
+
+  <autotools id="gucharmap">
+    <branch/>
+    <dependencies>
+      <dep package="intltool"/>
+      <dep package="glib"/>
+      <dep package="gtk+"/>
+      <dep package="yelp-tools"/>
+    </dependencies>
+  </autotools>
 
   <autotools id="gupnp-tools">
     <branch />
@@ -1562,16 +1549,6 @@
      <dep package="desktop-file-utils"/>
    </dependencies>
  </distutils>
-
- <autotools id="labyrinth">
-   <branch repo="labyrinth.googlecode.com"
-           module="trunk"
-           checkoutdir="labyrinth"/>
-   <dependencies>
-     <dep package="pygtk"/>
-     <dep package="py2cairo"/>
-   </dependencies>
- </autotools>
 
  <autotools id="d-feet" autogenargs="--disable-tests">
    <branch/>
@@ -2504,18 +2481,6 @@
     </dependencies>
   </autotools>
 
-  <autotools id="gspell">
-    <branch/>
-    <dependencies>
-      <dep package="gtk+"/>
-      <dep package="enchant"/>
-      <dep package="iso-codes"/>
-      <dep package="m4-common"/>
-      <dep package="gtksourceview"/>
-      <dep package="libxml2"/>
-    </dependencies>
-  </autotools>
-
   <autotools id="tumbler">
     <branch repo="git.xfce.org"
             module="xfce/tumbler"/>
@@ -2531,6 +2496,17 @@
       <dep package="libgsf"/>
       <dep package="poppler"/>
     </suggests>
+  </autotools>
+
+  <autotools id="notification-daemon">
+    <branch />
+    <dependencies>
+      <dep package="dbus" />
+      <dep package="glib" />
+      <dep package="gtk+" />
+      <dep package="libcanberra" />
+      <dep package="m4-common" />
+    </dependencies>
   </autotools>
 
   <autotools id="libgnomekbd">
@@ -2569,10 +2545,10 @@
 
   <distutils id="duplicity">
     <branch repo="launchpad.net/tarball"
-            module="duplicity/0.6-series/0.6.15/+download/duplicity-0.6.15.tar.gz"
-            version="0.6.15"
-            hash="sha256:69f30388334b84db43ed4eb7838896a73cf53d62718c692a88ab3d3963e1dfad"
-            size="304916"/>
+            module="duplicity/0.6-series/0.6.26/+download/duplicity-0.6.26.tar.gz"
+            version="0.6.26"
+            hash="sha256:8bef8a5d805b79ae177e54d42152238bce1b2aaf9ad32e03a2c3a20cbd4e074a"
+            size="1270436"/>
     <dependencies>
       <dep package="pygobject2"/>
       <dep package="librsync"/>
@@ -2993,6 +2969,24 @@
     </suggests>
   </autotools>
 
+  <autotools id="gnome-packagekit">
+    <branch/>
+    <dependencies>
+      <dep package="PackageKit"/>
+      <dep package="gtk+"/>
+      <dep package="libnotify"/>
+      <dep package="libcanberra"/>
+    </dependencies>
+    <suggests>
+      <if condition-set="linux">
+        <dep package="gudev"/>
+      </if>
+      <if condition-set="systemd">
+        <dep package="libsystemd-login"/>
+      </if>
+    </suggests>
+  </autotools>
+
   <autotools id="gnome-power-manager">
     <branch/>
     <dependencies>
@@ -3021,85 +3015,20 @@
     </dependencies>
   </autotools>
 
-  <autotools id="libretro-free"
-             skip-autogen="true">
-    <branch repo="github.com"
-            module="Kekun/libretro-free.git"/>
+  <autotools id="retro-plugins">
+    <branch/>
     <dependencies>
-    </dependencies>
-  </autotools>
-
-  <autotools id="retro-gobject"
-             autogenargs="--enable-vala">
-    <branch repo="github.com"
-            module="Kekun/retro-gobject.git"/>
-    <dependencies>
-      <dep package="glib"/>
-      <dep package="vala"/>
-    </dependencies>
-  </autotools>
-
-  <autotools id="retro-plugins-game-boy">
-    <branch repo="github.com"
-            module="Kekun/retro-plugins-game-boy.git"/>
-    <dependencies>
-    </dependencies>
-  </autotools>
-
-  <autotools id="retro-plugins-nes">
-    <branch repo="github.com"
-            module="Kekun/retro-plugins-nes.git"/>
-    <dependencies>
-    </dependencies>
-  </autotools>
-
-  <autotools id="retro-plugins-pce">
-    <branch repo="github.com"
-            module="Kekun/retro-plugins-pce.git"/>
-    <dependencies>
-    </dependencies>
-  </autotools>
-
-  <autotools id="retro-plugins-snes">
-    <branch repo="github.com"
-            module="Kekun/retro-plugins-snes.git"/>
-    <dependencies>
-    </dependencies>
-  </autotools>
-
-  <autotools id="jsk"
-             autogenargs="--enable-vala">
-    <branch repo="github.com"
-            module="Kekun/jsk.git"/>
-    <dependencies>
-      <dep package="glib"/>
-      <dep package="vala"/>
     </dependencies>
   </autotools>
 
   <autotools id="retro-gtk"
              autogenargs="--enable-vala">
-    <branch repo="github.com"
-            module="Kekun/retro-gtk.git"/>
+    <branch/>
     <dependencies>
       <dep package="clutter-gtk"/>
       <dep package="glib"/>
       <dep package="gtk+"/>
-      <dep package="jsk"/>
       <dep package="pulseaudio"/>
-      <dep package="retro-gobject"/>
-      <dep package="vala"/>
-    </dependencies>
-  </autotools>
-
-  <autotools id="retro-gtk-demo"
-             skip-autogen="true">
-    <branch repo="github.com"
-            module="Kekun/retro-gtk-demo.git"/>
-    <dependencies>
-      <dep package="libretro-free"/>
-      <dep package="retro-gobject"/>
-      <dep package="retro-gtk"/>
       <dep package="vala"/>
     </dependencies>
   </autotools>
@@ -3274,24 +3203,102 @@
 
   <autotools id="gnome-games"
              autogenargs="--enable-vala">
-    <branch repo="github.com"
-            module="Kekun/gnome-games.git"/>
+    <branch/>
     <dependencies>
       <dep package="glib"/>
       <dep package="gtk+"/>
       <dep package="libarchive"/>
-      <dep package="retro-gobject"/>
       <dep package="retro-gtk"/>
       <dep package="tracker"/>
       <dep package="vala"/>
       <dep package="gnome-themes-standard"/>
     </dependencies>
     <suggests>
-      <dep package="retro-plugins-game-boy"/>
-      <dep package="retro-plugins-nes"/>
-      <dep package="retro-plugins-pce"/>
-      <dep package="retro-plugins-snes"/>
+      <dep package="retro-plugins"/>
     </suggests>
+  </autotools>
+
+  <autotools id="zeitgeist" autogenargs="--with-session-bus-services-dir=${prefix}/share/dbus-1/services">
+    <branch repo="git.freedesktop.org"
+            module="zeitgeist/zeitgeist"
+            checkoutdir="zeitgeist"/>
+    <dependencies>
+      <dep package="glib"/>
+      <dep package="rapper"/>
+      <dep package="rdflib"/>
+      <dep package="sqlite3"/>
+      <dep package="vala"/>
+    </dependencies>
+    <suggests>
+      <dep package="gobject-introspection"/>
+      <dep package="gtk+"/>
+      <dep package="json-glib"/>
+      <dep package="telepathy-glib"/>
+    </suggests>
+  </autotools>
+
+  <autotools id="gtk-engines">
+    <branch revision="gtk-engines-2-22"/>
+    <dependencies>
+      <dep package="gtk+-2"/>
+    </dependencies>
+  </autotools>
+
+  <autotools id="ConsoleKit">
+    <branch repo="git.freedesktop.org" module="ConsoleKit"/>
+    <dependencies>
+      <dep package="dbus-glib"/>
+    </dependencies>
+  </autotools>
+
+  <autotools id="anjuta">
+    <branch/>
+    <dependencies>
+      <dep package="intltool"/>
+      <dep package="glib"/>
+      <dep package="gdk-pixbuf"/>
+      <dep package="gtk+"/>
+      <dep package="vte"/>
+      <dep package="gdl"/>
+      <dep package="libgda-5.2"/>
+      <dep package="gtksourceview"/>
+      <dep package="yelp-tools"/>
+    </dependencies>
+    <suggests>
+      <dep package="glade"/>
+      <dep package="devhelp"/>
+      <dep package="vala"/>
+    </suggests>
+  </autotools>
+
+  <autotools id="libgda"
+             autogenargs="--with-java=no --disable-tools --enable-gda-gi --enable-gdaui-gi --enable-vala --enable-gdaui-vala">
+    <if condition-set="freebsd">
+      <autogenargs value="LIBCRYPTO_CFLAGS=' ' LIBCRYPTO_LIBS='-lcrypto' --with-bdb=/usr/local --with-bdb-libdir-name=lib/db5 --with-bdb-includedir-name=include/db5"/>
+    </if>
+    <branch/>
+    <dependencies>
+      <dep package="glib"/>
+      <dep package="gobject-introspection"/>
+      <dep package="libxml2"/>
+      <dep package="openssl"/>
+      <dep package="vala"/>
+    </dependencies>
+  </autotools>
+
+  <autotools id="libgda-5.2"
+             autogenargs="--with-java=no --disable-tools --enable-gda-gi --enable-gdaui-gi --disable-vala --disable-gdaui-vala">
+    <if condition-set="freebsd">
+      <autogenargs value="LIBCRYPTO_CFLAGS=' ' LIBCRYPTO_LIBS='-lcrypto' --with-bdb=/usr/local --with-bdb-libdir-name=lib/db5 --with-bdb-includedir-name=include/db5"/>
+    </if>
+    <branch checkoutdir="libgda-5.2" module="libgda" revision="LIBGDA_5.2"/>
+    <dependencies>
+      <dep package="glib"/>
+      <dep package="gobject-introspection"/>
+      <dep package="libxml2"/>
+      <dep package="openssl"/>
+      <dep package="vala"/>
+    </dependencies>
   </autotools>
 
 </moduleset>

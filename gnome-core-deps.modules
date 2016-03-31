@@ -87,7 +87,7 @@
   </autotools>
 
   <autotools id="atk">
-    <branch revision="gnome-3-20"/>
+    <branch/>
     <dependencies>
       <dep package="glib"/>
       <dep package="gobject-introspection"/>
@@ -249,7 +249,7 @@
         <dep package="gudev"/>
       </if>
       <if condition-set="systemd">
-        <dep package="libsystemd-login"/>
+        <dep package="libsystemd"/>
       </if>
     </dependencies>
     <suggests>
@@ -391,7 +391,7 @@
   </autotools>
 
   <autotools id="glibmm">
-    <branch revision="glibmm-2-48"/>
+    <branch/>
     <dependencies>
       <dep package="glib"/>
       <dep package="libsigcplusplus"/>
@@ -442,7 +442,7 @@
 
   <autotools id="gobject-introspection"
              autogenargs="--with-python=python3">
-    <branch revision="gnome-3-20"/>
+    <branch/>
     <dependencies>
       <dep package="bison"/>
       <dep package="flex"/>
@@ -620,7 +620,7 @@
     <if condition-set="quartz">
       <autogenargs value="--enable-quartz-backend"/>
     </if>
-    <branch revision="gtk-3-20"/>
+    <branch/>
     <dependencies>
       <dep package="atk"/>
       <dep package="glib"/>

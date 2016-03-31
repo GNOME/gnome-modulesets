@@ -36,7 +36,7 @@
   <repository type="git" name="telepathy.freedesktop.org"
       href="git://anongit.freedesktop.org/telepathy/"/>
 
-  <include href="gnome-core.modules"/>
+  <include href="gnome-core-3.22.modules"/>
 
   <!-- NOTE: gnome-suites-core-* and gnome-suites-core-deps-*
        are supposed to remain self-contained. If apps have dependencies
@@ -543,7 +543,7 @@
   </autotools>
 
   <autotools id="glade">
-    <branch revision="glade-3-20"/>
+    <branch/>
     <dependencies>
       <dep package="intltool"/>
       <dep package="gnome-common"/>
@@ -555,7 +555,7 @@
   </autotools>
 
   <autotools id="gnome-boxes" autogenargs="--enable-vala">
-    <branch revision="gnome-3-20"/>
+    <branch/>
     <dependencies>
       <dep package="glib"/>
       <dep package="libxml2"/>
@@ -597,7 +597,7 @@
   </autotools>
 
   <autotools id="gnome-calendar">
-    <branch revision="gnome-3-20"/>
+    <branch/>
     <dependencies>
       <dep package="appstream-glib"/>
       <dep package="gnome-online-accounts"/>
@@ -663,7 +663,7 @@
   </autotools>
 
   <autotools id="gnome-photos">
-    <branch revision="gnome-3-20"/>
+    <branch/>
     <dependencies>
       <dep package="babl"/>
       <dep package="gegl"/>
@@ -696,7 +696,7 @@
   </autotools>
 
   <autotools id="gnome-todo">
-    <branch revision="gnome-3-20"/>
+    <branch/>
     <dependencies>
       <dep package="appstream-glib"/>
       <dep package="gnome-online-accounts"/>
@@ -1000,7 +1000,7 @@
   </autotools>
 
   <autotools id="tali">
-    <branch revision="gnome-3-20"/>
+    <branch/>
     <dependencies>
       <dep package="appstream-glib"/>
       <dep package="intltool"/>
