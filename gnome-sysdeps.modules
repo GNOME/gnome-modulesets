@@ -21,6 +21,13 @@
             version="9100h"/>
   </systemmodule>
 
+  <systemmodule id="argyll">
+    <branch repo="system"/>
+    <systemdependencies>
+      <dep type="path" name="spotread"/>
+    </systemdependencies>
+  </systemmodule>
+
   <systemmodule id="avahi">
     <pkg-config>avahi-gobject.pc</pkg-config>
     <branch repo="system"
@@ -70,7 +77,23 @@
   <systemmodule id="clang">
     <branch repo="system"/>
     <systemdependencies>
-      <dep type="path" name="llvm-config"/>
+      <dep type="path" name="llvm-config">
+        <!-- Debian -->
+        <altdep type="path" name="llvm-config-3.9"/>
+        <altdep type="path" name="llvm-config-3.8"/>
+        <altdep type="path" name="llvm-config-3.7"/>
+        <altdep type="path" name="llvm-config-3.6"/>
+        <altdep type="path" name="llvm-config-3.5"/>
+        <altdep type="path" name="llvm-config-3.4"/>
+        <!-- FreeBSD -->
+        <altdep type="path" name="llvm-config39"/>
+        <altdep type="path" name="llvm-config38"/>
+        <altdep type="path" name="llvm-config37"/>
+        <altdep type="path" name="llvm-config36"/>
+        <altdep type="path" name="llvm-config35"/>
+        <altdep type="path" name="llvm-config34"/>
+        <altdep type="path" name="llvm-config-devel"/>
+      </dep>
     </systemdependencies>
   </systemmodule>
 
@@ -113,6 +136,22 @@
     <branch repo="system"/>
     <systemdependencies>
       <dep type="c_include" name="libdevmapper.h"/>
+    </systemdependencies>
+  </systemmodule>
+
+  <systemmodule id="docbook-utils">
+    <branch repo="system"
+            version="0.6.14"/>
+    <systemdependencies>
+      <dep type="path"
+           name="docbook2man"/>
+    </systemdependencies>
+  </systemmodule>
+
+  <systemmodule id="docbook-xml">
+    <branch repo="system"/>
+    <systemdependencies>
+      <dep type="xml" name="-//OASIS//DTD DocBook XML V4.3//EN"/>
     </systemdependencies>
   </systemmodule>
 
@@ -228,7 +267,7 @@
   </systemmodule>
 
   <systemmodule id="gettext">
-    <branch repo="system" version="0.16"/>
+    <branch repo="system" version="0.19"/>
     <systemdependencies>
       <dep type="c_include" name="gettext-po.h"/>
     </systemdependencies>
@@ -402,6 +441,12 @@
             version="0.1.0"/>
   </systemmodule>
 
+  <systemmodule id="libical">
+    <pkg-config>libical.pc</pkg-config>
+    <branch repo="system"
+            version="1.0"/>
+  </systemmodule>
+
   <systemmodule id="libmusicbrainz">
     <pkg-config>libmusicbrainz5.pc</pkg-config>
     <branch repo="system"
@@ -552,6 +597,11 @@
     <branch repo="system" version="3.0.0"/>
   </systemmodule>
 
+  <systemmodule id="libpcre">
+    <pkg-config>libpcre.pc</pkg-config>
+    <branch repo="system" version="8.31"/>
+  </systemmodule>
+
   <systemmodule id="libgcrypt">
     <branch repo="system"
             version="1.5.0"/>
@@ -569,6 +619,13 @@
   <systemmodule id="libicu">
     <pkg-config>icu-i18n.pc</pkg-config>
     <branch repo="system" version="4"/>
+  </systemmodule>
+
+  <systemmodule id="libjasper">
+    <branch repo="system"/>
+    <systemdependencies>
+      <dep type="c_include" name="jasper/jasper.h"/>
+    </systemdependencies>
   </systemmodule>
 
   <systemmodule id="libjpeg">
@@ -700,7 +757,13 @@
 
   <systemmodule id="libusb1">
     <pkg-config>libusb-1.0.pc</pkg-config>
-    <branch repo="system"/>
+    <branch repo="system" version="1.0.19"/>
+  </systemmodule>
+
+  <!-- This system module is used to Keep compatibility with FreeBSD -->
+  <systemmodule id="libusb1-1.0.9">
+    <pkg-config>libusb-1.0.pc</pkg-config>
+    <branch repo="system" version="1.0.9"/>
   </systemmodule>
 
   <systemmodule id="libuuid">
@@ -769,7 +832,23 @@
   <systemmodule id="llvm">
     <branch repo="system"/>
     <systemdependencies>
-      <dep type="c_include" name="llvm-c/Core.h"/>
+      <dep type="c_include" name="llvm-c/Core.h">
+        <!-- Debian -->
+        <altdep type="c_include" name="llvm-c-3.9/llvm-c/Core.h"/>
+        <altdep type="c_include" name="llvm-c-3.8/llvm-c/Core.h"/>
+        <altdep type="c_include" name="llvm-c-3.7/llvm-c/Core.h"/>
+        <altdep type="c_include" name="llvm-c-3.6/llvm-c/Core.h"/>
+        <altdep type="c_include" name="llvm-c-3.5/llvm-c/Core.h"/>
+        <altdep type="c_include" name="llvm-c-3.4/llvm-c/Core.h"/>
+        <!-- FreeBSD -->
+        <altdep type="c_include" name="../llvm39/include/llvm-c/Core.h"/>
+        <altdep type="c_include" name="../llvm38/include/llvm-c/Core.h"/>
+        <altdep type="c_include" name="../llvm37/include/llvm-c/Core.h"/>
+        <altdep type="c_include" name="../llvm36/include/llvm-c/Core.h"/>
+        <altdep type="c_include" name="../llvm35/include/llvm-c/Core.h"/>
+        <altdep type="c_include" name="../llvm34/include/llvm-c/Core.h"/>
+        <altdep type="c_include" name="../llvm-devel/include/llvm-c/Core.h"/>
+      </dep>
     </systemdependencies>
   </systemmodule>
 
@@ -890,7 +969,7 @@
             version="2.7"/>
   </systemmodule>
 
-  <systemmodule id="python-devel">
+  <systemmodule id="python3-devel">
     <pkg-config>python3.pc</pkg-config>
     <branch repo="system"
             version="3.2"/>
