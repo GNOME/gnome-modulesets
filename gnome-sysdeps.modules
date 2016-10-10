@@ -266,13 +266,6 @@
     </systemdependencies>
   </systemmodule>
 
-  <systemmodule id="gettext">
-    <branch repo="system" version="0.19"/>
-    <systemdependencies>
-      <dep type="c_include" name="gettext-po.h"/>
-    </systemdependencies>
-  </systemmodule>
-
   <systemmodule id="gettext-bin">
     <branch repo="system"/>
     <systemdependencies>
@@ -397,6 +390,11 @@
     <systemdependencies>
       <dep type="path" name="krb5-config"/>
     </systemdependencies>
+  </systemmodule>
+
+  <systemmodule id="kyotocabinet">
+    <pkg-config>kyotocabinet.pc</pkg-config>
+    <branch repo="system"/>
   </systemmodule>
 
   <systemmodule id="lcms2">
@@ -549,11 +547,6 @@
     </systemdependencies>
   </systemmodule>
 
-  <systemmodule id="libarchive">
-    <pkg-config>libarchive.pc</pkg-config>
-    <branch repo="system" version="2.8.0"/>
-  </systemmodule>
-
   <systemmodule id="libcap">
     <branch repo="system"/>
     <systemdependencies>
@@ -663,11 +656,6 @@
     <pkg-config>oauth.pc</pkg-config>
     <branch repo="system"
             version="0.9.4"/>
-  </systemmodule>
-
-  <systemmodule id="libpinyin">
-    <pkg-config>libpinyin.pc</pkg-config>
-    <branch repo="system"/>
   </systemmodule>
 
   <systemmodule id="libpng">
@@ -848,6 +836,12 @@
     <systemdependencies>
       <dep type="c_include" name="mpfr.h"/>
     </systemdependencies>
+  </systemmodule>
+
+  <systemmodule id="nettle">
+    <pkg-config>nettle.pc</pkg-config>
+    <branch repo="system"
+            version="3.2"/>
   </systemmodule>
 
   <systemmodule id="nss">
