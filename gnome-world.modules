@@ -55,8 +55,6 @@
       href="http://hotwire-shell.googlecode.com/svn/"/>
   <repository type="hg" name="hg.circular-chaos.org"
     href="http://hg.circular-chaos.org" />
-  <repository type="svn" name="transmissionbt.com"
-    href="svn://svn.m0k.org/Transmission/" />
   <repository type="svn" name="svn.async.com.br"
       href="svn://svn.async.com.br/"/>
   <repository type="svn" name="flumotion.code.fluendo.com"
@@ -1636,8 +1634,8 @@
   </tarball>
 
   <autotools id="transmission">
-    <branch repo="transmissionbt.com"
-            module="trunk"
+    <branch repo="github.com"
+            module="transmission/transmission.git"
             checkoutdir="transmission"/>
     <dependencies>
       <dep package="gtk+-2"/>
@@ -2349,7 +2347,7 @@
     </dependencies>
   </autotools>
 
-  <autotools id="evolution-mapi">
+  <cmake id="evolution-mapi">
     <branch/>
     <dependencies>
       <dep package="intltool"/>
@@ -2357,9 +2355,9 @@
       <dep package="evolution"/>
       <dep package="libmapi"/>
     </dependencies>
-  </autotools>
+  </cmake>
 
-  <autotools id="evolution-ews">
+  <cmake id="evolution-ews">
     <branch/>
     <dependencies>
       <dep package="glib"/>
@@ -2371,7 +2369,7 @@
       <dep package="sqlite3"/>
       <dep package="libical"/>
     </dependencies>
-  </autotools>
+  </cmake>
 
   <autotools id="libglade">
     <branch/>
@@ -3234,7 +3232,7 @@
     </dependencies>
   </autotools>
 
-  <autotools id="flatpak" autogenargs="--enable-sudo">
+  <autotools id="flatpak" autogenargs="--disable-sudo --disable-system-helper">
     <branch repo="github.com"
             module="flatpak/flatpak"/>
     <dependencies>
@@ -3392,6 +3390,20 @@
       <dep package="glib"/>
       <dep package="gtk+-3"/>
       <dep package="pygobject"/>
+    </dependencies>
+  </autotools>
+
+  <autotools id="bijiben">
+    <branch/>
+    <dependencies>
+      <dep package="appstream-glib"/>
+      <dep package="tracker"/>
+      <dep package="clutter-gtk"/>
+      <dep package="gtk+-3"/>
+      <dep package="libxml2"/>
+      <dep package="glib"/>
+      <dep package="WebKit1"/>
+      <dep package="evolution-data-server"/>
     </dependencies>
   </autotools>
 

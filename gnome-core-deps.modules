@@ -276,15 +276,10 @@
     </dependencies>
   </autotools>
 
-  <autotools id="evolution-data-server"
-             supports-non-srcdir-builds="no"
-             autogenargs="--enable-vala-bindings --disable-strict --disable-uoa --disable-google-auth"
-             uninstall-before-install="true">
-    <!-- We uninstall the old copy before installing, because the our usage
-         of DESTDIR and libtool's relinking interfere and cause camel providers
-         to link against the install version of libcamel. -->
+  <cmake id="evolution-data-server"
+         cmakeargs="-DENABLE_INTROSPECTION=ON -DENABLE_VALA_BINDINGS=ON -DENABLE_UOA=OFF -DENABLE_GOOGLE_AUTH=OFF">
     <if condition-set="freebsd">
-      <autogenargs value="DB_CFLAGS=-I/usr/local/include/db5 DB_LIBS=-ldb-5.3"/>
+      <cmakeargs value="-DDB_CFLAGS=-I/usr/local/include/db5 DB_LIBS=-ldb-5.3"/>
     </if>
     <branch/>
     <dependencies>
@@ -303,11 +298,12 @@
       <dep package="libdb"/>
       <dep package="libsecret"/>
       <dep package="WebKit"/>
+      <dep package="openldap"/>
     </dependencies>
     <suggests>
       <dep package="nss"/>
     </suggests>
-  </autotools>
+  </cmake>
 
   <autotools id="folks"
              autogenargs="--enable-eds-backend --disable-libsocialweb-backend --disable-fatal-warnings"
@@ -645,13 +641,13 @@
     </dependencies>
   </meson>
 
-  <autotools id="graphene">
+  <meson id="graphene">
     <branch repo="github.com" checkoutdir="graphene" module="ebassi/graphene.git"/>
     <dependencies>
       <dep package="glib"/>
       <dep package="gobject-introspection"/>
     </dependencies>
-  </autotools>
+  </meson>
 
   <autotools id="gst-plugins-bad"
              autogenargs="--disable-fatal-warnings"
@@ -732,7 +728,9 @@
       <dep package="gdk-pixbuf"/>
       <dep package="gtk-doc"/>
       <dep package="gobject-introspection"/>
+      <dep package="graphene"/>
       <dep package="libepoxy"/>
+      <dep package="m4-common"/>
       <if condition-unset="quartz">
         <dep package="at-spi2-atk"/>
       </if>
@@ -1180,7 +1178,7 @@
   </autotools>
 
   <meson id="libhttpseverywhere">
-    <branch repo="github.com" checkoutdir="libhttpseverywhere" module="grindhold/libhttpseverywhere.git"/>
+    <branch revision="v0.2"/>
     <dependencies>
       <dep package="glib"/>
       <dep package="gobject-introspection"/>
@@ -1576,7 +1574,7 @@
 
   <autotools id="spice-gtk" autogenargs="--disable-smartcard --enable-vala --enable-webdav --enable-static">
     <if condition-set="freebsd">
-      <autogenargs value="SSL_CFLAGS=' ' SSL_LIBS='-lssl -lcrypto'"/>
+      <autogenargs value="SSL_CFLAGS=' ' SSL_LIBS='-lssl -lcrypto' OPENSSL_CFLAGS=' ' OPENSSL_LIBS='-lssl -lcrypto'"/>
     </if>
     <branch repo="spice"
             module="gtk/spice-gtk-0.33.tar.bz2"
@@ -1717,6 +1715,7 @@
     <branch />
     <dependencies>
       <dep package="glib"/>
+      <dep package="vala-bootstrap"/>
     </dependencies>
   </autotools>
 
@@ -1752,9 +1751,9 @@
     </if>
     <pkg-config>webkit2gtk-4.0.pc</pkg-config>
     <branch repo="webkitgtk.org"
-            module="webkitgtk-2.14.0.tar.xz" version="2.14.0"
-            hash="sha256:0513ad836c624a3d24bdf1a99f4b4aead984ab6684150bc70f16db651590ea0a"
-            size="13412028">
+            module="webkitgtk-2.15.1.tar.xz" version="2.15.1"
+            hash="sha256:43b57d79d636a76f6ee3fbcf2a7e63aba7b86931b2113fa8dd59ca674f95ed80"
+            size="13761228">
     </branch>
     <dependencies>
       <dep package="c++"/>

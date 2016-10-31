@@ -227,20 +227,6 @@
     </dependencies>
   </autotools>
 
-  <autotools id="bijiben">
-    <branch/>
-    <dependencies>
-      <dep package="appstream-glib"/>
-      <dep package="tracker"/>
-      <dep package="clutter-gtk"/>
-      <dep package="gtk+-3"/>
-      <dep package="libxml2"/>
-      <dep package="glib"/>
-      <dep package="WebKit1"/>
-      <dep package="evolution-data-server"/>
-    </dependencies>
-  </autotools>
-
   <autotools id="dconf-editor">
     <branch/>
     <dependencies>
@@ -304,7 +290,8 @@
     </suggests>
   </autotools>
 
-  <autotools id="evolution" autogenargs="--disable-libcryptui --disable-pst-import">
+  <cmake id="evolution"
+         cmakeargs="-DENABLE_LIBCRYPTUI=OFF -DENABLE_PST_IMPORT=OFF">
     <branch/>
     <dependencies>
       <dep package="atk"/>
@@ -333,6 +320,7 @@
       <dep package="libxml2"/>
       <dep package="nspr"/>
       <dep package="nss"/>
+      <dep package="openldap"/>
       <dep package="shared-mime-info"/>
       <dep package="spamassassin"/>
       <dep package="WebKit"/>
@@ -342,7 +330,7 @@
       <dep package="geoclue"/>
       <dep package="geocode-glib"/>
     </suggests>
-  </autotools>
+  </cmake>
 
   <autotools id="ghex">
     <branch/>
@@ -820,7 +808,6 @@
   -->
   <metamodule id="meta-gnome-core-incubator">
     <dependencies>
-      <dep package="bijiben"/>
       <dep package="gnome-dictionary"/>
       <dep package="gnome-music"/>
       <dep package="seahorse"/>

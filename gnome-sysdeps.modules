@@ -547,6 +547,11 @@
     </systemdependencies>
   </systemmodule>
 
+  <systemmodule id="libarchive">
+    <pkg-config>libarchive.pc</pkg-config>
+    <branch repo="system" version="3.2.0"/>
+  </systemmodule>
+
   <systemmodule id="libcap">
     <branch repo="system"/>
     <systemdependencies>
@@ -836,12 +841,6 @@
     <systemdependencies>
       <dep type="c_include" name="mpfr.h"/>
     </systemdependencies>
-  </systemmodule>
-
-  <systemmodule id="nettle">
-    <pkg-config>nettle.pc</pkg-config>
-    <branch repo="system"
-            version="3.2"/>
   </systemmodule>
 
   <systemmodule id="nss">
