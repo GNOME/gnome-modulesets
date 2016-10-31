@@ -284,7 +284,7 @@
     <if condition-set="freebsd">
       <autogenargs value="DB_CFLAGS=-I/usr/local/include/db5 DB_LIBS=-ldb-5.3"/>
     </if>
-    <branch/>
+    <branch revision="gnome-3-22"/>
     <dependencies>
       <dep package="intltool"/>
       <dep package="libsoup"/>
@@ -524,7 +524,7 @@
     <if condition-set="coverage">
       <autogenargs value="--enable-coverage"/>
     </if>
-    <branch/>
+    <branch revision="gnome-3-22"/>
     <dependencies>
       <dep package="dbus-glib"/>
       <dep package="gobject-introspection"/>
@@ -537,7 +537,7 @@
 
   <autotools id="gobject-introspection"
              autogenargs="--with-python=python3">
-    <branch/>
+    <branch revision="gnome-3-22"/>
     <dependencies>
       <dep package="bison"/>
       <dep package="flex"/>
@@ -1291,7 +1291,7 @@
   </autotools>
 
   <autotools id="libsoup" autogenargs="--disable-tls-check">
-    <branch/>
+    <branch revision="gnome-3-22"/>
     <dependencies>
       <dep package="glib"/>
       <dep package="libxml2"/>
@@ -1684,9 +1684,9 @@
     </if>
     <pkg-config>webkit2gtk-4.0.pc</pkg-config>
     <branch repo="webkitgtk.org"
-            module="webkitgtk-2.14.0.tar.xz" version="2.14.0"
-            hash="sha256:0513ad836c624a3d24bdf1a99f4b4aead984ab6684150bc70f16db651590ea0a"
-            size="13412028">
+            module="webkitgtk-2.14.1.tar.xz" version="2.14.1"
+            hash="sha256:2e2d76c328de65bed6e0e4f096b2720a366654b27fc1af0830ece90bc4b7ceb5"
+            size="13415796">
     </branch>
     <dependencies>
       <dep package="c++"/>

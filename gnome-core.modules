@@ -164,7 +164,7 @@
   </autotools>
 
   <autotools id="gnome-control-center" supports-non-srcdir-builds="no">
-    <branch/>
+    <branch revision="gnome-3-22"/>
     <dependencies>
       <dep package="accountsservice"/>
       <dep package="clutter-gtk"/>
@@ -268,7 +268,7 @@
   </autotools>
 
   <autotools id="gnome-session">
-    <branch/>
+    <branch revision="gnome-3-22"/>
     <dependencies>
       <dep package="egl"/>
       <dep package="intltool"/>
@@ -291,7 +291,7 @@
     <if condition-unset="linux">
       <autogenargs value="--disable-rfkill --disable-gudev --disable-network-manager"/>
     </if>
-    <branch/>
+    <branch revision="gnome-3-22"/>
     <dependencies>
       <dep package="colord"/>
       <dep package="geoclue"/>
@@ -327,7 +327,7 @@
     <if condition-unset="linux">
       <autogenargs value="--disable-networkmanager"/>
     </if>
-    <branch/>
+    <branch revision="gnome-3-22"/>
     <dependencies>
       <dep package="accountsservice"/>
       <dep package="caribou"/>
@@ -373,7 +373,7 @@
   </autotools>
 
   <autotools id="gnome-shell-extensions" autogenargs="--enable-extensions=classic-mode">
-    <branch/>
+    <branch revision="gnome-3-22"/>
     <dependencies>
       <dep package="gnome-shell"/>
       <dep package="gnome-menus"/>
@@ -474,7 +474,7 @@
     <if condition-unset="wayland">
       <autogenargs value="--disable-wayland-egl-server"/>
     </if>
-    <branch/>
+    <branch revision="gnome-3-22"/>
     <dependencies>
       <dep package="gdk-pixbuf"/>
       <dep package="glib"/>
@@ -672,7 +672,7 @@
   </autotools>
 
   <autotools id="epiphany">
-    <branch/>
+    <branch revision="gnome-3-22"/>
     <dependencies>
       <dep package="appstream-glib"/>
       <dep package="intltool"/>
@@ -759,7 +759,7 @@
   </autotools>
 
   <autotools id="gnome-calculator" supports-non-srcdir-builds="no">
-    <branch/>
+    <branch revision="gnome-3-22"/>
     <dependencies>
       <dep package="intltool"/>
       <dep package="glib"/>
@@ -985,7 +985,7 @@
   </autotools>
 
   <autotools id="gnome-system-monitor">
-    <branch/>
+    <branch revision="gnome-3-22"/>
     <dependencies>
       <dep package="intltool"/>
       <dep package="glib"/>

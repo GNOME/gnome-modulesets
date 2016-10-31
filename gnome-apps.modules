@@ -227,20 +227,6 @@
     </dependencies>
   </autotools>
 
-  <autotools id="bijiben">
-    <branch/>
-    <dependencies>
-      <dep package="appstream-glib"/>
-      <dep package="tracker"/>
-      <dep package="clutter-gtk"/>
-      <dep package="gtk+"/>
-      <dep package="libxml2"/>
-      <dep package="glib"/>
-      <dep package="WebKit1"/>
-      <dep package="evolution-data-server"/>
-    </dependencies>
-  </autotools>
-
   <autotools id="dconf-editor">
     <branch revision="gnome-3-22"/>
     <dependencies>
@@ -507,7 +493,7 @@
   </autotools>
 
   <autotools id="polari">
-    <branch/>
+    <branch revision="gnome-3-22"/>
     <dependencies>
       <dep package="appstream-glib"/>
       <dep package="gjs"/>
@@ -620,7 +606,7 @@
   </autotools>
 
   <autotools id="gnome-mines">
-    <branch/>
+    <branch revision="gnome-3-22"/>
     <dependencies>
       <dep package="appstream-glib"/>
       <dep package="intltool"/>
@@ -820,7 +806,6 @@
   -->
   <metamodule id="meta-gnome-core-incubator">
     <dependencies>
-      <dep package="bijiben"/>
       <dep package="gnome-dictionary"/>
       <dep package="gnome-music"/>
       <dep package="seahorse"/>
