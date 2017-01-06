@@ -7,6 +7,8 @@
       href="git://git.gnome.org/"/>
   <repository type="svn" name="svn.abisource.com"
       href="http://svn.abisource.com/"/>
+  <repository type="git" name="wayland.freedesktop.org"
+      href="git://anongit.freedesktop.org/git/wayland"/>
   <repository type="git" name="gstreamer.freedesktop.org"
       href="git://anongit.freedesktop.org/gstreamer/"/>
   <repository type="git" name="fprint.freedesktop.org"
@@ -128,12 +130,28 @@
     </dependencies>
   </autotools>
 
+  <autotools id="aws-glib">
+    <branch repo="github.com" module="chergert/aws-glib.git"/>
+    <dependencies>
+      <dep package="libsoup"/>
+    </dependencies>
+  </autotools>
+
   <autotools id="alacarte">
     <branch/>
     <dependencies>
       <dep package="intltool"/>
       <dep package="gnome-menus"/>
       <dep package="pygtk"/>
+    </dependencies>
+  </autotools>
+
+  <autotools id="bolso">
+    <branch repo="github.com" module="felipeborges/bolso.git"/>
+    <dependencies>
+      <dep package="gtk+-3"/>
+      <dep package="gobject-introspection"/>
+      <dep package="gjs"/>
     </dependencies>
   </autotools>
 
@@ -186,6 +204,7 @@
       <dep package="flac"/>
       <!-- <dep package="id3tag" -->
       <!-- <dep package="id3lib" -->
+      <dep package="libsoup"/>
       <dep package="libvorbis"/>
       <dep package="opus"/>
       <dep package="speex"/>
@@ -226,23 +245,6 @@
       <dep package="polkit-gobject"/>
     </suggests>
   </autotools>
-
-  <cmake id="geary">
-    <branch/>
-    <dependencies>
-      <dep package="glib"/>
-      <dep package="gmime"/>
-      <dep package="gnome-keyring"/>
-      <dep package="gtk+-3"/>
-      <dep package="libcanberra"/>
-      <dep package="libgee"/>
-      <dep package="libnotify"/>
-      <dep package="libunique"/>
-      <dep package="sqlite3"/>
-      <dep package="vala"/>
-      <dep package="WebKit1"/>
-    </dependencies>
-  </cmake>
 
   <autotools id="corebird">
     <branch repo="github.com" checkoutdir="corebird" module="baedert/corebird.git"/>
@@ -401,7 +403,7 @@
     <dependencies>
       <dep package="glib"/>
       <dep package="gtk+-3"/>
-      <dep package="gtksourceview"/>
+      <dep package="gtksourceview-3"/>
       <dep package="pygobject"/>
     </dependencies>
   </distutils>
@@ -518,7 +520,7 @@
     <dependencies>
       <dep package="gtk+-3"/>
       <dep package="glib"/>
-      <dep package="gtksourceview"/>
+      <dep package="gtksourceview-3"/>
       <dep package="yelp-tools"/>
     </dependencies>
     <suggests>
@@ -643,7 +645,7 @@
 
   <autotools id="gst-libav"
              autogenargs="--disable-fatal-warnings">
-    <branch repo="gstreamer.freedesktop.org"/>
+    <branch repo="gstreamer.freedesktop.org" revision="1.10"/>
     <dependencies>
       <dep package="gstreamer"/>
       <dep package="gst-plugins-base"/>
@@ -786,7 +788,7 @@
   <autotools id="libgdamm">
     <branch/>
     <dependencies>
-      <dep package="gtkmm"/>
+      <dep package="gtkmm-3"/>
       <dep package="libgda"/>
     </dependencies>
   </autotools>
@@ -794,7 +796,7 @@
   <autotools id="libgda-uimm">
     <branch/>
     <dependencies>
-      <dep package="gtkmm"/>
+      <dep package="gtkmm-3"/>
       <dep package="libgdamm"/>
     </dependencies>
   </autotools>
@@ -802,15 +804,23 @@
   <autotools id="gtkmm_hello">
     <branch/>
     <dependencies>
-      <dep package="gtkmm"/>
+      <dep package="gtkmm-3"/>
     </dependencies>
   </autotools>
 
  <autotools id="gtksourceviewmm">
     <branch/>
     <dependencies>
-      <dep package="gtksourceview"/>
-      <dep package="gtkmm"/>
+      <dep package="gtksourceview-3"/>
+      <dep package="gtkmm-3"/>
+    </dependencies>
+  </autotools>
+
+  <autotools id="goocanvasmm-2.0">
+    <branch revision="goocanvasmm-2.0" module="goocanvasmm" checkoutdir="goocanvasmm-2.0"/>
+    <dependencies>
+      <dep package="goocanvas-2.0"/>
+      <dep package="gtkmm-3"/>
     </dependencies>
   </autotools>
 
@@ -826,7 +836,7 @@
     <branch />
     <dependencies>
       <dep package="libnotify"/>
-      <dep package="gtkmm"/>
+      <dep package="gtkmm-3"/>
     </dependencies>
   </autotools>
 
@@ -852,7 +862,7 @@
     <branch/>
     <dependencies>
       <dep package="clutter-gtk"/>
-      <dep package="gtkmm"/>
+      <dep package="gtkmm-3"/>
     </dependencies>
   </autotools>
 
@@ -867,7 +877,7 @@
   <autotools id="gstreamermm">
     <branch/>
     <dependencies>
-      <dep package="gtkmm"/>
+      <dep package="gtkmm-3"/>
       <dep package="gstreamer"/>
       <dep package="gst-plugins-base"/>
     </dependencies>
@@ -898,7 +908,7 @@
     <branch/>
     <dependencies>
       <dep package="intltool"/>
-      <dep package="gtkmm"/>
+      <dep package="gtkmm-3"/>
     </dependencies>
   </autotools>
 
@@ -914,7 +924,7 @@
     <branch/>
     <dependencies>
       <dep package="glibmm"/>
-      <dep package="gtkmm"/>
+      <dep package="gtkmm-3"/>
       <dep package="cluttermm-1.0"/>
       <dep package="libchamplain"/>
     </dependencies>
@@ -1034,7 +1044,7 @@
       <dep package="gtk+-3"/>
       <dep package="intltool"/>
       <dep package="libxml2"/>
-      <dep package="gtksourceview"/>
+      <dep package="gtksourceview-3"/>
       <dep package="gsettings-desktop-schemas"/>
     </dependencies>
   </autotools>
@@ -1067,7 +1077,7 @@
     <branch/>
     <dependencies>
       <dep package="libxml++"/>
-      <dep package="gtkmm"/>
+      <dep package="gtkmm-3"/>
     </dependencies>
   </autotools>
 
@@ -1122,7 +1132,7 @@
       <dep package="libgdamm"/>
       <dep package="iso-codes"/>
       <dep package="gtksourceviewmm"/>
-      <dep package="goocanvasmm"/>
+      <dep package="goocanvasmm-2.0"/>
       <dep package="libepc"/>
       <dep package="evince"/>
       <dep package="pygobject-python2"/>
@@ -1417,21 +1427,21 @@
   <autotools id="gtkmm-documentation">
     <branch/>
     <dependencies>
-      <dep package="gtkmm"/>
+      <dep package="gtkmm-3"/>
     </dependencies>
   </autotools>
 
   <autotools id="gtkmm-utils">
     <branch repo="git.savannah.nongnu.org" module="gtkmm-utils" checkoutdir="gtkmm-utils" />
     <dependencies>
-      <dep package="gtkmm"/>
+      <dep package="gtkmm-3"/>
     </dependencies>
   </autotools>
 
   <autotools id="paperbox">
     <branch/>
     <dependencies>
-      <dep package="gtkmm"/>
+      <dep package="gtkmm-3"/>
       <dep package="gtkmm-utils"/>
       <dep package="goocanvas"/>
       <dep package="dbus-glib"/>
@@ -1645,12 +1655,19 @@
       <dep package="dbus-glib"/>
       <dep package="libnotify"/>
     </suggests>
-  </autotools> 
+  </autotools>
+
+  <autotools id="goocanvas-2.0">
+    <branch revision="goocanvas-2.0" module="goocanvas" checkoutdir="goocanvas-2.0"/>
+    <dependencies>
+      <dep package="gtk+-3"/>
+    </dependencies>
+  </autotools>
 
   <autotools id="goocanvas">
     <branch/>
     <dependencies>
-      <dep package="gtk+-3"/>
+      <dep package="gtk+"/>
     </dependencies>
   </autotools>
 
@@ -1933,7 +1950,7 @@
   <autotools id="gparted">
     <branch/>
     <dependencies>
-      <dep package="gtkmm"/>
+      <dep package="gtkmm-3"/>
     </dependencies>
   </autotools>
 
@@ -1941,7 +1958,7 @@
     <branch/>
     <dependencies>
       <dep package="glibmm"/>
-      <dep package="gtkmm"/>
+      <dep package="gtkmm-3"/>
       <dep package="gconf"/>
       <dep package="sqlite3"/>
       <dep package="gegl"/>
@@ -1961,7 +1978,7 @@
       <dep package="libxslt"/>
       <dep package="sqlite3"/>
       <dep package="libsoup"/>
-      <dep package="WebKit1"/>
+      <dep package="WebKit"/>
       <dep package="json-glib"/>
       <dep package="gobject-introspection"/>
       <dep package="gsettings-desktop-schemas"/>
@@ -2024,21 +2041,6 @@
 
   <!-- ########## End of Pimplico Modules ########## -->
 
-  <autotools id="midori">
-    <branch repo="git.xfce.org" branch="kalikiana/midori"/>
-    <dependencies>
-      <dep package="gtk+-2"/>
-      <dep package="WebKit1"/>
-      <dep package="libsoup"/>
-      <dep package="libxml2"/>
-    </dependencies>
-    <suggests>
-      <dep package="libunique-1"/>
-      <dep package="libnotify"/>
-      <dep package="sqlite3"/>
-    </suggests>
-  </autotools>
-
   <autotools id="librsvgmm">
     <branch/>
     <dependencies>
@@ -2053,7 +2055,7 @@
     <dependencies>
       <dep package="mm-common"/>
       <dep package="glibmm"/>
-      <dep package="gtkmm"/>
+      <dep package="gtkmm-3"/>
     </dependencies>
   </autotools>
 
@@ -2110,7 +2112,7 @@
     <branch repo="git.ardour.org" module="ardour/ardour.git"/>
     <dependencies>
       <dep package="glibmm"/>
-      <dep package="gtkmm"/>
+      <dep package="gtkmm-3"/>
       <dep package="libxml2"/>
     </dependencies>
   </waf>
@@ -2504,12 +2506,16 @@
   <autotools id="latexila">
     <branch/>
     <dependencies>
-      <dep package="gtksourceview"/>
+      <dep package="gtksourceview-3"/>
       <dep package="gsettings-desktop-schemas"/>
       <dep package="vala"/>
       <dep package="libgee"/>
       <dep package="gspell"/>
       <dep package="yelp-tools"/>
+      <dep package="m4-common"/>
+      <dep package="appstream-glib"/>
+      <dep package="intltool"/>
+      <dep package="gtk-doc"/>
     </dependencies>
   </autotools>
 
@@ -2616,6 +2622,9 @@
       <dep package="pango"/>
       <dep package="librsvg"/>
       <dep package="cairo"/>
+      <if condition-set="macos">
+        <dep package="gtk-mac-integration"/>
+      </if>
     </dependencies>
   </autotools>
 
@@ -2658,10 +2667,12 @@
       <dep package="gstreamer-0.10"/>
       <dep package="gst-plugins-base-0.10"/>
       <dep package="flac"/>
-      <dep package="libv4l"/>
       <dep package="libvpx"/>
       <dep package="taglib"/>
       <dep package="wavpack"/>
+      <if condition-unset="macos">
+        <dep package="libv4l"/>
+      </if>
     </dependencies>
     <suggests>
       <dep package="pulseaudio"/>
@@ -2882,6 +2893,9 @@
       <dep package="gtk+-2"/>
       <dep package="intltool"/>
       <dep package="gegl"/>
+      <if condition-set="macos">
+        <dep package="gtk-mac-integration"/>
+      </if>
     </dependencies>
     <suggests>
       <dep package="iso-codes"/>
@@ -2912,7 +2926,7 @@
       <dep package="glibmm"/>
       <dep package="libxml2"/>
       <dep package="libxml++"/>
-      <dep package="gtkmm"/>
+      <dep package="gtkmm-3"/>
     </dependencies>
   </autotools>
 
@@ -2933,7 +2947,7 @@
             module="inkscape"
             checkoutdir="inkscape/"/>
     <dependencies>
-      <dep package="gtkmm"/>
+      <dep package="gtkmm-3"/>
       <dep package="libxslt"/>
     </dependencies>
   </autotools>
@@ -3108,7 +3122,6 @@
       <dep package="libdmapsharing"/>
       <dep package="libgnome-keyring"/>
       <dep package="vala"/>
-      <dep package="WebKit1"/>
     </suggests>
   </autotools>
 
@@ -3221,11 +3234,11 @@
     </suggests>
   </autotools>
 
-  <autotools id="seed" autogenargs="--with-webkit=3.0">
+  <autotools id="seed" autogenargs="--with-webkit=4.0">
     <branch/>
     <dependencies>
       <dep package="gobject-introspection"/>
-      <dep package="WebKit1"/>
+      <dep package="WebKit"/>
       <dep package="gnome-js-common"/>
       <dep package="mpfr"/>
       <dep package="readline"/>
@@ -3328,7 +3341,7 @@
       <dep package="vte"/>
       <dep package="gdl"/>
       <dep package="libgda-5.2"/>
-      <dep package="gtksourceview"/>
+      <dep package="gtksourceview-3"/>
       <dep package="yelp-tools"/>
     </dependencies>
     <suggests>
@@ -3377,7 +3390,7 @@
       <dep package="pango"/>
       <dep package="atk"/>
       <dep package="gtk+-3"/>
-      <dep package="gtksourceview"/>
+      <dep package="gtksourceview-3"/>
       <dep package="librsvg"/>
       <dep package="enchant"/>
       <dep package="libnotify"/>
@@ -3393,17 +3406,85 @@
     </dependencies>
   </autotools>
 
-  <autotools id="bijiben">
+  <autotools id="weston" autogenargs="--disable-setuid-install">
+    <branch repo="wayland.freedesktop.org"/>
+    <dependencies>
+      <dep package="wayland-protocols"/>
+      <dep package="wayland"/>
+      <dep package="cairo"/>
+      <dep package="libxkbcommon"/>
+      <dep package="mesa-libGLES"/>
+    </dependencies>
+  </autotools>
+
+  <autotools id="valadoc" supports-non-srcdir-builds="no">
+    <branch />
+    <dependencies>
+      <dep package="libgee"/>
+      <dep package="gdk-pixbuf"/>
+      <dep package="graphviz"/>
+    </dependencies>
+  </autotools>
+
+  <autotools id="nemiver"
+             autogenargs="--enable-gsettings=yes">
     <branch/>
     <dependencies>
-      <dep package="appstream-glib"/>
-      <dep package="tracker"/>
-      <dep package="clutter-gtk"/>
-      <dep package="gtk+-3"/>
+      <dep package="boost"/>
+      <dep package="gdb"/>
+      <dep package="gdlmm"/>
+      <dep package="gtkmm-3"/>
+      <dep package="glibmm"/>
+      <dep package="gtksourceviewmm"/>
+      <dep package="vte"/>
+      <dep package="libgtop"/>
       <dep package="libxml2"/>
+      <dep package="ghex"/>
+      <dep package="yelp-tools"/>
+    </dependencies>
+  </autotools>
+
+  <autotools id="gtk+-2">
+    <if condition-set="quartz">
+      <autogenargs value="--with-backend=quartz"/>
+    </if>
+    <branch checkoutdir="gtk+-2" module="gtk+" revision="gtk-2-24"/>
+    <dependencies>
       <dep package="glib"/>
-      <dep package="WebKit1"/>
-      <dep package="evolution-data-server"/>
+      <dep package="cairo"/>
+      <dep package="pango"/>
+      <dep package="atk"/>
+      <dep package="gdk-pixbuf"/>
+      <dep package="gobject-introspection"/>
+    </dependencies>
+    <suggests>
+      <dep package="shared-mime-info"/>
+    </suggests>
+  </autotools>
+
+  <autotools id="gdlmm">
+    <branch/>
+    <dependencies>
+      <dep package="gdl"/>
+      <dep package="glibmm"/>
+      <dep package="gtkmm-3"/>
+    </dependencies>
+  </autotools>
+
+ <autotools id="gtksourceviewmm">
+    <branch/>
+    <dependencies>
+      <dep package="gtksourceview-3"/>
+      <dep package="gtkmm-3"/>
+    </dependencies>
+  </autotools>
+
+  <autotools id="gdl">
+    <branch/>
+    <dependencies>
+      <dep package="intltool"/>
+      <dep package="librsvg"/>
+      <dep package="gtk+-3"/>
     </dependencies>
   </autotools>
 

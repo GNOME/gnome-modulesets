@@ -41,6 +41,12 @@
     </systemdependencies>
   </systemmodule>
 
+  <systemmodule id="bluez">
+    <pkg-config>bluez.pc</pkg-config>
+    <branch repo="system"
+            version="5.40"/>
+  </systemmodule>
+
   <systemmodule id="bogofilter">
     <branch repo="system"/>
     <systemdependencies>
@@ -58,6 +64,11 @@
   <systemmodule id="cairo">
     <pkg-config>cairo.pc</pkg-config>
     <branch repo="system" version="1.14.0"/>
+  </systemmodule>
+
+  <systemmodule id="caribou">
+    <pkg-config>caribou-1.0.pc</pkg-config>
+    <branch repo="system"/>
   </systemmodule>
 
   <systemmodule id="c++">
@@ -343,6 +354,12 @@
     </systemdependencies>
   </systemmodule>
 
+  <systemmodule id="hogweed">
+    <pkg-config>hogweed.pc</pkg-config>
+    <branch repo="system"
+            version="3.2"/>
+  </systemmodule>
+
   <systemmodule id="hyphen">
     <branch repo="system"/>
     <systemdependencies>
@@ -352,7 +369,7 @@
 
   <systemmodule id="intltool">
     <branch repo="system"
-            version="0.50"/>
+            version="0.50.2"/>
     <systemdependencies>
       <dep type="path"
            name="intltoolize"/>
@@ -379,16 +396,10 @@
             version="0.11"/>
   </systemmodule>
 
-  <systemmodule id="js24">
-    <pkg-config>mozjs-24.pc</pkg-config>
-    <branch repo="system"
-            version="24.2"/>
-  </systemmodule>
-
   <systemmodule id="krb5">
     <branch repo="system"/>
     <systemdependencies>
-      <dep type="path" name="krb5-config"/>
+      <dep type="c_include" name="krb5.h"/>
     </systemdependencies>
   </systemmodule>
 
@@ -430,6 +441,11 @@
 
   <systemmodule id="libdmapsharing">
     <pkg-config>libdmapsharing-3.0.pc</pkg-config>
+    <branch repo="system"/>
+  </systemmodule>
+
+  <systemmodule id="libelf">
+    <pkg-config>libelf.pc</pkg-config>
     <branch repo="system"/>
   </systemmodule>
 
@@ -547,11 +563,6 @@
     </systemdependencies>
   </systemmodule>
 
-  <systemmodule id="libarchive">
-    <pkg-config>libarchive.pc</pkg-config>
-    <branch repo="system" version="3.2.0"/>
-  </systemmodule>
-
   <systemmodule id="libcap">
     <branch repo="system"/>
     <systemdependencies>
@@ -619,13 +630,6 @@
     <branch repo="system" version="4"/>
   </systemmodule>
 
-  <systemmodule id="libjasper">
-    <branch repo="system"/>
-    <systemdependencies>
-      <dep type="c_include" name="jasper/jasper.h"/>
-    </systemdependencies>
-  </systemmodule>
-
   <systemmodule id="libjpeg">
     <branch repo="system"/>
     <systemdependencies>
@@ -681,6 +685,12 @@
   <systemmodule id="libraw">
     <pkg-config>libraw.pc</pkg-config>
     <branch repo="system"/>
+  </systemmodule>
+
+  <systemmodule id="libseccomp">
+    <pkg-config>libseccomp.pc</pkg-config>
+    <branch repo="system"
+            version="2.0"/>
   </systemmodule>
 
   <systemmodule id="libsndfile">
@@ -812,6 +822,7 @@
     <systemdependencies>
       <dep type="c_include" name="llvm-c/Core.h">
         <!-- Debian -->
+        <altdep type="c_include" name="llvm-c-4.0/llvm-c/Core.h"/>
         <altdep type="c_include" name="llvm-c-3.9/llvm-c/Core.h"/>
         <altdep type="c_include" name="llvm-c-3.8/llvm-c/Core.h"/>
         <altdep type="c_include" name="llvm-c-3.7/llvm-c/Core.h"/>
@@ -836,10 +847,32 @@
             version="9.2"/>
   </systemmodule>
 
+  <systemmodule id="mpc">
+    <branch repo="system"/>
+    <systemdependencies>
+      <dep type="c_include" name="mpc.h"/>
+    </systemdependencies>
+  </systemmodule>
+
   <systemmodule id="mpfr">
     <branch repo="system"/>
     <systemdependencies>
       <dep type="c_include" name="mpfr.h"/>
+    </systemdependencies>
+  </systemmodule>
+
+  <systemmodule id="nettle">
+    <pkg-config>nettle.pc</pkg-config>
+    <branch repo="system"
+            version="3.2"/>
+  </systemmodule>
+
+  <systemmodule id="ninja">
+    <branch repo="system"/>
+    <systemdependencies>
+      <dep type="path" name="ninja">
+        <altdep type="path" name="ninja-build"/>
+      </dep>
     </systemdependencies>
   </systemmodule>
 
@@ -926,6 +959,12 @@
     <systemdependencies>
       <dep type="c_include" name="pppd/pppd.h"/>
     </systemdependencies>
+  </systemmodule>
+
+  <systemmodule id="pulseaudio">
+    <pkg-config>libpulse-mainloop-glib.pc</pkg-config>
+    <branch repo="system"
+            version="2.0"/>
   </systemmodule>
 
   <systemmodule id="py3cairo">
@@ -1083,6 +1122,16 @@
     <branch repo="system" version="1.8.1"/>
   </systemmodule>
 
+  <systemmodule id="xcb-randr">
+    <pkg-config>xcb-randr.pc</pkg-config>
+    <branch repo="system"/>
+  </systemmodule>
+
+  <systemmodule id="xcb-res">
+    <pkg-config>xcb-res.pc</pkg-config>
+    <branch repo="system"/>
+  </systemmodule>
+
   <systemmodule id="xcb-util">
     <pkg-config>xcb-aux.pc</pkg-config>
     <branch repo="system" version="0.1"/>
@@ -1167,9 +1216,11 @@
     <branch repo="system" version="2.3.0"/>
   </systemmodule>
 
-  <systemmodule id="WebKit1">
-    <pkg-config>webkitgtk-3.0.pc</pkg-config>
-    <branch repo="system" version="2.0.0"/>
+  <systemmodule id="vala-bootstrap">
+    <branch repo="system"/>
+    <systemdependencies>
+      <dep type="path" name="valac"/>
+    </systemdependencies>
   </systemmodule>
 
   <systemmodule id="xmlcatalog">

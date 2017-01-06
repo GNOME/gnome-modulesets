@@ -11,8 +11,6 @@
       href="git://anongit.freedesktop.org/git/"/>
   <repository type="git" name="github.com"
       href="git://github.com/"/>
-  <repository type="git" name="wayland"
-      href="git://anongit.freedesktop.org/git/wayland"/>
 
 <!-- tarball repos -->
   <repository type="tarball" name="gnome.org"
@@ -61,24 +59,6 @@
     </suggests>
   </autotools>
 
-  <autotools id="gdl">
-    <branch/>
-    <dependencies>
-      <dep package="intltool"/>
-      <dep package="librsvg"/>
-      <dep package="gtk+-3"/>
-    </dependencies>
-  </autotools>
-
-  <autotools id="gdlmm">
-    <branch/>
-    <dependencies>
-      <dep package="gdl"/>
-      <dep package="glibmm"/>
-      <dep package="gtkmm"/>
-    </dependencies>
-  </autotools>
-
   <autotools id="gnome-code-assistance">
     <branch/>
     <dependencies>
@@ -90,14 +70,6 @@
     <branch/>
     <dependencies>
       <dep package="yelp-tools"/>
-    </dependencies>
-  </autotools>
-
- <autotools id="gtksourceviewmm">
-    <branch/>
-    <dependencies>
-      <dep package="gtksourceview"/>
-      <dep package="gtkmm"/>
     </dependencies>
   </autotools>
 
@@ -201,17 +173,6 @@
     </dependencies>
   </autotools>
 
-  <autotools id="weston" autogenargs="--disable-setuid-install">
-    <branch repo="wayland"/>
-    <dependencies>
-      <dep package="wayland-protocols"/>
-      <dep package="wayland"/>
-      <dep package="cairo"/>
-      <dep package="libxkbcommon"/>
-      <dep package="mesa-libGLES"/>
-    </dependencies>
-  </autotools>
-
   <!-- Apps start here -->
 
   <autotools id="accerciser">
@@ -241,57 +202,16 @@
   <autotools id="devhelp">
     <branch/>
     <dependencies>
-      <dep package="intltool"/>
+      <dep package="appstream-glib"/>
       <dep package="gtk+-3"/>
+      <dep package="gtk-doc"/>
+      <dep package="m4-common"/>
       <dep package="WebKit"/>
     </dependencies>
   </autotools>
 
-  <autotools id="empathy" supports-non-srcdir-builds="no">
-    <branch/>
-    <dependencies>
-      <dep package="clutter"/>
-      <dep package="clutter-gst3"/>
-      <dep package="clutter-gtk"/>
-      <dep package="dbus-glib"/>
-      <dep package="intltool"/>
-      <dep package="farstream"/>
-      <dep package="folks"/>
-      <dep package="gcr"/>
-      <dep package="glib"/>
-      <dep package="libgee"/>
-      <dep package="libsecret"/>
-      <dep package="gnome-online-accounts"/>
-      <dep package="gnutls"/>
-      <dep package="gsettings-desktop-schemas"/>
-      <dep package="gstreamer"/>
-      <dep package="gtk+-3"/>
-      <dep package="libcanberra"/>
-      <dep package="libsoup"/>
-      <dep package="libxml2"/>
-      <dep package="pulseaudio"/>
-      <dep package="telepathy-farstream"/>
-      <dep package="telepathy-glib"/>
-      <dep package="telepathy-logger"/>
-      <dep package="telepathy-mission-control"/>
-      <dep package="libnotify"/>
-      <dep package="WebKit1"/>
-    </dependencies>
-    <suggests>
-      <dep package="enchant"/>
-      <dep package="geoclue"/>
-      <dep package="geocode-glib"/>
-      <dep package="iso-codes"/>
-      <dep package="libchamplain"/>
-      <if condition-set="linux">
-        <dep package="NetworkManager"/>
-        <dep package="gudev"/>
-      </if>
-    </suggests>
-  </autotools>
-
   <cmake id="evolution"
-         cmakeargs="-DENABLE_LIBCRYPTUI=OFF -DENABLE_PST_IMPORT=OFF">
+         cmakeargs="-DENABLE_LIBCRYPTUI=OFF -DENABLE_PST_IMPORT=OFF -DENABLE_YTNEF=OFF">
     <branch/>
     <dependencies>
       <dep package="atk"/>
@@ -348,7 +268,7 @@
       <dep package="gtk+-3"/>
       <dep package="glib"/>
       <dep package="gobject-introspection"/>
-      <dep package="gtksourceview"/>
+      <dep package="gtksourceview-3"/>
       <dep package="gsettings-desktop-schemas"/>
       <dep package="json-glib"/>
       <dep package="libgee"/>
@@ -366,6 +286,9 @@
   </autotools>
 
   <autotools id="glade">
+    <if condition-set="macos">
+      <autogenargs value="--disable-man-pages"/>
+    </if>
     <branch/>
     <dependencies>
       <dep package="intltool"/>
@@ -374,6 +297,9 @@
       <dep package="gtk+-3"/>
       <dep package="libxml2"/>
       <dep package="yelp-tools"/>
+      <if condition-set="macos">
+        <dep package="gtk-mac-integration"/>
+      </if>
     </dependencies>
   </autotools>
 
@@ -386,7 +312,7 @@
       <dep package="glib"/>
       <dep package="gnome-code-assistance"/>
       <dep package="gtk+-3"/>
-      <dep package="gtksourceview"/>
+      <dep package="gtksourceview-3"/>
       <dep package="libgit2-glib"/>
       <dep package="libpeas"/>
       <dep package="librsvg"/>
@@ -476,24 +402,6 @@
     </dependencies>
   </autotools>
 
-  <autotools id="nemiver"
-             autogenargs="--enable-gsettings=yes">
-    <branch/>
-    <dependencies>
-      <dep package="boost"/>
-      <dep package="gdb"/>
-      <dep package="gdlmm"/>
-      <dep package="gtkmm"/>
-      <dep package="glibmm"/>
-      <dep package="gtksourceviewmm"/>
-      <dep package="vte"/>
-      <dep package="libgtop"/>
-      <dep package="libxml2"/>
-      <dep package="ghex"/>
-      <dep package="yelp-tools"/>
-    </dependencies>
-  </autotools>
-
   <autotools id="polari">
     <branch/>
     <dependencies>
@@ -524,25 +432,6 @@
     <suggests>
       <dep package="avahi"/>
       <dep package="libxml2"/>
-    </suggests>
-  </autotools>
-
-  <autotools id="vinagre">
-    <branch/>
-    <dependencies>
-      <dep package="appstream-glib"/>
-      <dep package="intltool"/>
-      <dep package="libxml2"/>
-      <dep package="gtk+-3"/>
-      <dep package="gtk-vnc"/>
-      <dep package="libsecret"/>
-      <dep package="vala"/>
-    </dependencies>
-    <suggests>
-      <dep package="avahi"/>
-      <dep package="spice-gtk"/>
-      <dep package="telepathy-glib"/>
-      <dep package="vte"/>
     </suggests>
   </autotools>
 
@@ -782,7 +671,6 @@
       <dep package="accerciser"/>
       <dep package="dconf-editor"/>
       <dep package="devhelp"/>
-      <dep package="empathy"/>
       <dep package="evolution"/>
       <dep package="ghex"/>
       <dep package="gitg"/>
@@ -794,9 +682,7 @@
       <dep package="gnome-todo"/>
       <dep package="gnome-tweak-tool"/>
       <dep package="nautilus-sendto"/>
-      <dep package="nemiver"/>
       <dep package="polari"/>
-      <dep package="vinagre"/>
       <if condition-set="linux">
         <dep package="gnome-multi-writer"/>
       </if>

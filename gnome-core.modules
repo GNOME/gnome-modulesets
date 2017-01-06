@@ -63,11 +63,16 @@
   </autotools>
 
   <autotools id="at-spi2-core">
+    <if condition-unset="x11">
+      <autogenargs value="--disable-x11"/>
+    </if>
     <branch/>
     <dependencies>
       <dep package="dbus"/>
       <dep package="glib"/>
-      <dep package="libXtst"/>
+      <if condition-set="x11">
+        <dep package="libXtst"/>
+      </if>
     </dependencies>
   </autotools>
 
@@ -112,6 +117,9 @@
     <if condition-set="freebsd">
       <autogenargs value="--with-ca-certificates=/usr/local/share/certs/ca-root-nss.crt"/>
     </if>
+    <if condition-set="macos">
+      <autogenargs value="--without-pkcs11 --without-ca-certificates"/>
+    </if>
     <branch/>
     <dependencies>
       <dep package="glib"/>
@@ -119,7 +127,9 @@
       <dep package="libproxy"/>
       <dep package="gsettings-desktop-schemas"/>
       <dep package="gnutls"/>
-      <dep package="p11-kit"/>
+      <if condition-unset="macos">
+        <dep package="p11-kit"/>
+      </if>
     </dependencies>
   </autotools>
 
@@ -380,14 +390,13 @@
     </dependencies>
   </autotools>
 
-  <autotools id="gnome-themes-standard">
+  <autotools id="gnome-themes-standard" autogenargs="--disable-gtk2-engine">
     <branch/>
     <dependencies>
       <dep package="intltool"/>
       <dep package="cantarell-fonts"/>
       <dep package="librsvg"/>
       <dep package="gtk+-3"/>
-      <dep package="gtk+-2"/>
     </dependencies>
   </autotools>
 
@@ -434,6 +443,7 @@
       <dep package="intltool"/>
       <dep package="glib"/>
       <dep package="dbus"/>
+      <dep package="libcap"/>
       <dep package="libgcrypt"/>
       <dep package="libsoup"/>
       <dep package="gcr"/>
@@ -476,6 +486,8 @@
     </if>
     <branch/>
     <dependencies>
+      <dep package="cairo"/>
+      <dep package="egl"/>
       <dep package="gdk-pixbuf"/>
       <dep package="glib"/>
       <dep package="gnome-desktop"/>
@@ -484,19 +496,27 @@
       <dep package="gtk+-3"/>
       <dep package="gtk-doc"/>
       <dep package="intltool"/>
+      <dep package="json-glib"/>
       <dep package="libcanberra"/>
+      <dep package="libX11"/>
+      <dep package="libXcomposite"/>
+      <dep package="libXcursor"/>
       <dep package="libXdamage"/>
       <dep package="libXext"/>
       <dep package="libXfixes"/>
       <dep package="libXi"/>
       <dep package="libXinerama"/>
-      <dep package="libXcomposite"/>
       <dep package="libXrandr"/>
+      <dep package="libXrender"/>
       <dep package="libxkbcommon"/>
+      <dep package="libxkbfile"/>
       <dep package="pango"/>
       <dep package="sm"/>
       <dep package="startup-notification"/>
       <dep package="upower"/>
+      <dep package="xcb-randr"/>
+      <dep package="xcb-res"/>
+      <dep package="xkeyboard-config"/>
       <dep package="zenity"/>
       <if condition-set="wayland">
         <dep package="gbm"/>
@@ -528,34 +548,6 @@
     </suggests>
   </autotools>
 
-  <autotools id="pulseaudio"
-             supports-non-srcdir-builds="no"
-             autogenargs="--disable-hal --disable-oss-output --disable-esound --disable-gconf --disable-gtk3 --enable-bluez5">
-    <if condition-unset="linux">
-      <autogenargs value="--disable-bluez4 --disable-bluez5"/>
-    </if>
-    <branch repo="pulseaudio.freedesktop.org"/>
-    <dependencies>
-      <dep package="alsa"/>
-      <dep package="avahi"/>
-      <dep package="dbus"/>
-      <dep package="json"/>
-      <dep package="libcap"/>
-      <dep package="libsndfile"/>
-      <dep package="libtool-ltdl"/>
-      <dep package="glib"/>
-      <dep package="speex"/>
-      <if condition-set="linux">
-        <dep package="bluez"/>
-        <dep package="libudev"/>
-        <dep package="sbc"/>
-      </if>
-      <if condition-set="systemd">
-        <dep package="libsystemd"/>
-      </if>
-    </dependencies>
-  </autotools>
-
   <autotools id="rygel" supports-non-srcdir-builds="no">
     <branch/>
     <dependencies>
@@ -565,7 +557,6 @@
       <dep package="gupnp-dlna"/>
       <dep package="libgee"/>
       <dep package="tracker"/>
-      <dep package="valadoc"/>
       <dep package="libmediaart"/>
     </dependencies>
   </autotools>
@@ -634,7 +625,7 @@
       <dep package="gst-plugins-bad"/>
       <dep package="gst-plugins-base"/>
       <dep package="gst-plugins-good"/>
-      <dep package="clutter-gst3"/>
+      <dep package="clutter-gst"/>
       <dep package="clutter-gtk"/>
       <dep package="libcanberra"/>
       <dep package="vala"/>
@@ -683,6 +674,7 @@
       <dep package="glib"/>
       <dep package="gnome-desktop"/>
       <dep package="gtk+-3"/>
+      <dep package="hogweed"/>
       <dep package="iso-codes"/>
       <dep package="json-glib"/>
       <dep package="libhttpseverywhere"/>
@@ -735,9 +727,12 @@
       <dep package="intltool"/>
       <dep package="libpeas"/>
       <dep package="yelp-tools"/>
-      <dep package="gtksourceview"/>
+      <dep package="gtksourceview-3"/>
       <dep package="gsettings-desktop-schemas"/>
       <dep package="python3-devel"/>
+      <if condition-set="macos">
+        <dep package="gtk-mac-integration"/>
+      </if>
     </dependencies>
     <suggests>
       <dep package="gspell"/>
@@ -758,7 +753,6 @@
       <dep package="gtk+-3"/>
       <dep package="spice-gtk"/>
       <dep package="vala"/>
-      <dep package="osinfo-db"/>
       <dep package="tracker"/>
       <if condition-set="linux">
         <dep package="gudev"/>
@@ -772,7 +766,7 @@
       <dep package="intltool"/>
       <dep package="glib"/>
       <dep package="gtk+-3"/>
-      <dep package="gtksourceview"/>
+      <dep package="gtksourceview-3"/>
       <dep package="libsoup"/>
       <dep package="libxml2"/>
       <dep package="m4-common"/>
@@ -1001,7 +995,7 @@
       <dep package="libwnck"/>
       <dep package="libgtop"/>
       <dep package="gtk+-3"/>
-      <dep package="gtkmm"/>
+      <dep package="gtkmm-3"/>
       <dep package="libxml2"/>
       <dep package="librsvg"/>
     </dependencies>
@@ -1092,8 +1086,8 @@
       <dep package="evince"/>
       <dep package="clutter"/>
       <dep package="clutter-gtk"/>
-      <dep package="clutter-gst3"/>
-      <dep package="gtksourceview"/>
+      <dep package="clutter-gst"/>
+      <dep package="gtksourceview-3"/>
       <dep package="WebKit"/>
       <dep package="gstreamer"/>
       <dep package="gst-plugins-base"/>
@@ -1107,7 +1101,7 @@
       <dep package="appstream-glib"/>
       <dep package="cairo"/>
       <dep package="clutter"/>
-      <dep package="clutter-gst3"/>
+      <dep package="clutter-gst"/>
       <dep package="clutter-gtk"/>
       <dep package="gdk-pixbuf"/>
       <dep package="glib"/>
@@ -1157,25 +1151,21 @@
     </dependencies>
   </autotools>
 
-  <autotools id="bluez"
-             autogenargs="--enable-library">
-    <pkg-config>bluez.pc</pkg-config>
-    <branch repo="kernel.org" module="pub/linux/bluetooth/bluez-5.40.tar.xz" version="5.40"
-            hash="sha256:dada8b812055afcad4546d9966f9a763e4723169e89706e2b240c7b7e998dc27"
-            size="1664320"/>
-  </autotools>
-
   <autotools id="NetworkManager"
-             autogenargs="--with-udev-dir=${libdir}/udev --with-systemdsystemunitdir=no --with-crypto=gnutls --disable-wimax --disable-more-warnings --disable-json-validation">
-    <branch repo="git.freedesktop.org"
-	          module="NetworkManager/NetworkManager.git"
-            checkoutdir="NetworkManager"/>
+             autogenargs="PYTHON=python3 --with-udev-dir=${libdir}/udev --with-systemdsystemunitdir=no --with-crypto=gnutls --disable-more-warnings --disable-json-validation">
+    <branch repo="gnome.org"
+           version="1.4.2"
+           module="NetworkManager/1.4/NetworkManager-${version}.tar.xz"
+           hash="a864e347ddf6da8dabd40e0185b8c10a655d4a94b45cbaa2b3bb4b5e8360d204"
+           size="3758636">
+    </branch>
     <dependencies>
       <dep package="libndp"/>
       <dep package="libnl"/>
       <dep package="libnl-genl"/>
       <dep package="libnl-route"/>
       <dep package="glib"/>
+      <dep package="gobject-introspection"/>
       <dep package="iptables"/>
       <dep package="dbus-glib"/>
       <dep package="libgcrypt"/>
@@ -1378,6 +1368,9 @@
       <dep package="glib"/>
       <dep package="gtk+-3"/>
       <dep package="pango"/>
+      <if condition-set="macos">
+        <dep package="adwaita-icon-theme"/>
+      </if>
     </dependencies>
   </metamodule>
 
@@ -1391,15 +1384,18 @@
       <dep package="gstreamer"/>
       <dep package="libnotify"/>
       <dep package="libpeas"/>
-      <dep package="PackageKit"/>
       <dep package="telepathy-glib"/>
-      <dep package="upower"/>
       <dep package="WebKit"/>
       <!-- and bindings -->
       <dep package="pygobject"/>
-      <dep package="gtkmm"/>
+      <dep package="gjs"/>
+      <dep package="gtkmm-3"/>
       <if condition-set="linux">
         <dep package="NetworkManager"/>
+      </if>
+      <if condition-unset="macos">
+        <dep package="PackageKit"/>
+        <dep package="upower"/>
       </if>
     </dependencies>
   </metamodule>
