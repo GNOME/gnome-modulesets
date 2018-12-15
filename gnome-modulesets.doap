@@ -10,7 +10,7 @@
   <shortdesc xml:lang="en">JHBuild modulesets to build GNOME</shortdesc>
 
   <homepage rdf:resource="http://www.gnome.org" />
-  <bug-database rdf:resource="http://bugzilla.gnome.org/enter_bug.cgi?product=jhbuild&amp;component=modulesets" />
+  <bug-database rdf:resource="https://gitlab.gnome.org/GNOME/gnome-modulesets/issues/" />
   <mailing-list rdf:resource="http://mail.gnome.org/mailman/listinfo/desktop-devel-list" />
   <!-- <category rdf:resource="http://api.gnome.org/doap-extensions#development" /> -->
 
