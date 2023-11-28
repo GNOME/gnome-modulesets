@@ -9,9 +9,9 @@
   <shortname>gnome-modulesets</shortname>
   <shortdesc xml:lang="en">JHBuild modulesets to build GNOME</shortdesc>
 
-  <homepage rdf:resource="http://www.gnome.org" />
+  <homepage rdf:resource="https://www.gnome.org" />
   <bug-database rdf:resource="https://gitlab.gnome.org/GNOME/gnome-modulesets/issues/" />
-  <mailing-list rdf:resource="http://mail.gnome.org/mailman/listinfo/desktop-devel-list" />
+  <developer-forum rdf:resource="https://discourse.gnome.org/c/platform/" />
   <!-- <category rdf:resource="http://api.gnome.org/doap-extensions#development" /> -->
 
   <repository>
@@ -49,7 +49,7 @@
     <foaf:Person>
       <foaf:name>Frederic Peters</foaf:name>
       <foaf:mbox rdf:resource="mailto:fpeters@gnome.org"/>
-      <gnome:userid>fpeters</gnome:userid>
+<!--      <gnome:userid>fpeters</gnome:userid> -->
     </foaf:Person>
   </maintainer>
 
@@ -65,7 +65,7 @@
     <foaf:Person>
       <foaf:name>Kjartan Maraas</foaf:name>
       <foaf:mbox rdf:resource="mailto:kmaraas@gnome.org"/>
-      <gnome:userid>kmaraas</gnome:userid>
+<!--      <gnome:userid>kmaraas</gnome:userid> -->
     </foaf:Person>
   </maintainer>
 
@@ -73,7 +73,7 @@
     <foaf:Person>
       <foaf:name>Luca Ferretti</foaf:name>
       <foaf:mbox rdf:resource="mailto:lferrett@gnome.org"/>
-      <gnome:userid>lferrett</gnome:userid>
+<!--      <gnome:userid>lferrett</gnome:userid> -->
     </foaf:Person>
   </maintainer>
 
